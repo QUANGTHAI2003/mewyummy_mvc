@@ -14,6 +14,7 @@ class Query extends Database
     public $limit = '';
     public $orderBy = '';
     public $innerJoin = '';
+    public $not = '';
 
 
     private function resetFields()
@@ -25,6 +26,7 @@ class Query extends Database
         $this->limit = '';
         $this->orderBy = '';
         $this->innerJoin = '';
+        $this->not = '';
     }
 
     /**
@@ -146,6 +148,11 @@ class Query extends Database
         $this->innerJoin .= " INNER JOIN $tableName ON $relationship";
         return $this;
     }
+ 
+    public function not($field, $id) {
+        $this->where .= " AND NOT $field = $id ";
+        return $this;
+    }
 
     /**
      * Get last id
@@ -216,9 +223,7 @@ class Query extends Database
      */
     public function get()
     {
-        $sqlQuery = "SELECT $this->selectField FROM $this->tableName $this->innerJoin $this->where $this->orderBy $this->limit";
-        $sqlQuery = trim($sqlQuery);
-        echo $sqlQuery;
+        $sqlQuery = "SELECT $this->selectField FROM $this->tableName $this->innerJoin $this->where $this->not $this->orderBy $this->limit";
         $query = $this->query($sqlQuery);
 
         $this->resetFields();

@@ -1,8 +1,9 @@
 <?php
 function slug(string $text = '')
 {
+    $text = normalizer_normalize($text, Normalizer::FORM_D);
     $text = strtolower($text);
-    $text = normalizer_normalize($text, Normalizer::FORM_KD);
+    $text = preg_replace('/[^a-z0-9\s-]/', '', $text);
     $text = preg_replace('/\p{Mn}/u', '', $text);
 
     $words = explode(' ', $text);
@@ -104,4 +105,16 @@ function checkSort(string $sortType = '', string $sortValue = '')
             return 'checked';
         }
     }
+}
+
+function numberFormatPrice($price)
+{
+    return number_format($price, 0, ',', '.') . 'đ';
+}
+
+function addSlug($data) {
+    foreach ($data as $key => $value) {
+        $data[$key]['slug'] = slug($value['name']);
+    }
+    return $data;
 }

@@ -10,7 +10,7 @@ class Connection
     private $host = 'localhost';
     private $user = 'root';
     private $pass = '';
-    private $name = 'exam';
+    private $name = 'mewyummy';
 
     private function __construct()
     {
