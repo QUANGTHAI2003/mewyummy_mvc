@@ -1,0 +1,278 @@
+.detail-layout {
+    .product-name {
+        font-weight: bold;
+        text-decoration: uppercase;
+        margin-bottom: 15px;
+        font-size: 22px;
+    }
+
+    .product-info {
+        .inventory_quantity,
+        #vendor,
+        #type {
+            color: $primaryColor;
+        }
+
+        b {
+            padding: 0 5px;
+        }
+    }
+
+    .product-summary {
+        padding: 15px 0;
+        margin: 10px;
+        border-top: 1px solid $borderColor;
+    }
+
+    .product-price {
+        font-weight: bold;
+        padding: 5px 10px;
+        border-radius: 10px;
+        background-color: #fafafa;
+
+        .special-price {
+            margin: 0;
+            font-size: 36px;
+            color: $primaryColor;
+        }
+
+        .old-price {
+            color: #929292;
+            margin-left: 10px;
+        }
+    }
+
+    
+    .product-add {
+        button {
+            margin-bottom: 10px;
+            display: flex;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            padding: 10px 0;
+            text-transform: uppercase;
+            font-weight: bold;
+            background-color: $primaryColor;
+            color: $white;
+            font-size: 18px;
+
+            span {
+                margin: 0 10px;
+            }
+
+            @include shineHoverImage;
+        }
+    }
+
+    .linehot_pro {
+        margin: 10px 0;
+        display: flex;
+        align-items: center;
+
+        img {
+            margin-right: 15px;
+            max-width: 40px;
+            width: 100%;
+        }
+
+        .b_cont {
+            font-weight: bold;
+            font-size: 16px;
+
+            a {
+                font-size: 20px;
+                color: $primaryColor;
+            }
+        }
+    }
+
+    .shopee_link {
+        margin: 15px 0;
+
+        img {
+            margin: 0 auto;
+            cursor: pointer;
+        }
+        @include shineHoverImage;
+    }
+}
+
+.giftbox {
+    margin-bottom: 15px;
+
+    .free-gifts {
+        padding: 15px;
+        padding-bottom: 20px;
+        border-radius: 10px;
+        border: 1px dashed #ff6307;
+        background: rgba(255, 237, 232, 0.5);
+        position: relative;
+
+        legend {
+            display: flex;
+            align-items: center;
+            column-gap: 10px;
+            padding: 0 15px;
+            margin: 0;
+            width: auto;
+            color: #ff6307;
+            font-weight: 600;
+            background: #fff6f3;
+            border-radius: 20px;
+            border: 1px solid;
+            font-size: 18px;
+
+            img {
+                max-width: 23px;
+                mix-blend-mode: multiply;
+                vertical-align: -3px;
+            }
+        }
+
+        .item {
+            line-height: normal;
+
+            span {
+                margin-bottom: 10px;
+                display: block;
+                min-height: 100px;
+            }
+
+            .copy {
+                background: #ff6409;
+                border-radius: 15px;
+                border: 1px solid;
+                margin-top: 5px;
+                color: $white;
+                font-weight: bold;
+                padding: 0 10px;
+                display: block;
+                padding: 8px 20px;
+                font-size: 12px;
+                transition: $transition;
+
+                &:hover {
+                    background: #fff;
+                    color: #ff6409 !important;
+                }
+            }
+        }
+
+        .vmore_c {
+            left: 0;
+            bottom: 0px;
+            border-top: 1px dashed #ff6307;
+            background: #fff;
+            padding: 2px 0;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+    }
+}
+
+.related-product {
+    .title {
+        font-size: 18px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .product-item {
+        position: relative;
+        padding: 10px;
+        border: 1px solid $borderColor;
+        border-radius: 10px;
+
+        .sale-label {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            color: #ffffff;
+            background: #d80000;
+            padding: 3px 5px;
+            z-index: 2;
+            font-size: 12px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px 2px #fff;
+
+            span {
+                font-weight: bold;
+            }
+        }
+
+        .thumb {
+            @include zoomHover;
+        }
+
+        .item-info {
+            .item-title {
+                font-weight: bold;
+                font-size: 18px;
+
+                a {
+                    color: $black;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    transition: 0.4s color;
+                    font-size: 16px;
+                    overflow: hidden;
+                }
+            }
+
+            .item-price {
+                color: #d80000;
+                margin-bottom: 4px;
+
+                span {
+                    font-weight: bold;
+                }
+
+                del {
+                    font-size: 14px;
+                    color: #929292;
+                }
+            }
+        }
+    }
+}
+
+.banner-pr {
+    @include shineHoverImage;
+}
+
+.product-quantity {
+    margin-top: 20px;
+    .custom-btn-number {
+        display: flex;
+        align-items: center;
+        column-gap: 10px;
+
+        > button {
+            width: 38px;
+            height: 38px;
+            transition: all 0.3s ease;
+            color: $primaryColor;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border: 1px solid $borderColor;
+            background-color: $white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+        }
+
+        .product_qtn {
+            max-width: 80px; 
+            height: 38px;
+            border-radius: 8px;
+            border: 1px solid $borderColor;
+            margin-bottom: 10px;
+            font-size: 20px;
+            text-align: center;
+        }
+    }
+}

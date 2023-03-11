@@ -1,0 +1,109 @@
+/* =========== Card Cook Section =========== */
+.blog {
+    margin-top: 20px;
+
+    .title-header {
+        font-size: 20px;
+        text-transform: uppercase;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+
+    .item__blog {
+        transition: all 0.5s;
+        margin-bottom: 15px;
+
+        &-thumb {
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .entry-date {
+            position: absolute;
+            text-align: center;
+            color: #ffffff;
+            top: 10px;
+            left: 0;
+            padding: 0px 7px;
+            line-height: normal;
+            z-index: 2;
+
+            &::before {
+                content: "";
+                background: $primaryColor;
+                width: 120px;
+                height: 120px;
+                border-radius: 50%;
+                position: absolute;
+                top: -60px;
+                left: -40px;
+                z-index: -1;
+                pointer-events: none;
+            }
+
+            .day {
+                font-size: 19.2px;
+                font-weight: bold;
+                margin: 0;
+            }
+
+            .yeah {
+                font-size: 14px;
+                margin: 0;
+            }
+        }
+
+        .title {
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .sum {
+            font-size: 16px;
+        }
+    }
+
+    .effect-ming {
+        overflow: hidden;
+
+        .overlay {
+            top: 0;
+            left: 0;
+            padding: 30px;
+            backface-visibility: hidden;
+            pointer-events: none;
+            z-index: 3;
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 30px;
+                right: 30px;
+                bottom: 30px;
+                left: 30px;
+                border: 1px solid #fff;
+                border-radius: 0.25rem;
+                box-shadow: 0 0 0 45px rgb(255 255 255 / 20%);
+                opacity: 0;
+                transition: opacity 0.35s, transform 0.35s;
+                transform: scale3d(1.4, 1.4, 1);
+                background-image: url("../../assets/images/favicon.webp");
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: 70px;
+                background-color: rgba(76, 175, 80, 0.2);
+            }
+        }
+
+        &:hover .overlay::before {
+            opacity: 1;
+            transform: scale3d(1, 1, 1);
+        }
+    }
+
+    .ratio3by2 {
+        padding-bottom: calc(100% * 2 / 3);
+    }
+}

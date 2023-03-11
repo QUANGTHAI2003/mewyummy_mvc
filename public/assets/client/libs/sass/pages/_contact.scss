@@ -1,0 +1,28 @@
+/* =========== Contact Section =========== */
+.customer-name {
+    input {
+        height: 36px;
+        font-size: 14px;
+    }
+
+    textarea {
+        font-size: 14px;
+    }
+}
+.btn-contact {
+    width: 120px;
+    height: 40px;
+    padding: 0.6rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $white;
+    background-color: $primaryColor;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: $transition;
+
+    &:hover {
+        background-color: $hoverColor;
+    }
+}

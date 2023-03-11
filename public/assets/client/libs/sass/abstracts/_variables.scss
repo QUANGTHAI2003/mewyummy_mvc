@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+// Colors
+$primaryColor: #2e9f3c;
+$hoverColor: #5ea700;
+$menuHover: #ffc107;
+$white: #fff;
+$black: #000;
+$lightGray: #f9f9f9;
+$darkGray: #22272b;
+$borderColor: #dee2e6;
+
+// Transition
+$transition: all 0.3s ease;
+
+// Gradient colors
+$gradientColor: linear-gradient(90deg, $primaryColor, $hoverColor);
+
+// Box-shadow
+$boxShadow: rgb(0 0 0 / 35%) 0px 5px 15px;

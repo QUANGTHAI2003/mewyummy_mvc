@@ -1,0 +1,59 @@
+/* =========== Slider Section =========== */
+.slider-banner {
+    .slide-container {
+        position: relative;
+    }
+}
+
+.carousel-indicators button {
+    overflow: hidden;
+    position: relative;
+    width: 30px !important;
+    height: 5px !important;
+    display: inline-block !important;
+    border-radius: 3px !important;
+    border: none;
+    outline: none;
+
+    &::before {
+        transition: 0.7s width;
+        content: "";
+        width: 0%;
+        height: 100%;
+        position: absolute;
+        background: $white;
+        top: 0;
+        right: 0;
+    }
+
+    &::after {
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: $white;
+        top: 0;
+        right: 0;
+        opacity: 0.25;
+    }
+
+    &.active {
+        &::before {
+            transition: 0.7s width;
+            width: 100%;
+            left: 0;
+            right: auto;
+        }
+
+        &::after {
+            content: "";
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background: $white;
+            top: 0;
+            right: 0;
+            opacity: 0.25;
+        }
+    }
+}

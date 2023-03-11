@@ -1,0 +1,204 @@
+.account-action {
+    box-shadow: rgb(0 0 0 / 16%) 0px 1px 4px;
+    padding: 0 16px;
+
+    .title-info {
+        font-weight: bold;
+        margin-top: 0;
+        font-size: 24px;
+        color: $primaryColor;
+    }
+
+    .item_acc {
+        padding: 16px 0;
+
+        .active {
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            color: $primaryColor;
+        }
+    }
+}
+
+.nav-account {
+    border: none;
+    column-gap: 16px;
+    .nav-link {
+        flex: 1;
+        color: $black;
+        padding: 16px 0;
+        box-shadow: 0px 0px 3px #d7d7d7 !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        img {
+            max-width: 23px;
+        }
+
+        .total-order {
+            position: absolute;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #ff0018;
+            font-size: 13px;
+            min-width: 20px;
+            min-height: 20px;
+            color: #fff;
+            border-radius: 13px;
+            top: -20px;
+            left: 50%;
+        }
+
+        &.active {
+            border: none;
+            color: $primaryColor;
+            font-weight: bold;
+        }
+    }
+}
+
+.nav-info {
+    .account__info {
+        box-shadow: rgb(0 0 0 / 16%) 0px 1px 4px;
+        margin: 0;
+        padding: 20px 30px;
+
+        &-title {
+            font-weight: bold;
+            margin-top: 0;
+            font-size: 24px;
+            color: $primaryColor;
+        }
+
+        &-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-right: 1px solid $borderColor;
+
+            @media only screen and (max-width: 992px) {
+                border-right: none;
+                border-bottom: 1px solid $borderColor;
+                padding-bottom: 20px;
+            }
+
+            img {
+                width: 160px;
+                height: 160px;
+                object-fit: cover;
+                border-radius: 50%;
+            }
+        }
+
+        &-content {
+            padding-left: 60px;
+
+            @media only screen and (max-width: 500px) {
+                padding-left: 20px;
+            }
+
+            @media only screen and (max-width: 440px) {
+                padding-left: 0;
+            }
+
+            .account__detail {
+                &-item {
+                    display: flex;
+                    align-items: center;
+                }
+
+                &-label {
+                    font-weight: bold;
+                    font-size: 16px;
+                    color: $black;
+                    width: 140px;
+                }
+
+                &-value {
+                    font-size: 16px;
+                    color: $black;
+                    text-align: left;
+                    width: calc(100% - 140px);
+                }
+
+                @media only screen and (max-width: 440px) {
+                    &-item {
+                        flex-direction: column;
+                        align-items: flex-start;
+                    }
+
+                    &-value {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.order__info {
+    box-shadow: 0px 0px 3px #d7d7d7;
+    padding: 20px;
+
+    &-title {
+        font-weight: bold;
+        margin-top: 0;
+        font-size: 24px;
+        color: $primaryColor;
+    }
+
+    &-recent {
+        .item-order {
+            padding: 20px;
+            transition: $transition;
+
+            &:hover {
+                border-color: $menuHover !important;
+                box-shadow: 0px 0px 7px -2px $menuHover;
+            }
+
+            .order-id {
+                color: $menuHover;
+            }
+
+            .price {
+                color: #f00;
+            }
+        }
+    }
+}
+
+.change__pass {
+    box-shadow: 0px 0px 3px #d7d7d7;
+
+    &-title {
+        color: $primaryColor;
+        font-size: 24px;
+        font-weight: bold;
+    }
+}
+
+.update__info {
+    box-shadow: 0px 0px 3px #d7d7d7;
+
+    &-title {
+        color: $primaryColor;
+        font-size: 24px;
+        font-weight: bold;
+    }
+}
+
+.account {
+    .form-control {
+        height: 3rem !important;
+    }
+
+    label {
+        padding: 0.7rem 0.75rem !important;
+    }
+}

@@ -1,0 +1,77 @@
+/* =========== Login Section =========== */
+.wrapper {
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	.size {
+		width: 100%;
+		max-width: 800px;
+		margin: 0 auto;
+	}
+
+	.logo img {
+		max-width: 50%;
+		display: inline-block;
+		margin-bottom: 1rem;
+	}
+
+	input {
+		background-color: #f5f8fa;
+		border-color: #f5f8fa;
+		color: #5e6278;
+	}
+
+	.submit_btn {
+		padding: 15px;
+		font-weight: 500;
+	}
+
+	.other {
+		position: relative;
+		&:before {
+			content: "";
+			position: absolute;
+			top: 50%;
+			left: 0;
+			width: 100%;
+			height: 0.4px;
+			background-color: #e3e3e3;
+			transform: translateY(-50%);
+		}
+
+		span {
+			display: inline-block;
+			padding: 10px 30px;
+			background-color: #fff;
+			position: relative;
+			z-index: 2;
+		}
+	}
+	
+	.social-account {
+		display: flex;
+		align-items: center;
+		column-gap: 20px;
+		.login_with {
+			padding: 8px 0;
+			font-size: 15px;
+			font-weight: 500;
+			transition: 0.3s ease-in-out;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+	
+			&:hover {
+				background-color: #e3e3e3;
+				border-color: #e3e3e3;
+			}
+	
+			img {
+				display: inline-block;
+				max-width: 40px;
+			}
+		}
+	}
+}

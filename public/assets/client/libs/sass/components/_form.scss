@@ -1,0 +1,21 @@
+.form-floating.error {
+    small {
+        color: #e74c3c;
+    }
+}
+
+#btnSubmit {
+    outline: none;
+    border: none;
+    background-color: $primaryColor;
+    color: $white;
+
+    &:hover {
+        // darken
+        background-color: darken($primaryColor, 5%);
+    }
+}
+
+.form-control::placeholder {
+    user-select: none;
+}

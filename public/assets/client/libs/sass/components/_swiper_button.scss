@@ -1,0 +1,40 @@
+[class*="swiper-button-"].swiper-button-disabled {
+    display: none;
+}
+.swiper-button-prev {
+    padding-right: 7px;
+    border-radius: 0 100px 100px 0;
+    left: 0;
+}
+.swiper-button-next {
+    padding-left: 7px;
+    border-radius: 100px 0 0 100px;
+    right: 0;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    width: 30px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f7f7f7;
+    box-shadow: 0 0 4px 0 rgb(0 0 0 / 20%);
+    color: #707070;
+    top: 45%;
+    transition: 0.3s;
+    outline: none;
+    opacity: 0.9;
+
+    &::after {
+        font-size: 20px;
+        color: #333;
+        font-weight: bold;
+        transition: $transition;
+
+    }
+    &:hover::after {
+        color: $primaryColor;
+    }
+}

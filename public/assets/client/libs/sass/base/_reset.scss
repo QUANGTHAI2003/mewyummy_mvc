@@ -1,0 +1,112 @@
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    line-height: 1.6rem;
+    scroll-behavior: smooth;
+    text-size-adjust: none;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Quicksand", sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    background-color: $white;
+
+    // custom scroll
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 1rem;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+}
+
+::selection {
+    background-color: $primaryColor;
+    color: $white;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+    user-select: none;
+}
+
+input,
+button {
+    border: none;
+    outline: none;
+    box-shadow: none !important;
+}
+
+legend {
+    float: none;
+}
+
+// input type radio
+input[type="radio"],
+input[type="checkbox"]
+label {
+    cursor: pointer;
+}
+
+input[type="number"] {
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+a {
+    text-decoration: none;
+    transition: all 0.3s ease;
+    color: #212529;
+
+    &:hover {
+        color: $primaryColor;
+    }
+}
+
+ul {
+    list-style: none;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+li {
+    list-style: none;
+}
+
+.icon-outline {
+    -webkit-text-fill-color: $white;
+    -webkit-text-stroke-width: 1.4px;
+}

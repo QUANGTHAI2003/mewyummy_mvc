@@ -1,0 +1,66 @@
+@mixin shineHoverImage() {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+
+    &::before {
+        content: "";
+        left: 0;
+        opacity: 1;
+        position: absolute;
+        right: 0;
+        top: 0;
+        background: rgba(255, 255, 255, 0.6) none repeat scroll 0 0;
+        height: 0;
+        transition: all 0.5s ease-in-out 0s;
+        width: 100%;
+        z-index: 1;
+    }
+
+    &:hover::before {
+        opacity: 0;
+        height: 100%;
+    }
+
+}
+
+@mixin zoomHover() {
+    overflow: hidden;
+
+    img {
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+}
+
+@mixin buttonHover() {
+    background-color: $primaryColor;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        background-color: $hoverColor;
+    }
+}
+
+@mixin scrollBar($width: 4px, $bgTrack: #f1f1f1, $bgThumb: #888, $borderRadius: 1rem) {
+    &::-webkit-scrollbar {
+        width: $width;
+        @content;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: $bgTrack;
+        border-radius: $borderRadius;
+        @content;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $bgThumb;
+        border-radius: $borderRadius;
+        @content;
+    }
+}

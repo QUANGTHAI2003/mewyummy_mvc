@@ -1,0 +1,79 @@
+/* =========== Product Section =========== */
+.product__layout {
+    .collection-name {
+        font-weight: bold;
+        text-transform: uppercase;
+        padding: 5px 0;
+        margin-bottom: 5px;
+        font-size: 18px;
+    }
+
+    .banner_collection {
+        margin-bottom: 15px;
+
+        .effect-ming {
+            overflow: hidden;
+        }
+
+        .ratio1by3 {
+            padding-bottom: calc(100% * 1 / 3);
+        }
+
+        picture {
+            overflow: hidden;
+            border-radius: 10px;
+            position: relative;
+            width: 100%;
+            margin: 0;
+            display: block;
+
+            @include shineHoverImage;
+        }
+    }
+
+    .sortPagiBar {
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        @media (max-width: 1199px) {
+            overflow: auto;
+            white-space: nowrap;
+            will-change: transform;
+        }
+
+        @include scrollBar {
+            height: 2px;
+        }
+    }
+}
+
+/* =========== Pagination Section =========== */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+
+    .page-item {
+        margin: 0 3px;
+        cursor: pointer;
+
+        &.active a,
+        &:hover a{
+            background: $primaryColor !important;
+            color: $white;
+            border-color: $primaryColor;
+        }
+    }
+
+    .page-link {
+        min-width: 38px;
+        min-height: 38px;
+        color: $primaryColor;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 16px;
+    }
+}

@@ -1,0 +1,20 @@
+
+/* =========== About Section =========== */
+.page-title {
+    margin-bottom: 5rem;
+    h1 {
+        font-size: 25px;
+        font-weight: 600;
+        color: $primaryColor;
+        margin: 20px 0;
+        font-weight: bold;
+    }
+
+    p {
+        margin-bottom: 1rem;
+
+        strong {
+            font-weight: bolder;
+        }
+    }
+}

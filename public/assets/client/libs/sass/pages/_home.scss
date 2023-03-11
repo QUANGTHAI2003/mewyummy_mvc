@@ -1,0 +1,186 @@
+/* =========== Product Info Section =========== */
+.product__info {
+    background-color: $lightGray;
+    &-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &-item {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 20px;
+        flex: 1;
+
+        img {
+            max-width: 40px;
+            width: 100%;
+            image-rendering: -webkit-optimize-contrast;
+            margin-right: 10px;
+        }
+
+        .media-body {
+            min-width: 200px;
+            flex: 1;
+        }
+    }
+}
+
+/* =========== Cate Slide Section =========== */
+.cate__slide {
+    margin: 10px 0;
+
+    .title {
+        text-transform: uppercase;
+        font-weight: bold;
+        position: relative;
+        padding: 10px 0;
+        margin: 0;
+    }
+
+    .box__cate {
+        will-change: transform;
+        background: linear-gradient(30deg, $primaryColor, $hoverColor);
+        border-radius: 10px;
+        margin: 0;
+        padding: 10px;
+
+        .child {
+            padding-left: 0;
+
+            > a {
+                font-weight: 700;
+                color: $white;
+                font-size: 20px;
+            }
+        }
+
+        .childs {
+            a {
+                overflow: hidden;
+                word-break: break-word;
+                height: calc(21px * 1);
+                line-height: 21px;
+                color: $white;
+            }
+        }
+
+        .img__cate {
+            padding: 0;
+
+            img {
+                transition: $transition;
+                filter: drop-shadow(0px 3px 0px #fff);
+
+                &:hover {
+                    transform: translateY(-10px);
+                }
+            }
+        }
+    }
+}
+/* =========== Flash sale Section =========== */
+.flash__sale {
+    padding: 10px 0;
+
+    .time__box {
+        .title {
+            text-transform: uppercase;
+            font-weight: bold;
+            position: relative;
+            padding: 10px 0;
+            margin: 0;
+            font-size: 22px;
+            z-index: 7;
+
+            a {
+                color: #212529;
+                letter-spacing: 0;
+                display: flex;
+                align-items: center;
+
+                img {
+                    max-height: 23px;
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+}
+.flash__slide-container,
+.product-container {
+    position: relative;
+}
+
+.banner .image {
+    @include shineHoverImage;
+}
+
+.product__meat,
+.product__seafood,
+.product__vegatable {
+    margin-top: 20px;
+    .title {
+        font-size: 20px;
+        text-transform: uppercase;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+
+    .imageBanner {
+        @include shineHoverImage;
+
+        img {
+            border-radius: 5px;
+            overflow: hidden;
+        }
+    }
+}
+
+.product__seafood {
+    .row {
+        @media only screen and (max-width: 567px) {
+            flex-direction: column-reverse;
+        }
+    }
+}
+
+/* =========== Card Adjust Section =========== */
+.cont {
+    .title {
+        font-weight: bold;
+        margin-top: 5px;
+    }
+}
+
+.line_1 {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+    -webkit-line-clamp: 1;
+    height: calc(21px * 1);
+    line-height: 21px;
+}
+
+.line_3 {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+    -webkit-line-clamp: 3;
+    height: calc(21px * 3);
+    line-height: 21px;
+}
+
+.modal .modal-content {
+    aspect-ratio: 16 / 9;
+
+    iframe {
+        width: 100%;
+        height: 100%;
+    }
+}

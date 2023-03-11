@@ -1,0 +1,32 @@
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+
+@import 'base/reset';
+@import 'base/animation';
+
+@import 'layouts/header';
+@import 'layouts/sidebar';
+@import 'layouts/footer';
+
+@import 'pages/home';
+@import 'pages/about';
+@import 'pages/product';
+@import 'pages/news';
+@import 'pages/contact';
+
+@import 'pages/detail';
+@import 'pages/login';
+@import 'pages/cart';
+@import 'pages/account';
+
+@import 'components/badge';
+@import 'components/bread_crumb';
+@import 'components/slider';
+@import 'components/swiper_button';
+@import 'components/card_cook';
+@import 'components/card_product';
+@import 'components/card_video';
+@import 'components/card_trick';
+@import 'components/count_down';
+@import 'components/form';
+@import 'components/toast';

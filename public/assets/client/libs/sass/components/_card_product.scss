@@ -1,0 +1,81 @@
+/* =========== Card Product Section =========== */
+.card-item {
+    position: relative;
+    margin-bottom: 0;
+    padding: 10px;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    background: $white;
+
+    .zoom {
+        transition: 0.8s ease-out;
+        will-change: transform;
+        position: relative;
+        width: 100%;
+        margin: 0;
+        padding-bottom: 100%;
+        @include zoomHover;
+    }
+
+    .item-info {
+        will-change: transform;
+        margin-top: 3px;
+        position: relative;
+
+        .sold-module {
+            height: 20px;
+            border-radius: 10px;
+            background: linear-gradient(to right, #ec1a17, #ffad00);
+            display: flex;
+            width: 100%;
+            position: relative;
+
+            img {
+                left: 2px;
+                top: -2px;
+                width: 18px;
+            }
+
+            .sold {
+                font-size: 12px;
+                color: #fff;
+                z-index: 2;
+                line-height: normal;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-transform: uppercase;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+    .item-title {
+        margin: 5px 0;
+        font-weight: bold;
+
+        a {
+            color: $black;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            transition: 0.4s color;
+            font-size: 18px;
+            overflow: hidden;
+        }
+    }
+
+    .item-price {
+        margin-bottom: 3px;
+
+        .special-price {
+            color: #d80000;
+            font-size: 18px;
+        }
+
+        .old-price {
+            color: #929292;
+        }
+    }
+}

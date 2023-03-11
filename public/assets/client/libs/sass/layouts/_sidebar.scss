@@ -1,0 +1,56 @@
+/* =========== Sidebar Section =========== */
+.sidebar {
+    .title-head {
+        font-weight: bold;
+        text-transform: uppercase;
+        padding: 5px;
+        border-radius: 5px;
+        background-color: $primaryColor;
+        color: $white;
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .list-group {
+        &-item {
+            background-color: $white;
+            color: $black;
+            border: none;
+            padding: 10px 0;
+            position: relative;
+            padding-left: 10px;
+
+            &:not(:last-child) {
+                border-bottom: 1px solid #dedede;
+            }
+
+            &::before {
+                content: "";
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                top: 18px;
+                left: 4px;
+                background: $primaryColor;
+                opacity: 0;
+            }
+
+            &:hover {
+                padding-left: 30px;
+                color: $primaryColor;
+
+                &::before {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+.aside-filter {
+    margin-bottom: 15px;
+    width: 100%;
+    padding-right: 0;
+
+}

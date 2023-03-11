@@ -1,0 +1,42 @@
+/* =========== News Section =========== */
+.blog-layout {
+    .blog-name {
+        font-weight: bold;
+        text-transform: uppercase;
+        padding: 0.5rem 0;
+        margin-bottom: 0.5rem;
+        font-size: 18px;
+    }
+}
+
+.nav-item {
+    position: relative;
+
+    .nav-link {
+        color: $black;
+        font-weight: bold;
+        &::before {
+            content: "";
+            position: absolute;
+            bottom: 1px;
+            left: 1px;
+            width: 0%;
+            height: 2px;
+            transition: 0.7s width;
+        }
+        &.active {
+            background-color: transparent;
+            color: $primaryColor;
+
+            &::before {
+                content: "";
+                position: absolute;
+                bottom: 1px;
+                left: 1px;
+                width: 100%;
+                height: 2px;
+                background-color: $primaryColor;
+            }
+        }
+    }
+}

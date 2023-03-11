@@ -1,0 +1,78 @@
+/* =========== Card Video Section =========== */
+.video {
+    margin-top: 20px;
+    .title-header {
+        font-size: 20px;
+        text-transform: uppercase;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+
+}
+.item__video {
+    margin-bottom: 5px;
+    transition: $transition;
+    position: relative;
+
+    &-thumb {
+        border-radius: 10px;
+        position: relative;
+    }
+
+    .ratio3by2 {
+        padding-bottom: calc(100% * 2 / 3);
+    }
+
+    .effect-ming.open_video .modal-open:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        opacity: 0.1;
+        z-index: 1;
+    }
+
+    .title {
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .modal-open {
+        position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+
+        .video_open {
+            background-image: url("../../assets/images/play-button.webp");
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-repeat: no-repeat;
+            background-position: center center;
+            z-index: 9;
+
+            &:hover {
+                animation: play 1s infinite;
+                @include playBtn;
+            }
+            &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: radial-gradient(black, transparent);
+                opacity: 0.3;
+                z-index: 1;
+                filter: opacity(0.4);
+            }
+        }
+    }
+}
