@@ -12,7 +12,12 @@
     "autoload": {
         "psr-4": {
             "App\\": "./"
-        }
+        },
+        "files": [
+            "core/Helper.php",
+            "core/Helper.php",
+            "configs/routes.php"
+        ]
         
     },
     "require": {

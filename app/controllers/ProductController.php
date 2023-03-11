@@ -1,4 +1,5 @@
 <?php
+namespace App\Controller;
 use App\Core\Controller;
 
 class ProductController extends Controller
