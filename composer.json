@@ -1,0 +1,21 @@
+{
+    "name": "mvc/autoload",
+    "description": "Autoload class",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Quang Thai",
+            "email": "tranquangthai.10102003@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "./"
+        }
+        
+    },
+    "require": {
+        "phpmailer/phpmailer": "^6.8"
+    }
+}
