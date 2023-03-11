@@ -93,11 +93,10 @@ function linkPage($num = '', $type = 'page')
 function actionPage()
 {
     $newQuery = $_GET;
-    // unset($newQuery['keyword'], $newQuery['minPrice'], $newQuery['maxPrice']);
+    unset($newQuery['keyword'], $newQuery['minPrice'], $newQuery['maxPrice']);
     return $newQuery;
 }
 
-// ($_GET['sortName'] == 'az') ? 'checked' : '' code a function to check this sortName and az is a parameter
 function checkSort(string $sortType = '', string $sortValue = '')
 {
     if (isset($_GET[$sortType])) {
@@ -117,4 +116,8 @@ function addSlug($data) {
         $data[$key]['slug'] = slug($value['name']);
     }
     return $data;
+}
+
+function existParam($fieldname) {
+    return array_key_exists($fieldname, $_REQUEST);
 }

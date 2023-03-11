@@ -67,17 +67,17 @@
                     <i class="fa-solid fa-user icon icon-outline"></i>
                     <ul class="pop__login sub__menu">
                       <li class="pop__login-list">
-                        <a href="./account.html" class="pop__login-link d-block fw-bold">Tài khoản</a>
+                        <a href="/tai-khoan" class="pop__login-link d-block fw-bold">Tài khoản</a>
                       </li>
                       <li class="pop__login-list">
-                        <a href="./login.html" class="pop__login-link d-block fw-bold">Đăng nhập</a>
+                        <a href="/dang-nhap" class="pop__login-link d-block fw-bold">Đăng nhập</a>
                       </li>
                       <li class="pop__login-list">
-                        <a href="./register.html" class="pop__login-link d-block fw-bold">Đăng ký</a>
+                        <a href="/dang-ky" class="pop__login-link d-block fw-bold">Đăng ký</a>
                       </li>
                     </ul>
                   </div>
-                  <a href="./cart.html" class="btn-cart">
+                  <a href="/gio-hang" class="btn-cart">
                     <span class="box-icon p-1">
                       <i class="fa-solid fa-cart-shopping icon"></i>
                     </span>
@@ -100,9 +100,9 @@
             <a class="ps-lg-3 ps-2" href="/">Trang chủ</a>
           </li>
           <li class="main__menu pt-lg-2 pb-lg-2">
-            <a class="ps-lg-3" href="./about.html">Về Mew Yummy</a>
+            <a class="ps-lg-3" href="/gioi-thieu">Về Mew Yummy</a>
           </li>
-          <li class="main__menu pt-lg-2 pb-lg-2 pb-1 dropdown active">
+          <li class="main__menu pt-lg-2 pb-lg-2 pb-1 dropdown">
             <a class="ps-lg-3" href="/san-pham">Sản phẩm</a>
             <i class="fa-solid fa-caret-down icon"></i>
             <ul class="sub__menu">
@@ -133,13 +133,13 @@
             </ul>
           </li>
           <li class="main__menu pt-lg-2 pb-lg-2">
-            <a class="ps-lg-3" href="./news.html">Tin tức</a>
+            <a class="ps-lg-3" href="/tin-tuc">Tin tức</a>
           </li>
           <li class="main__menu pt-lg-2 pb-lg-2">
-            <a class="ps-lg-3" href="./contact.html">Liên hệ</a>
+            <a class="ps-lg-3" href="/lien-he">Liên hệ</a>
           </li>
           <li class="ms-auto main__menu pt-lg-2 pb-lg-2">
-            <a class="ps-lg-3" href="./he-thong-cua-hang">
+            <a class="ps-lg-3" href="#">
               <i class="fa-solid fa-map-location-dot icon"></i> Hệ thống cửa hàng </a>
           </li>
         </ul>
@@ -148,7 +148,7 @@
       <div class="container">
         <ul id="menu-mobi" class="d-lg-none">
           <li class="main__menu pt-lg-2 pb-lg-2">
-            <a class="ps-lg-3 ps-2 active" href="./index.html">
+            <a class="ps-lg-3 ps-2 active" href="/">
               <i class="fa-solid fa-house icon"></i>
               <span>Trang chủ</span>
             </a>
@@ -166,13 +166,13 @@
             </button>
           </li>
           <li class="main__menu pt-lg-2 pb-lg-2">
-            <a class="ps-lg-3" href="./account.html">
+            <a class="ps-lg-3" href="/tai-khoan">
               <i class="fa-solid fa-user icon"></i>
               <span>Tài khoản</span>
             </a>
           </li>
           <li class="main__menu pt-lg-2 pb-lg-2">
-            <a class="ps-lg-3" href="./cart.html">
+            <a class="ps-lg-3" href="/gio-hang">
               <i class="fa-solid fa-cart-shopping icon"></i>
               <span>Giỏ hàng</span>
             </a>
@@ -186,16 +186,16 @@
               <a href="/" class="nav__mobi-link">Trang chủ</a>
             </li>
             <li class="nav__mobi-list">
-              <a href="./about.html" class="nav__mobi-link">Về Mew Yummy</a>
+              <a href="/gioi-thieu" class="nav__mobi-link">Về Mew Yummy</a>
             </li>
             <li class="nav__mobi-list active">
               <a href="/san-pham" class="nav__mobi-link">Sản phẩm</a>
             </li>
             <li class="nav__mobi-list">
-              <a href="./news.html" class="nav__mobi-link">Tin tức</a>
+              <a href="/tin-tuc" class="nav__mobi-link">Tin tức</a>
             </li>
             <li class="nav__mobi-list">
-              <a href="./contact.html" class="nav__mobi-link">Liên hệ</a>
+              <a href="/lien-he" class="nav__mobi-link">Liên hệ</a>
             </li>
           </ul>
           <!-- <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button> -->

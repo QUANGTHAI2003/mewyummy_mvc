@@ -36,12 +36,12 @@
             </div>
             <div class="product-summary"> Đang cập nhật </div>
             <?php
-                if($product_detail[0]['sale_price'] == 0) {
-                    $product_detail[0]['sale_price'] = $product_detail[0]['regular_price'];
-                    $hideOldPrice = false;
-                } else {
-                    $hideOldPrice = true;
-                }
+            if ($product_detail[0]['sale_price'] == 0) {
+              $product_detail[0]['sale_price'] = $product_detail[0]['regular_price'];
+              $hideOldPrice = false;
+            } else {
+              $hideOldPrice = true;
+            }
             ?>
             <div class="product-price">
               <span class="special-price"><?= numberFormatPrice($product_detail[0]['sale_price']) ?></span>
@@ -53,7 +53,7 @@
                 <header class="fw-bold mb-2" style="min-width:
                   100px;">Số lượng </header>
                 <div class="custom-btn-number form-inline border-0">
-                  <button id="decrement" type="button" >
+                  <button id="decrement" type="button">
                     <i class="fa-solid fa-minus icon"></i>
                   </button>
                   <input type="number" name="quantity" min="1" value="1" class="form-control product_qtn" id="qtym">
@@ -128,44 +128,44 @@
             <div class="related-product">
               <h2 class="title mb-4"> Sản phẩm liên quan </h2>
               <div class="product-related row">
-                <?php foreach($product_relate as $relatePro) :  ?>
-                <div class="product-item mb-4 col-sm-12 col-md-12 col-lg-6 col-xl-12">
-                  <div class="row align-items-center">
-                    <div class="col-4 pe-0">
-                    <?php
-                        if($relatePro['sale_price'] == 0) {
-                            $relatePro['sale_price'] = $relatePro['regular_price'];
-                            $hideOldPrice = false;
+                <?php foreach ($product_relate as $relatePro) :  ?>
+                  <div class="product-item mb-4 col-sm-12 col-md-12 col-lg-6 col-xl-12">
+                    <div class="row align-items-center">
+                      <div class="col-4 pe-0">
+                        <?php
+                        if ($relatePro['sale_price'] == 0) {
+                          $relatePro['sale_price'] = $relatePro['regular_price'];
+                          $hideOldPrice = false;
                         } else {
-                            $hideOldPrice = true;
+                          $hideOldPrice = true;
                         }
                         $sale = 100 - ($relatePro['sale_price'] / $relatePro['regular_price'] * 100);
                         $sale = round($sale);
-                    ?>
-                      <?php if($sale != 0) : ?>
-                  <div class="sale-label">
-                        <span class="fw-bold">- <?= $sale ?>%</span>
-                    </div>
-                    <?php endif; ?>
-                      <a href="<?= _WEB_ROOT ?>/chi-tiet/<?= $relatePro['id'] ?>/<?= $relatePro['slug'] ?>" class="thumb" title="Ớt ngọt Đà Lạt">
-                        <div class="position-relative w-100 m-0">
-                          <img src="<?= _IMAGES_PRODUCT ?>/<?= $relatePro['thumbnail'] ?>" class="img lazy loaded" alt="<?= $relatePro['name'] ?>">
-                        </div>
-                      </a>
-                    </div>
-                    <div class="item-info col-7">
-                      <h3 class="item-title">
-                        <a class="d-block modal-open" title="<?= $relatePro['name'] ?>">
-                          <?= $relatePro['name'] ?>
+                        ?>
+                        <?php if ($sale != 0) : ?>
+                          <div class="sale-label">
+                            <span class="fw-bold">- <?= $sale ?>%</span>
+                          </div>
+                        <?php endif; ?>
+                        <a href="<?= _WEB_ROOT ?>/chi-tiet/<?= $relatePro['id'] ?>/<?= $relatePro['slug'] ?>" class="thumb" title="Ớt ngọt Đà Lạt">
+                          <div class="position-relative w-100 m-0">
+                            <img src="<?= _IMAGES_PRODUCT ?>/<?= $relatePro['thumbnail'] ?>" class="img lazy loaded" alt="<?= $relatePro['name'] ?>">
+                          </div>
                         </a>
-                      </h3>
-                      <div class="item-price">
-                      <span class="special-price fw-bold me-2"><?= numberFormatPrice($relatePro['sale_price']) ?></span>
-                      <del class="old-price"><?= ($hideOldPrice) ? numberFormatPrice($relatePro['regular_price']) : '' ?></del>
-                    </div>
+                      </div>
+                      <div class="item-info col-7">
+                        <h3 class="item-title">
+                          <a class="d-block modal-open" title="<?= $relatePro['name'] ?>">
+                            <?= $relatePro['name'] ?>
+                          </a>
+                        </h3>
+                        <div class="item-price">
+                          <span class="special-price fw-bold me-2"><?= numberFormatPrice($relatePro['sale_price']) ?></span>
+                          <del class="old-price"><?= ($hideOldPrice) ? numberFormatPrice($relatePro['regular_price']) : '' ?></del>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
                 <?php endforeach; ?>
               </div>
             </div>

@@ -11,6 +11,31 @@ class UserController extends Controller
 
     public function login()
     {
-        echo 'Đăng nhập';
+        $title = 'Trang đăng nhập';
+
+        $this->data = [
+            'page_title' => $title,
+            'data' => [
+                'page_title' => $title,
+            ],
+            'content' => 'user/login',
+        ];
+
+        Controller::render('layouts/client_layout', $this->data);
+    }
+
+    public function register()
+    {
+        $title = 'Trang đăng ký';
+
+        $this->data = [
+            'page_title' => $title,
+            'data' => [
+                'page_title' => $title,
+            ],
+            'content' => 'user/register',
+        ];
+
+        Controller::render('layouts/client_layout', $this->data);
     }
 }

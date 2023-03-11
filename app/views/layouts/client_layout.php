@@ -13,12 +13,19 @@
 
 <body>
   <?php
+
   use App\Core\{Controller, Session};
-  Controller::render('shared/header', $data);
+  // hide if url is dang-nhap or dang-ky
+  if (strpos($_SERVER['REQUEST_URI'], 'dang-nhap') === false && strpos($_SERVER['REQUEST_URI'], 'dang-ky') === false) {
+    Controller::render('shared/header', $data);
+  }
   Controller::render($content, $data);
-  Controller::render('shared/footer', $data);
+  if (strpos($_SERVER['REQUEST_URI'], 'dang-nhap') === false && strpos($_SERVER['REQUEST_URI'], 'dang-ky') === false) {
+    Controller::render('shared/footer', $data);
+  }
+
   ?>
-  <?php  if(Session::has('message')): ?>
+  <?php if (Session::has('message')) : ?>
     <div id="toast"></div>
   <?php endif; ?>
 

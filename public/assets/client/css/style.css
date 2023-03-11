@@ -1991,7 +1991,7 @@ footer .footer-mid .store:hover .tit {
   opacity: 0;
   transition: opacity 0.35s, transform 0.35s;
   transform: scale3d(1.4, 1.4, 1);
-  background-image: url("../../assets/images/favicon.webp");
+  background-image: url("../images/favicon.webp");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 70px;
