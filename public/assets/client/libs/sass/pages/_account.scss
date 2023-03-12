@@ -25,6 +25,7 @@
 .nav-account {
     border: none;
     column-gap: 16px;
+
     .nav-link {
         flex: 1;
         color: $black;
@@ -169,6 +170,40 @@
             .price {
                 color: #f00;
             }
+        }
+    }
+}
+
+.order-detail {
+    box-shadow: 0px 0px 3px #d7d7d7;
+
+    .title {
+        color: $primaryColor;
+        font-size: 24px;
+    }
+
+    .list-order {
+        .note {
+            font-size: 20px;
+            text-transform: capitalize;
+        }
+
+        .item_order {
+            transition: $transition;
+
+            &:hover {
+                border-color: $menuHover !important;
+                box-shadow: 0px 0px 7px -2px $menuHover;
+            }
+
+            img {
+                max-height: 70px;
+            }
+        }
+
+        .price {
+            color: #f00;
+            text-align: right;
         }
     }
 }

@@ -84,7 +84,7 @@
               <h1 class="order__info-title">Danh sách đơn hàng</h1>
               <div class="order__info-recent">
                 <div class="item-order border rounded mt-3">
-                  <a href="#" class="row">
+                  <a href="/don-hang/1" class="row">
                     <div class="col-12 col-md-8">
                       <div class="status-order">
                         <b class="order-id">#1032</b> - <span class="span_pending
@@ -101,7 +101,7 @@
                   </a>
                 </div>
                 <div class="item-order border rounded mt-3">
-                  <a href="#" class="row">
+                  <a href="/don-hang/2" class="row">
                     <div class="col-12 col-md-8">
                       <div class="status-order">
                         <b class="order-id">#1032</b> - <span class="span_pending
@@ -118,7 +118,7 @@
                   </a>
                 </div>
                 <div class="item-order border rounded mt-3">
-                  <a href="#" class="row">
+                  <a href="/don-hang/3" class="row">
                     <div class="col-12 col-md-8">
                       <div class="status-order">
                         <b class="order-id">#1032</b> - <span class="span_pending

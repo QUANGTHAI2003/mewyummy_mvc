@@ -1,7 +1,6 @@
 <div class="account-action rounded h-100">
     <div class="item_acc border-bottom" ng-if="isLogin">
-        <a href="/" class="active" title="Thông
-                  tin tài khoản">
+        <a href="/tai-khoan" class="active" title="Thông tin tài khoản">
             <i class="fa-solid fa-user icon"></i>
             <span class="ms-3">Thông tin tài khoản</span>
         </a>
@@ -19,7 +18,7 @@
         </a>
     </div>
     <div class="item_acc" ng-if="isLogin">
-        <a class="d-flex w-100 align-items-center pe-auto" href="javascript:void(0)" ng-click="logout()" title="Đăng xuất">
+        <a class="d-flex w-100 align-items-center pe-auto" href="javascript:void(0)" title="Đăng xuất">
             <i class="fa-solid fa-arrow-right-from-bracket icon"></i>
             <span class="ms-3">Đăng xuất</span>
         </a>

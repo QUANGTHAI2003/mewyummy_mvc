@@ -14,7 +14,9 @@ $routes = [
     'tai-khoan' => 'accountcontroller',
     'cap-nhat' => 'accountcontroller/updateInfo',
     'doi-mat-khau' => 'accountcontroller/changePass',
+    'don-hang' => 'accountcontroller/order',
     'dang-nhap' => 'usercontroller/login',
     'dang-ky' => 'usercontroller/register',
+    'dang-xuat' => 'usercontroller/logout',
 ];
 ?>

@@ -1,11 +1,13 @@
 'use strict';
 
+// Pass name as param to url
 $(document).on('change', 'input[type="radio"]', function() {
-    var url = new URL(window.location.href);
+    let url = new URL(window.location.href);
     url.searchParams.set($(this).attr('name'), $(this).val());
     window.history.pushState({}, '', url);
 })
 
+// Open and close search result
 $(document).ready(function () {
     $('.search__block-input').on('click', function () {
         $('.searchResult').addClass('show');
@@ -33,6 +35,7 @@ $(document).ready(function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+    // Change quantity by clicking on the button
     const incrementButtons = document.querySelectorAll('.custom-btn-number #increment');
     const decrementButtons = document.querySelectorAll('.custom-btn-number #decrement');
 
@@ -50,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+    // Copy text
     const textCopy = document.querySelectorAll('[data-copy]');
     let copyInput = document.createElement('input');
 
@@ -66,12 +70,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
+    // Format input currency
     function formatInput(e) {
         const el = e.target;
         let currency = el.value;
 
         if (!/^[0-9.,]+$/.test(currency)) {
-            // invalid input, do not process
             return;
         }
 
@@ -102,8 +106,23 @@ document.addEventListener("DOMContentLoaded", function () {
     toOffcanvasInput && toOffcanvasInput.addEventListener('input', formatInput);
 
 
-    // Set the date you want to count down to
-    const countDownDate = new Date("Mar 30, 2023 10:30:00").getTime();
+    // Format price input before pass param to url
+    const minPrice = document.getElementById('minPriceOffcanvas');
+    const maxPrice = document.getElementById('maxPriceOffcanvas');
+    const formSort = document.getElementById('formSortPrice');
+
+    function formatPriceInput(event) {
+        const input = event.target;
+        input.value = input.value.replace(/\./g, '');
+    }
+
+    formSort && formSort.addEventListener('submit', () => {
+        formatPriceInput({ target: minPrice });
+        formatPriceInput({ target: maxPrice });
+    });
+
+    // Count down timer for sale
+    const countDownDate = new Date("Mar 21, 2023 10:30:00").getTime();
     const day = document.querySelector('.day');
     const hour = document.querySelector('.hour');
     const minute = document.querySelector('.minute');
@@ -137,6 +156,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const countdown = setInterval(updateCountdown, 1000);
 
 })
+
+// Validate form
 const form = document.querySelector('#form');
 const username = document.querySelector('#username');
 const name = document.querySelector('#name');

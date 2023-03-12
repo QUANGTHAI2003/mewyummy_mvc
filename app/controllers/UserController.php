@@ -38,4 +38,9 @@ class UserController extends Controller
 
         Controller::render('layouts/client_layout', $this->data);
     }
+
+    public function logout()
+    {
+        echo 'Đăng xuất';
+    }
 }

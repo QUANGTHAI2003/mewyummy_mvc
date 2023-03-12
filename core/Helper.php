@@ -92,9 +92,21 @@ function linkPage($num = '', $type = 'page')
 
 function actionPage()
 {
-    $newQuery = $_GET;
-    unset($newQuery['keyword'], $newQuery['minPrice'], $newQuery['maxPrice']);
-    return $newQuery;
+    $currentQuery = $_SERVER['QUERY_STRING'];
+
+    parse_str($currentQuery, $queryParams);
+
+    if (isset($queryParams['keyword'])) {
+        unset($queryParams['keyword']);
+    }
+    if (isset($queryParams['minPrice'])) {
+        unset($queryParams['minPrice']);
+    }
+    if (isset($queryParams['maxPrice'])) {
+        unset($queryParams['maxPrice']);
+    }
+
+    return $queryParams;
 }
 
 function checkSort(string $sortType = '', string $sortValue = '')
@@ -108,7 +120,7 @@ function checkSort(string $sortType = '', string $sortValue = '')
 
 function numberFormatPrice($price)
 {
-    return number_format($price, 0, ',', '.') . 'đ';
+    return number_format($price, 0, ',', '.') . '₫';
 }
 
 function addSlug($data) {
@@ -118,6 +130,7 @@ function addSlug($data) {
     return $data;
 }
 
-function existParam($fieldname) {
-    return array_key_exists($fieldname, $_REQUEST);
+// format 100.000 => 100000
+function formatPrice($price) {
+    return str_replace('.', '', $price);
 }

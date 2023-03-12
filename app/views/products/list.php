@@ -45,7 +45,7 @@
             <div class="filter-container row">
               <aside class="aside-item filter-price mb-3 col-12 col-sm-12 col-lg-12">
                 <h3 class="title-body">Lọc giá</h3>
-                <form class="aside-content filter-group mb-1" action="<?= _WEB_ROOT . '/san-pham?' . urldecode($_SERVER['QUERY_STRING']) ?>" method="GET">
+                <form class="aside-content filter-group mb-1" id="formSortPrice" action="<?= _WEB_ROOT . '/san-pham?' . urldecode($_SERVER['QUERY_STRING']) ?>" method="GET">
                   <div class="row">
                     <div class="col-6 col-lg-12 col-xl-6">
                       <label for="minPriceOffcanvas">
@@ -55,13 +55,19 @@
                     <div class="col-6 col-lg-12 col-xl-6">
                       <label for="maxPriceOffcanvas">
                         <?php foreach (actionPage() as $key => $value) : ?>
-                          <input type="hidden" name="<?= $key ?>" value="<?= $value ?>">
+                          <?php if (!is_array($value)) : ?>
+                            <input type="hidden" name="<?= $key ?>" value="<?= formatPrice($value) ?>">
+                          <?php else : ?>
+                            <?php foreach (array_unique($value) as $val) : ?>
+                              <input type="hidden" name="<?= $key ?>[]" value="<?= formatPrice($val) ?>">
+                            <?php endforeach; ?>
+                          <?php endif; ?>
                         <?php endforeach; ?>
                         <input type="text" id="maxPriceOffcanvas" name="maxPrice" class="form-control filter-range-to-offcanvas" placeholder="Giá tối đa">
                       </label>
                     </div>
                   </div>
-                  <button class="btn btn-primary js-filter-pricerange">Áp dụng </butt>
+                  <button class="btn btn-primary js-filter-pricerange">Áp dụng</butt>
                 </form>
               </aside>
               <aside class="aside-item filter-type mb-3 col-12 col-sm-6
@@ -184,27 +190,27 @@
           <b>Sắp xếp: </b>
           <div class="form-check-inline">
             <label class="form-check-label">
-              <input type="radio" name="sortName" value="az" <?= checkSort('ten_hh', 'asc') ?> class="form-check-input">A → Z </label>
+              <input type="radio" name="sortName" value="name_asc" <?= checkSort('ten_hh', 'asc') ?> class="form-check-input">A → Z </label>
           </div>
           <div class="form-check-inline">
             <label class="form-check-label">
-              <input type="radio" name="sortName" value="za" <?= checkSort('ten_hh', 'desc') ?> class="form-check-input">Z → A </label>
+              <input type="radio" name="sortName" value="name_desc" <?= checkSort('ten_hh', 'desc') ?> class="form-check-input">Z → A </label>
           </div>
           <div class="form-check-inline">
             <label class="form-check-label">
-              <input type="radio" name="sortPrice" value="asc" <?= checkSort('sortPrice', 'asc') ?> class="form-check-input">Giá tăng dần </label>
+              <input type="radio" name="sortPrice" value="price_asc" <?= checkSort('sortPrice', 'asc') ?> class="form-check-input">Giá tăng dần </label>
           </div>
           <div class="form-check-inline">
             <label class="form-check-label">
-              <input type="radio" name="sortPrice" value="desc" <?= checkSort('sortPrice', 'desc') ?> class="form-check-input">Giá giảm dần </label>
+              <input type="radio" name="sortPrice" value="price_desc" <?= checkSort('sortPrice', 'desc') ?> class="form-check-input">Giá giảm dần </label>
           </div>
           <div class="form-check-inline">
             <label class="form-check-label">
-              <input type="radio" name="sortTime" value="new" <?= checkSort('sortTime', 'new') ?> class="form-check-input">Mới nhất </label>
+              <input type="radio" name="sortTime" value="time_asc" <?= checkSort('sortTime', 'new') ?> class="form-check-input">Mới nhất </label>
           </div>
           <div class="form-check-inline">
             <label class="form-check-label">
-              <input type="radio" name="sortTime" value="old" <?= checkSort('sortTime', 'old') ?> class="form-check-input">Cũ nhất </label>
+              <input type="radio" name="sortTime" value="time_desc" <?= checkSort('sortTime', 'old') ?> class="form-check-input">Cũ nhất </label>
           </div>
         </div>
         <div class="collection mt-4">

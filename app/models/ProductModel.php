@@ -12,7 +12,7 @@ class ProductModel
         $minPrice = (int)$minPrice;
         $maxPrice = isset($_GET['maxPrice']) ? $_GET['maxPrice'] : null;
         $maxPrice = (int)$maxPrice;
-        $sortName = isset($_GET['sortName']) ? $_GET['sortName'] : 'ten_hh ASC';
+        $sortName = isset($_GET['sortName']) ? $_GET['sortName'] : null;
         $sortPrice = isset($_GET['sortPrice']) ? $_GET['sortPrice'] : 'don_gia DESC';
         $sortTime = isset($_GET['sortTime']) ? $_GET['sortTime'] : null;
         $data = DB::table('products')

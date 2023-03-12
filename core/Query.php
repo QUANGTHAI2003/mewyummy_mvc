@@ -74,12 +74,22 @@ class Query extends Database
      */
     public function orderBy(string $field = '', string $type = 'ASC')
     {
-        $fieldArr = array_filter(explode(',', $field));
-        if (!empty($fieldArr) && count($fieldArr) >= 2) {
-            //SQL order by multi
-            $this->orderBy = "ORDER BY " . implode(', ', $fieldArr);
-        } else {
+        // $fieldArr = array_filter(explode(',', $field));
+        // if (!empty($fieldArr) && count($fieldArr) >= 2) {
+        //     //SQL order by multi
+        //     $this->orderBy = "ORDER BY " . implode(', ', $fieldArr);
+        // } else {
+        //     $this->orderBy = "ORDER BY " . $field . " " . $type;
+        // }
+        // multiple orderBy
+        if (empty($field)) {
+            return $this;
+        }
+        
+        if(empty($this->orderBy)) {
             $this->orderBy = "ORDER BY " . $field . " " . $type;
+        } else {
+            $this->orderBy .= ", " . $field . " " . $type;
         }
 
         return $this;
@@ -225,7 +235,6 @@ class Query extends Database
     {
         $sqlQuery = "SELECT $this->selectField FROM $this->tableName $this->innerJoin $this->where $this->not $this->orderBy $this->limit";
         $query = $this->query($sqlQuery);
-
         $this->resetFields();
 
         return $query ? $query->fetchAll(\PDO::FETCH_ASSOC) : false;

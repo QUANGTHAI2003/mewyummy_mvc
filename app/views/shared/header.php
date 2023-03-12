@@ -13,7 +13,13 @@
               <div class="search__block me-3 me-xl-5">
                 <form action="<?= _WEB_ROOT . '/san-pham?' . urldecode($_SERVER['QUERY_STRING']) ?>" method="GET" class="search__block-form" spellcheck="false" autocomplete="off">
                   <?php foreach (actionPage() as $key => $value) : ?>
-                    <input type="hidden" name="<?= $key ?>" value="<?= $value ?>">
+                    <?php if (!is_array($value)) : ?>
+                      <input type="hidden" name="<?= $key ?>" value="<?= formatPrice($value) ?>">
+                    <?php else : ?>
+                      <?php foreach (array_unique($value) as $val) : ?>
+                        <input type="hidden" name="<?= $key ?>[]" value="<?= formatPrice($val) ?>">
+                      <?php endforeach; ?>
+                    <?php endif; ?>
                   <?php endforeach; ?>
                   <input type="text" class="search__block-input form-control" name="keyword" role="search" value="<?= isset($_GET['keyword']) ? $_GET['keyword'] : '' ?>" spellcheck="false" autocomplete="off" placeholder="Tìm kiếm sản phẩm ..." />
                   <button type="submit" class="search__block-btn d-sm-none d-lg-block" value="">
@@ -229,7 +235,7 @@
             <aside class="aside-item filter-price mb-3 col-12 col-sm-12
               col-lg-12">
               <h3 class="title-body">Lọc giá</h3>
-              <div class="aside-content filter-group mb-1">
+              <!-- <form class="aside-content filter-group mb-1">
                 <div class="row">
                   <div class="col-6 col-lg-12 col-xl-6">
                     <label for="minPriceOffcanvas">
@@ -242,8 +248,8 @@
                     </label>
                   </div>
                 </div>
-              </div>
-              <button class="btn btn-primary js-filter-pricerange">Áp dụng </butt>
+                <button class="btn btn-primary js-filter-pricerange">Áp dụng </butt>
+              </form> -->
             </aside>
             <aside class="aside-item filter-type mb-3 col-12 col-md-6
               col-lg-12">

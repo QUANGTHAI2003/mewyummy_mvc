@@ -207,7 +207,7 @@
   </div>
 </section>
 <!-- Flash Sales -->
-<section class="flash__sale" ng-controller="CountdownController" ng-hide="hideSales">
+<section class="flash__sale">
   <div class="container">
     <div class="rounded">
       <div class="time__box row">
@@ -224,7 +224,7 @@
               <div class="countdown-text position-relative day">Ngày</div>
             </div>
             <div class="countdown-item rods">
-              <div class="countdown-time position-relative hour">00:</div>
+              <div class="countdown-time position-relative hour"></div>
             </div>
             <div class="countdown-item rods">
               <div class="countdown-time position-relative minute"></div>

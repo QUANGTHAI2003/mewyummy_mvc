@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="<?= _WEB_ROOT ?>/public/assets/client/images/favicon.ico" type="image/x-icon">
   <title><?= (!empty($page_title)) ? $page_title : 'Trang chủ website'; ?></title>
   <link href="<?= _PUBLIC_LIBS ?>/css/bootstrap.min.css" rel="stylesheet">
   <link href="<?= _PUBLIC_LIBS ?>/css/swiper-bundle.min.css" rel="stylesheet">

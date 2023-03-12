@@ -50,4 +50,19 @@ class AccountController extends Controller
 
     Controller::render('layouts/client_layout', $this->data);
   }
+
+  public function order()
+  {
+    $title = 'Trang đơn hàng';
+
+    $this->data = [
+      'page_title' => $title,
+      'data' => [
+        'page_title' => $title,
+      ],
+      'content' => 'user/order',
+    ];
+
+    Controller::render('layouts/client_layout', $this->data);
+  }
 }

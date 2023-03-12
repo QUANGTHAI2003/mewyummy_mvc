@@ -121,6 +121,36 @@
             </div>
           </fieldset>
         </div>
+        <section class="comments">
+          <h3 class="title">Số bình luận 2</h3>
+          <div class="comment-input">
+            <form id="formComment" method="POST">
+              <div class="comment__avatar">
+                <img src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8&w=1000&q=80" alt="">
+              </div>
+              <input type="text" name="noi_dung" placeholder="Viết bình luận" autocomplete="off" aria-autocomplete="off" spellcheck="false">
+            </form>
+            <div class="btns_cmt hide">
+              <button type="submit" name="comment" class="cancel">Hủy</button>
+              <button type="submit" name="comment" class="btn-comment">Bình luận</button>
+            </div>
+          </div>
+          <p class="warning-login">Bạn phải <a class="login-comment" href="/dang-nhap">Đăng nhập</a> hoặc <a class="login-comment" href="/dang-ky">Tạo tài khoản</a> để bình luận</p>
+          <div id="commentList">
+            <section class="comment">
+              <div class="comment__avatar">
+                <img src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8&w=1000&q=80" alt="">
+              </div>
+              <div class="comment__content">
+                <div class="comment__header">
+                  <h4 class="comment__name">Trần Quang Thái</h4>
+                  <span style="cursor: pointer;" class="comment__date">1 ngày trước</span>
+                </div>
+                <p class="comment__text">Sản phẩm rất chất lượng</p>
+              </div>
+            </section>
+          </div>
+        </section>
       </div>
       <div class="col-xl-3 col-12">
         <div class="row">

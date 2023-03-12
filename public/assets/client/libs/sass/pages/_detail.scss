@@ -7,6 +7,7 @@
     }
 
     .product-info {
+
         .inventory_quantity,
         #vendor,
         #type {
@@ -42,7 +43,7 @@
         }
     }
 
-    
+
     .product-add {
         button {
             margin-bottom: 10px;
@@ -96,6 +97,7 @@
             margin: 0 auto;
             cursor: pointer;
         }
+
         @include shineHoverImage;
     }
 }
@@ -245,12 +247,13 @@
 
 .product-quantity {
     margin-top: 20px;
+
     .custom-btn-number {
         display: flex;
         align-items: center;
         column-gap: 10px;
 
-        > button {
+        >button {
             width: 38px;
             height: 38px;
             transition: all 0.3s ease;
@@ -266,7 +269,7 @@
         }
 
         .product_qtn {
-            max-width: 80px; 
+            max-width: 80px;
             height: 38px;
             border-radius: 8px;
             border: 1px solid $borderColor;
@@ -274,5 +277,158 @@
             font-size: 20px;
             text-align: center;
         }
+    }
+}
+
+.comment-input {
+    padding: 12px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+
+    input {
+        width: 100%;
+        height: 36px;
+        outline: none;
+        border: none;
+        border-bottom: 1px solid #ebebeb;
+        color: #000;
+        transition: all 0.2s ease;
+        -webkit-transition: all 0.2s ease;
+        -moz-transition: all 0.2s ease;
+        -ms-transition: all 0.2s ease;
+        -o-transition: all 0.2s ease;
+    }
+
+    form {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+}
+
+.btns_cmt {
+    margin-left: auto;
+
+    &.hide {
+        display: none;
+    }
+
+    .cancel {
+        background-color: transparent;
+        border: none;
+        outline: none;
+        margin-right: 20px;
+    }
+
+    .btn-comment {
+        width: 90px;
+        height: 36px;
+        border-radius: 100rem;
+        -webkit-border-radius: 100rem;
+        -moz-border-radius: 100rem;
+        -ms-border-radius: 100rem;
+        -o-border-radius: 100rem;
+        background-color: #065fd4;
+        color: #fff;
+        border: none;
+        outline: none;
+        transition: all 0.3s linear;
+        -webkit-transition: all 0.3s linear;
+        -moz-transition: all 0.3s linear;
+        -ms-transition: all 0.3s linear;
+        -o-transition: all 0.3s linear;
+
+        &:hover {
+            background-color: #034cac;
+        }
+    }
+
+    form {
+        input {
+            margin-right: 8px;
+            margin-bottom: 24px;
+            flex: 1;
+
+            &:focus {
+                border-bottom: 1px solid #000;
+            }
+        }
+
+        button {
+            width: 100px;
+            outline: none;
+        }
+    }
+}
+
+.warning-login {
+    margin-bottom: 30px;
+}
+
+.login-comment {
+    color: #08c;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.comments {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    border: 1px solid #ebebeb;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+    padding: 20px 30px 0 20px;
+}
+
+.comment {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 32px;
+    padding-left: 16px;
+
+    .title {
+        font-size: 20px;
+        line-height: 24px;
+        color: #000;
+        font-weight: bold;
+        margin-bottom: 16px;
+    }
+
+    &__avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 100rem;
+        border: 1px solid #ebebeb;
+        overflow: hidden;
+        margin-right: 16px;
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+
+        .comment__name {
+            margin-right: 16px;
+            margin-bottom: 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        background-color: #f1f2f4;
+        border-radius: 4px;
+        margin-bottom: 10px;
+        margin-right: 30px;
+        padding: 6px 40px 6px 10px;
+        flex: 1;
     }
 }
