@@ -54,7 +54,7 @@
                     </div>
                     <div class="col-6 col-lg-12 col-xl-6">
                       <label for="maxPriceOffcanvas">
-                        <?php foreach (actionPage() as $key => $value) : ?>
+                        <?php foreach (actionPage(['minPrice', 'maxPrice']) as $key => $value) : ?>
                           <?php if (!is_array($value)) : ?>
                             <input type="hidden" name="<?= $key ?>" value="<?= formatPrice($value) ?>">
                           <?php else : ?>

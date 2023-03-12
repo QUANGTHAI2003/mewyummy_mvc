@@ -12,7 +12,7 @@
             <div class="d-lg-flex align-items-center position-static ps-menu">
               <div class="search__block me-3 me-xl-5">
                 <form action="<?= _WEB_ROOT . '/san-pham?' . urldecode($_SERVER['QUERY_STRING']) ?>" method="GET" class="search__block-form" spellcheck="false" autocomplete="off">
-                  <?php foreach (actionPage() as $key => $value) : ?>
+                  <?php foreach (actionPage('keyword') as $key => $value) : ?>
                     <?php if (!is_array($value)) : ?>
                       <input type="hidden" name="<?= $key ?>" value="<?= formatPrice($value) ?>">
                     <?php else : ?>

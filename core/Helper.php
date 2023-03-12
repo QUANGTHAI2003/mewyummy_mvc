@@ -90,22 +90,16 @@ function linkPage($num = '', $type = 'page')
 }
 
 
-function actionPage()
+function actionPage(string|array $unsetKey)
 {
-    $currentQuery = $_SERVER['QUERY_STRING'];
-
-    parse_str($currentQuery, $queryParams);
-
-    if (isset($queryParams['keyword'])) {
-        unset($queryParams['keyword']);
+    $queryParams = $_GET;
+    if (is_array($unsetKey)) {
+        foreach ($unsetKey as $key) {
+            unset($queryParams[$key]);
+        }
+    } else {
+        unset($queryParams[$unsetKey]);
     }
-    if (isset($queryParams['minPrice'])) {
-        unset($queryParams['minPrice']);
-    }
-    if (isset($queryParams['maxPrice'])) {
-        unset($queryParams['maxPrice']);
-    }
-
     return $queryParams;
 }
 
