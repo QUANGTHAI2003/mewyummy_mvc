@@ -103,11 +103,10 @@ function actionPage(string|array $unsetKey)
     return $queryParams;
 }
 
-function checkSort(string $sortType = '', string $sortValue = '')
-{
-    if (isset($_GET[$sortType])) {
-        if ($_GET[$sortType] == $sortValue) {
-            return 'checked';
+function checkParamExist($value) {
+    if(isset($_GET['sort'])) {
+        if($_GET['sort'] == $value) {
+            return true;
         }
     }
 }
@@ -117,7 +116,8 @@ function numberFormatPrice($price)
     return number_format($price, 0, ',', '.') . '₫';
 }
 
-function addSlug($data) {
+function addSlug($data)
+{
     foreach ($data as $key => $value) {
         $data[$key]['slug'] = slug($value['name']);
     }
@@ -125,6 +125,15 @@ function addSlug($data) {
 }
 
 // format 100.000 => 100000
-function formatPrice($price) {
+function formatPrice($price)
+{
     return str_replace('.', '', $price);
+}
+
+function getParamRadio($param)
+{
+    if ($param) {
+        $param = explode(':', $param);
+        return $param;
+    }
 }

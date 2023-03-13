@@ -5,6 +5,7 @@ $(document).on('change', 'input[type="radio"]', function() {
     let url = new URL(window.location.href);
     url.searchParams.set($(this).attr('name'), $(this).val());
     window.history.pushState({}, '', url);
+    window.location.reload();
 })
 
 // Open and close search result
@@ -95,17 +96,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 10);
     }
 
-    const fromInput = document.querySelector('.filter-range-from');
-    const toInput = document.querySelector('.filter-range-to');
-    const fromOffcanvasInput = document.querySelector('.filter-range-from-offcanvas');
-    const toOffcanvasInput = document.querySelector('.filter-range-to-offcanvas');
-
-    fromInput && fromInput.addEventListener('input', formatInput);
-    toInput && toInput.addEventListener('input', formatInput);
-    fromOffcanvasInput && fromOffcanvasInput.addEventListener('input', formatInput);
-    toOffcanvasInput && toOffcanvasInput.addEventListener('input', formatInput);
-
-
     // Format price input before pass param to url
     const minPrice = document.getElementById('minPriceOffcanvas');
     const maxPrice = document.getElementById('maxPriceOffcanvas');
@@ -120,6 +110,16 @@ document.addEventListener("DOMContentLoaded", function () {
         formatPriceInput({ target: minPrice });
         formatPriceInput({ target: maxPrice });
     });
+
+    const fromInput = document.querySelector('.filter-range-from');
+    const toInput = document.querySelector('.filter-range-to');
+    const fromOffcanvasInput = document.querySelector('.filter-range-from-offcanvas');
+    const toOffcanvasInput = document.querySelector('.filter-range-to-offcanvas');
+
+    fromInput && fromInput.addEventListener('input', formatInput);
+    toInput && toInput.addEventListener('input', formatInput);
+    fromOffcanvasInput && fromOffcanvasInput.addEventListener('input', formatInput);
+    toOffcanvasInput && toOffcanvasInput.addEventListener('input', formatInput);
 
     // Count down timer for sale
     const countDownDate = new Date("Mar 21, 2023 10:30:00").getTime();

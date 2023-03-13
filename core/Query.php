@@ -85,7 +85,7 @@ class Query extends Database
         if (empty($field)) {
             return $this;
         }
-        
+                
         if(empty($this->orderBy)) {
             $this->orderBy = "ORDER BY " . $field . " " . $type;
         } else {

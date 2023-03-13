@@ -190,27 +190,27 @@
           <b>Sắp xếp: </b>
           <div class="form-check-inline">
             <label class="form-check-label">
-              <input type="radio" name="sortName" value="name_asc" <?= checkSort('ten_hh', 'asc') ?> class="form-check-input">A → Z </label>
+              <input type="radio" name="sort" value="name:asc" <?= (checkParamExist('name:asc')) ? 'checked' : '' ?> class="form-check-input">A → Z </label>
           </div>
           <div class="form-check-inline">
             <label class="form-check-label">
-              <input type="radio" name="sortName" value="name_desc" <?= checkSort('ten_hh', 'desc') ?> class="form-check-input">Z → A </label>
+              <input type="radio" name="sort" value="name:desc" <?= (checkParamExist('name:desc')) ? 'checked' : '' ?> class="form-check-input">Z → A </label>
           </div>
           <div class="form-check-inline">
             <label class="form-check-label">
-              <input type="radio" name="sortPrice" value="price_asc" <?= checkSort('sortPrice', 'asc') ?> class="form-check-input">Giá tăng dần </label>
+              <input type="radio" name="sort" value="regular_price:asc" <?= (checkParamExist('regular_price:asc')) ? 'checked' : '' ?> class="form-check-input">Giá tăng dần </label>
           </div>
           <div class="form-check-inline">
             <label class="form-check-label">
-              <input type="radio" name="sortPrice" value="price_desc" <?= checkSort('sortPrice', 'desc') ?> class="form-check-input">Giá giảm dần </label>
+              <input type="radio" name="sort" value="regular_price:desc" <?= (checkParamExist('regular_price:desc')) ? 'checked' : '' ?> class="form-check-input">Giá giảm dần </label>
           </div>
           <div class="form-check-inline">
             <label class="form-check-label">
-              <input type="radio" name="sortTime" value="time_asc" <?= checkSort('sortTime', 'new') ?> class="form-check-input">Mới nhất </label>
+              <input type="radio" name="sort" value="created_at:asc" <?= (checkParamExist('created_at:asc')) ? 'checked' : '' ?> class="form-check-input">Mới nhất </label>
           </div>
           <div class="form-check-inline">
             <label class="form-check-label">
-              <input type="radio" name="sortTime" value="time_desc" <?= checkSort('sortTime', 'old') ?> class="form-check-input">Cũ nhất </label>
+              <input type="radio" name="sort" value="created_at:desc" <?= (checkParamExist('created_at:desc')) ? 'checked' : '' ?> class="form-check-input">Cũ nhất </label>
           </div>
         </div>
         <div class="collection mt-4">

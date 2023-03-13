@@ -25,3 +25,4 @@ require_once 'core/Connection.php';
 require_once 'core/Database.php';
 require_once 'core/Query.php';
 require_once 'core/Controller.php'; // Load base controller
+require_once 'core/Validate.php'; // Load base model

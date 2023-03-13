@@ -20,7 +20,9 @@
         
     },
     "require": {
-        "phpmailer/phpmailer": "^6.8"
+        "phpmailer/phpmailer": "^6.8",
+        "rakit/validation": "^1.4",
+        "phpoffice/phpspreadsheet": "^1.28"
     },
     "scripts": {
         "sass": "sass --style=expanded public/assets/client/libs/sass/style.scss public/assets/client/css/style.css --watch && sass --style=compressed public/assets/client/libs/sass/style.scss public/assets/client/css/style.min.css --watch"
