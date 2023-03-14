@@ -175,6 +175,9 @@ function showError(input, message) {
     input.classList.add('is-invalid');
     parent.classList.add('error')
     small.innerText = message;
+    btnSubmit.disabled = true;
+    btnSubmit.style.opacity = '0.5';
+    btnSubmit.style.cursor = 'not-allowed';
 }
 
 function showSuccess(input) {
@@ -184,6 +187,9 @@ function showSuccess(input) {
     input.classList.add('is-valid');
     parent.classList.remove('error')
     small.innerText = '';
+    btnSubmit.disabled = false;
+    btnSubmit.style.opacity = '1';
+    btnSubmit.style.cursor = 'pointer';
 }
 
 function checkEmptyError(listInput) {
@@ -237,4 +243,8 @@ function checkMatchPasswordError(passwordInput, cfPasswordInput) {
     } else {
         return false;
     }
+}
+
+if (window.history.replaceState) {
+    window.history.replaceState(null, null, window.location.href);
 }

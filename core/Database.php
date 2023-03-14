@@ -37,6 +37,8 @@ class Database
 
             if ($status) {
                 return true;
+            } else {
+                return false;
             }
         }
 

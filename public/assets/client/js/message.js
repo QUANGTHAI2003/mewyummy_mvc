@@ -1,20 +1,19 @@
-const showMessage = function(title, message, type = 'success', duration = 2000) {
+function showMessage(title, message, type = 'success', duration = 2000) {
     toast({
-        title,
-        message,
-        type,
-        duration
+        title: title,
+        message: message,
+        type: type,
+        duration: duration
     });
 };
-
 
 // Toast function
 function toast({ title = "", message = "", type = "info", duration = 3000 }) {
 
     // create id toast in body
-    // const idToast = document.createElement("div")
-    // idToast.setAttribute("id", "toast")
-    // document.body.appendChild(idToast)
+    const idToast = document.createElement("div")
+    idToast.setAttribute("id", "toast")
+    document.body.appendChild(idToast)
     const main = document.getElementById("toast");
     console.log(main);
     if (main) {

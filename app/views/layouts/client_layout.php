@@ -15,7 +15,7 @@
 <body>
   <?php
 
-  use App\Core\{Controller, Session};
+  use App\Core\{Controller};
   // hide if url is dang-nhap or dang-ky
   if (strpos($_SERVER['REQUEST_URI'], 'dang-nhap') === false && strpos($_SERVER['REQUEST_URI'], 'dang-ky') === false) {
     Controller::render('shared/header', $data);
@@ -24,20 +24,15 @@
   if (strpos($_SERVER['REQUEST_URI'], 'dang-nhap') === false && strpos($_SERVER['REQUEST_URI'], 'dang-ky') === false) {
     Controller::render('shared/footer', $data);
   }
-
   ?>
-  <?php if (Session::has('message')) : ?>
-    <div id="toast"></div>
-  <?php endif; ?>
-
   <script type="text/javascript" src="<?= _PUBLIC_LIBS ?>/js/bootstrap.bundle.min.js"></script>
   <script type="text/javascript" src="<?= _PUBLIC_LIBS ?>/js/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script type="text/javascript" src="<?= _PUBLIC_LIBS ?>/js/swiper-bundle.min.js"></script>
   <script type="text/javascript" src="<?= _WEB_ROOT ?>/public/assets/client/js/app.js"></script>
   <script type="text/javascript" src="<?= _WEB_ROOT ?>/public/assets/client/js/slider.js"></script>
   <script type="text/javascript" src="<?= _WEB_ROOT ?>/public/assets/client/js/message.js"></script>
   <script defer type="text/javascript" src="<?= _WEB_ROOT ?>/public/assets/client/js/lazyLoad.js"></script>
-  <?php include_once "./core/Message.php" ?>
+  <?php require 'core/Message.php' ?>
 </body>
-
 </html>

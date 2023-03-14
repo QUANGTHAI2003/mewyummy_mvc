@@ -182,7 +182,11 @@ class Query extends Database
         $tableName = $this->tableName;
         $insertStatus = $this->insertData($tableName, $data);
         $this->resetFields();
-        return $insertStatus;
+        if($insertStatus) {
+            return $this->lastInsertId();
+        } else {
+            return false;
+        }
     }
 
     /**

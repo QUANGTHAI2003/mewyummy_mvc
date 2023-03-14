@@ -1,8 +1,5 @@
 <?php
-    use PhpOffice\PhpSpreadsheet\Spreadsheet;
-    use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+    // rakit
+    use Rakit\Validation\Validator;
     
-    $spreadsheet = new Spreadsheet();
-    $activeWorksheet = $spreadsheet->getActiveSheet();
-    $activeWorksheet->setCellValue('A1', 'Hello World !');
 ?>
