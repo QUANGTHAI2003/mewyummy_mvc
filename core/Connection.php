@@ -2,6 +2,8 @@
 
 namespace App\Core;
 use App\App;
+use PDO;
+use PDOException;
 class Connection
 {
     private static $instance = null;
@@ -15,18 +17,18 @@ class Connection
     private function __construct()
     {
         try {
-            $this->conn = new \PDO(
+            $this->conn = new PDO(
                 "mysql:host={$this->host};
                 dbname={$this->name}",
                 $this->user,
                 $this->pass,
                 [
-                    \PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'",
-                    \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
-                    \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
+                    PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'",
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
                 ]
             );
-        } catch(\PDOException $e) {
+        } catch(PDOException $e) {
             $mess[] = $e->getMessage();
             $error = new App;
             $error->loadError('database', $mess);

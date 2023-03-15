@@ -3,6 +3,7 @@
 namespace App\Core;
 
 use App\Core\Database;
+use PDO;
 
 class Query extends Database
 {
@@ -241,7 +242,7 @@ class Query extends Database
         $query = $this->query($sqlQuery);
         $this->resetFields();
 
-        return $query ? $query->fetchAll(\PDO::FETCH_ASSOC) : false;
+        return $query ? $query->fetchAll(PDO::FETCH_ASSOC) : false;
     }
 
     /**
@@ -255,6 +256,6 @@ class Query extends Database
 
         $this->resetFields();
 
-        return $query ? $query->fetch(\PDO::FETCH_ASSOC) : false;
+        return $query ? $query->fetch(PDO::FETCH_ASSOC) : false;
     }
 }

@@ -1,6 +1,7 @@
 <?php
 namespace App\Core;
 use App\{Core\Connection, App};
+use Exception;
 class Database
 {
     private $__conn;
@@ -102,7 +103,7 @@ class Database
             $stmt = $this->__conn->prepare($sql);
             $stmt->execute();
             return $stmt;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $mess = $e->getMessage();
             $data['message'] = $mess;
             App::$app->loadError('database', $data);
