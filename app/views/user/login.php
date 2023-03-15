@@ -21,7 +21,7 @@
                     <small></small>
                 </div>
                 <div class="mt-2 text-end">
-                    <a href="#" class="text-primary fw-bold">Quên mật khẩu?</a>
+                    <a href="/quen-mat-khau" class="text-primary fw-bold">Quên mật khẩu?</a>
                 </div>
                 <button type="submit" class="btn btn-primary submit_btn w-100 my-4" name="submit" id="btnSubmit">Đăng nhập</button>
                 <div class="other text-center text-muted text-uppercase mb-3"><span>Hoặc</span></div>

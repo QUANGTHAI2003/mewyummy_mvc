@@ -17,11 +17,11 @@
 
   use App\Core\{Controller};
   // hide if url is dang-nhap or dang-ky
-  if (strpos($_SERVER['REQUEST_URI'], 'dang-nhap') === false && strpos($_SERVER['REQUEST_URI'], 'dang-ky') === false) {
+  if (!hideHeaderFooter(['dang-nhap', 'dang-ky', 'quen-mat-khau', 'mat-khau-moi'])) {
     Controller::render('shared/header', $data);
   }
   Controller::render($content, $data);
-  if (strpos($_SERVER['REQUEST_URI'], 'dang-nhap') === false && strpos($_SERVER['REQUEST_URI'], 'dang-ky') === false) {
+  if (!hideHeaderFooter(['dang-nhap', 'dang-ky', 'quen-mat-khau', 'mat-khau-moi'])) {
     Controller::render('shared/footer', $data);
   }
   ?>

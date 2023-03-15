@@ -137,3 +137,12 @@ function getParamRadio($param)
         return $param;
     }
 }
+
+function hideHeaderFooter($urlHide = []) {
+    foreach($urlHide as $url) {
+        if(strpos($_SERVER['REQUEST_URI'], $url) !== false) {
+            return true;
+        }
+    }
+    return false;
+}

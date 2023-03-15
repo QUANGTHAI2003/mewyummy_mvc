@@ -28,8 +28,8 @@ class UserController extends Controller
             } else {
                 echo 'Sai tài khoản hoặc mật khẩu';
             }
-        } 
- 
+        }
+
 
         $this->data = [
             'page_title' => $title,
@@ -58,10 +58,10 @@ class UserController extends Controller
             die;
         }
 
-        if($checkEmail) {
-            echo 'Email đã tồn tại';
-            die;
-        }
+        // if($checkEmail) {
+        //     echo 'Email đã tồn tại';
+        //     die;
+        // }
 
         $data = [
             'fullname' => 'Nguyễn Văn A',
@@ -88,6 +88,65 @@ class UserController extends Controller
                 'page_title' => $title,
             ],
             'content' => 'user/register',
+        ];
+
+        Controller::render('layouts/client_layout', $this->data);
+    }
+
+    public function forgotPass()
+    {
+        $userForgot = $this->model('UserModel');
+        $title = 'Quên mật khẩu';
+
+        $email = isset($_POST['email']) ? $_POST['email'] : '';
+        $code = md5(rand());
+
+        if (isset($_POST['submit'])) {
+            $checkEmail = $userForgot->checkEmailExist($email);
+            if ($checkEmail) {
+                $userForgot->updateCode($code, $email);
+                sendMail($email, $code);
+                redirect('/');
+            }
+        }
+
+        $this->data = [
+            'page_title' => $title,
+            'data' => [
+                'page_title' => $title,
+            ],
+            'content' => 'user/forgotPass',
+        ];
+
+        Controller::render('layouts/client_layout', $this->data);
+    }
+
+    public function changePassForgot()
+    {
+        $userChange = $this->model('UserModel');
+        $title = 'Đổi mật khẩu';
+
+        if (isset($_GET['reset'])) {
+            if (isset($_POST['submit'])) {
+                $password = isset($_POST['pass']) ? $_POST['pass'] : '';
+                $password_confirm = isset($_POST['cfpass']) ? $_POST['cfpass'] : '';
+                $code = isset($_GET['reset']) ? $_GET['reset'] : '';
+                if ($password == $password_confirm) {
+                    $userChange->updatePass($password, $code);
+                    echo 'Đổi mật khẩu thành công';
+                    redirect('/dang-nhap');
+                } else {
+                    echo 'Mật khẩu không khớp';
+                }
+            }
+        }
+
+        $this->data = [
+            'page_title' => $title,
+            'data' => [
+                'page_title' => $title,
+            ],
+            'content' => 'user/changeForgotPass',
         ];
 
         Controller::render('layouts/client_layout', $this->data);

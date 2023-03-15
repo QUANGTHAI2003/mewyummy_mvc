@@ -17,6 +17,8 @@ $routes = [
     'don-hang' => 'accountcontroller/order',
     'dang-nhap' => 'usercontroller/login',
     'dang-ky' => 'usercontroller/register',
+    'quen-mat-khau' => 'usercontroller/forgotPass',
+    'mat-khau-moi' => 'usercontroller/changePassForgot',
     'dang-xuat' => 'usercontroller/logout',
 ];
 ?>

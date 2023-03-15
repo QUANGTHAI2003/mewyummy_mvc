@@ -22,7 +22,7 @@ class ProductModel
             ->where('regular_price', '>=', $minPrice)
             ->where('regular_price', '<=', $maxPrice)
             ->orderBy($nameSort, $nameSortType)
-            ->select() 
+            ->select()
             ->get();
         return $data;
     }
@@ -34,7 +34,7 @@ class ProductModel
             ->select()
             ->get();
         return $data;
-    }   
+    }
 
     // get product relate product category in detail page
     public function getRelateCategoryProduct($cateId, $proId)
@@ -42,6 +42,7 @@ class ProductModel
         $data = DB::table('products')
             ->where('category_id', '=', $cateId)
             ->where('id', '!=', $proId)
+            ->limit(5)
             ->select()
             ->get();
         return $data;
