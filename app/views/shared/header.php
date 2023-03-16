@@ -95,7 +95,11 @@
                       <i class="fa-solid fa-cart-shopping icon"></i>
                     </span>
                     <span class="cart__count">
-                      <?= count($_SESSION['cart']) ?>
+                      <?php if (isset($_SESSION['cart'])) {
+                        echo count($_SESSION['cart']);
+                      } else {
+                        echo 0;
+                      } ?>
                     </span>
                   </a>
                 </div>
