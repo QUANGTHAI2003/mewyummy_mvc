@@ -5,31 +5,39 @@ use App\Core\Controller;
 class UserController extends Controller
 {
     public $data = [];
-    public function index()
-    {
-        echo 'Danh sách sản phẩm';
-    }
-
 
     public function login()
     {
         $userLogin = $this->model('UserModel');
         $title = 'Trang đăng nhập';
 
-        $email = isset($_POST['email']) ? $_POST['email'] : '';
-        $password = isset($_POST['pass']) ? $_POST['pass'] : '';
+        $email = $_POST['email'] ?? '';
+        $password = $_POST['password'] ?? '';
 
-        if (isset($_REQUEST['submit'])) {
+
+        if (isset($_POST['login'])) {
             $checkUser = $userLogin->getUsers($email, $password);
+            header('Content-Type: application/json');
             if ($checkUser) {
                 $_SESSION['user'] = $checkUser['fullname'];
                 $_SESSION['isLogged'] = true;
-                redirect('/');
+                $response = [
+                    'statusCode' => 200,
+                    'message' => 'Đăng nhập thành công',
+                ];
+                header('HTTP/1.1 200 OK');
+                echo json_encode($response);
+                die();
             } else {
-                echo 'Sai tài khoản hoặc mật khẩu';
+                $response = [
+                    'statusCode' => 401,
+                    'message' => 'Đăng nhập thất bại',
+                ];
+                header('HTTP/1.1 401 Unauthorized');
+                echo json_encode($response);
+                die();
             }
         }
-
 
         $this->data = [
             'page_title' => $title,

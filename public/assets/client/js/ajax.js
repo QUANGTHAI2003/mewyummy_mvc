@@ -89,4 +89,37 @@ $(document).ready(function () {
     });
     /* ==================== User ==================== */
     // Login
+    $('.btnLogin').on('click', function (e) {
+        e.preventDefault();
+        const email = $('#email').val();
+        const password = $('#password').val();
+        $.ajax({
+            url: '/usercontroller/login',
+            method: 'POST',
+            data: {
+                email: email,
+                password: password,
+                login: true
+            },
+            dataType: 'json',
+            cache: false,
+            beforeSend: function () {
+                $('.btnLogin').text('Đang đăng nhập...');
+            },
+            success: function (data) {
+                $('.btnLogin').text('Đăng nhập');
+                if (data.statusCode == 200) {
+                    showMessage('Đăng nhập', data.message);
+                    setTimeout(function () {
+                        window.location.href = '/';
+                    }, 1000);
+                } else {
+                    showMessage('Đăng nhập', data.message, 'error');
+                }
+            },
+            error: function (error) {
+                showMessage('Đăng nhập', 'Đã có lỗi xảy ra', 'error');
+            }
+        });
+    })
 }); 
