@@ -115,8 +115,9 @@ $(document).ready(function () {
                 }
             },
             error: function (error) {
+                console.log(error);
                 if (error.status === 401) {
-                    showMessage('Đăng nhập', 'Sai tên email hoặc mật khẩu', 'error');
+                    showMessage('Đăng nhập', error.responseJSON.message, 'error');
                 } else {
                     showMessage('Đăng nhập', 'Đã có lỗi xảy ra', 'error');
                 }
@@ -159,9 +160,9 @@ $(document).ready(function () {
             },
             error: function (error) {
                 if (error.status === 401) {
-                    showMessage('Đăng ký', 'Mật khẩu không khớp', 'error');
+                    showMessage('Đăng ký', error.responseJSON.message, 'error');
                 } else if (error.status === 409) {
-                    showMessage('Đăng ký', 'Email đã tồn tại', 'error');
+                    showMessage('Đăng ký', error.responseJSON.message, 'error');
                 } else {
                     showMessage('Đăng ký', 'Đã có lỗi xảy ra', 'error');
                 }
@@ -177,7 +178,7 @@ $(document).ready(function () {
         e.preventDefault();
         const email = $('#email').val();
         $.ajax({
-            url: '/usercontroller/forgotpass',
+            url: '/usercontroller/sendMail',
             method: 'POST',
             data: {
                 email: email,
@@ -189,19 +190,60 @@ $(document).ready(function () {
                 $('.btnSendMail').text('Đang gửi...');
             },
             success: function (data) {
-                if(data.statusCode === 200) {
-                    showMessage('Quên mật khẩu', 'Đã gửi email khôi phục mật khẩu');
+                if (data.statusCode === 200) {
+                    showMessage('Quên mật khẩu', data.message);
                 }
             },
             error: function (error) {
                 if (error.status === 401) {
-                    showMessage('Quên mật khẩu', 'Email không tồn tại', 'error');
+                    showMessage('Quên mật khẩu', error.responseJSON.message, 'error');
                 } else {
                     showMessage('Quên mật khẩu', 'Đã có lỗi xảy ra', 'error');
                 }
             },
             complete: function () {
                 $('.btnSendMail').text('Gửi');
+            }
+        })
+    })
+
+    // Reset password
+    $('.btnResetPass').on('click', function (e) {
+        e.preventDefault();
+        const password = $('#password').val();
+        const passwordConfirm = $('#cfpassword').val();
+        const urlParams = new URLSearchParams(window.location.search);
+        const reset = urlParams.get('reset');
+        $.ajax({
+            url: '/usercontroller/resetpass?reset=' + reset + '',
+            method: 'POST',
+            data: {
+                password: password,
+                passwordConfirm: passwordConfirm,
+                reset: true
+            },
+            dataType: 'json',
+            cache: false,
+            beforeSend: function () {
+                $('.btnResetPass').text('Đang cập nhật...');
+            },
+            success: function (data) {
+                if (data.statusCode === 200) {
+                    showMessage('Cập nhật mật khẩu', data.message);
+                    setTimeout(function () {
+                        window.location.href = '/dang-nhap';
+                    }, 1000);
+                }
+            },
+            error: function (error) {
+                if (error.status === 401) {
+                    showMessage('Cập nhật mật khẩu', error.responseJSON.message, 'error');
+                } else {
+                    showMessage('Cập nhật mật khẩu', 'Đã có lỗi xảy ra', 'error');
+                }
+            },
+            complete: function () {
+                $('.btnResetPass').text('Cập nhật');
             }
         })
     })

@@ -31,6 +31,7 @@ class UserController extends Controller
             } else {
                 $response = [
                     'statusCode' => 401,
+                    'message' => 'Sai tên email hoặc mật khẩu',
                 ];
                 header('HTTP/1.1 401 Unauthorized');
                 echo json_encode($response);
@@ -83,6 +84,7 @@ class UserController extends Controller
                 } else {
                     $response = [
                         'statusCode' => 401,
+                        'message' => 'Mật khẩu không khớp'
                     ];
                     header('HTTP/1.1 401 Unauthorized');
                     echo json_encode($response);
@@ -91,6 +93,7 @@ class UserController extends Controller
             } else {
                 $response = [
                     'statusCode' => 409,
+                    'message' => 'Email đã tồn tại'
                 ];
                 header('HTTP/1.1 409 Conflict');
                 echo json_encode($response);
@@ -109,7 +112,7 @@ class UserController extends Controller
         Controller::render('layouts/client_layout', $this->data);
     }
 
-    public function forgotPass()
+    public function sendMail()
     {
         $userForgot = $this->model('UserModel');
         $title = 'Quên mật khẩu';
@@ -125,7 +128,7 @@ class UserController extends Controller
                 sendMail($email, $code);
                 $response = [
                     'statusCode' => 200,
-                    'message' => 'Email đã được gửi'
+                    'message' => 'Đã gửi email khôi phục mật khẩu'
                 ];
                 header('HTTP/1.1 200 OK');
                 echo json_encode($response);
@@ -133,6 +136,7 @@ class UserController extends Controller
             } else {
                 $response = [
                     'statusCode' => 401,
+                    'message' => 'Email không tồn tại'
                 ];
                 header('HTTP/1.1 401 Unauthorized');
                 echo json_encode($response);
@@ -145,29 +149,39 @@ class UserController extends Controller
             'data' => [
                 'page_title' => $title,
             ],
-            'content' => 'user/forgotPass',
+            'content' => 'user/sendMail',
         ];
 
         Controller::render('layouts/client_layout', $this->data);
     }
 
-    public function changePassForgot()
+    public function resetPass()
     {
         $userChange = $this->model('UserModel');
         $title = 'Đổi mật khẩu';
 
-        if (isset($_GET['reset'])) {
-            if (isset($_POST['submit'])) {
-                $password = isset($_POST['pass']) ? $_POST['pass'] : '';
-                $password_confirm = isset($_POST['cfpass']) ? $_POST['cfpass'] : '';
-                $code = isset($_GET['reset']) ? $_GET['reset'] : '';
-                if ($password == $password_confirm) {
-                    $userChange->updatePass($password, $code);
-                    echo 'Đổi mật khẩu thành công';
-                    redirect('/dang-nhap');
-                } else {
-                    echo 'Mật khẩu không khớp';
-                }
+        if (isset($_POST['reset'])) {
+            header('Content-Type: application/json');
+            $password = isset($_POST['pass']) ? $_POST['pass'] : '';
+            $password_confirm = isset($_POST['cfpass']) ? $_POST['cfpass'] : '';
+            $code = isset($_GET['reset']) ? $_GET['reset'] : '';
+            if ($password == $password_confirm) {
+                $userChange->updatePass($password, $code);
+                $response = [
+                    'statusCode' => 200,
+                    'message' => 'Đổi mật khẩu thành công'
+                ];
+                header('HTTP/1.1 200 OK');
+                echo json_encode($response);
+                die();
+            } else {
+                $response = [
+                    'statusCode' => 401,
+                    'message' => 'Mật khẩu không khớp'
+                ];
+                header('HTTP/1.1 401 Unauthorized');
+                echo json_encode($response);
+                die();
             }
         }
 
@@ -176,7 +190,7 @@ class UserController extends Controller
             'data' => [
                 'page_title' => $title,
             ],
-            'content' => 'user/changeForgotPass',
+            'content' => 'user/resetPass',
         ];
 
         Controller::render('layouts/client_layout', $this->data);
