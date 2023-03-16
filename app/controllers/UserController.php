@@ -61,11 +61,6 @@ class UserController extends Controller
         $password = $_POST['password'] ?? '';
         $password_confirm = $_POST['passwordConfirm'] ?? '';
         $checkEmail = $userRegister->checkEmailExist($email);
-        // if ($password != $password_confirm) {
-        //     echo 'Mật khẩu không khớp';
-        //     die;
-        // }
-
 
         $data = [
             'fullname' => 'Nguyễn Văn A',
@@ -73,7 +68,6 @@ class UserController extends Controller
             'email' => $email,
             'password' => password_hash($password, PASSWORD_DEFAULT),
         ];
-
 
         if (isset($_POST['register'])) {
             header('Content-Type: application/json');
@@ -85,12 +79,14 @@ class UserController extends Controller
                     ];
                     header('HTTP/1.1 200 OK');
                     echo json_encode($response);
+                    die();
                 } else {
                     $response = [
                         'statusCode' => 401,
                     ];
                     header('HTTP/1.1 401 Unauthorized');
                     echo json_encode($response);
+                    die();
                 }
             } else {
                 $response = [
@@ -98,9 +94,9 @@ class UserController extends Controller
                 ];
                 header('HTTP/1.1 409 Conflict');
                 echo json_encode($response);
+                die();
             }
         }
-
 
         $this->data = [
             'page_title' => $title,

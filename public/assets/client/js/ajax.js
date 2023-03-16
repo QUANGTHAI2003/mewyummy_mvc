@@ -113,12 +113,15 @@ $(document).ready(function () {
                     setTimeout(function () {
                         window.location.href = '/';
                     }, 1000);
-                } else {
-                    showMessage('Đăng nhập', data.message, 'error');
                 }
             },
             error: function (error) {
-                showMessage('Đăng nhập', 'Đã có lỗi xảy ra', 'error');
+                $('.btnLogin').text('Đăng nhập');
+                if (error.status === 401) {
+                    showMessage('Đăng nhập', 'Sai tên email hoặc mật khẩu', 'error');
+                } else {
+                    showMessage('Đăng nhập', 'Đã có lỗi xảy ra', 'error');
+                }
             }
         });
     })
@@ -155,6 +158,7 @@ $(document).ready(function () {
                 }
             },
             error: function (error) {
+                $('.btnRegister').text('Đăng ký');
                 if (error.status === 401) {
                     showMessage('Đăng ký', 'Mật khẩu không khớp', 'error');
                 } else if (error.status === 409) {
