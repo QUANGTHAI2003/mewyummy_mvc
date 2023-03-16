@@ -80,7 +80,7 @@
                           <a href="/dang-xuat" class="pop__login-link d-block fw-bold">Đăng xuất</a>
                         </li>
                       <?php else : ?>
-                        <p><?= isset($_SESSION['user']) ? $_SESSION['user']: '' ?></p>
+                        <p><?= isset($_SESSION['user']) ? $_SESSION['user'] : '' ?></p>
                         <li class="pop__login-list">
                           <a href="/dang-nhap" class="pop__login-link d-block fw-bold">Đăng nhập</a>
                         </li>
@@ -94,7 +94,9 @@
                     <span class="box-icon p-1">
                       <i class="fa-solid fa-cart-shopping icon"></i>
                     </span>
-                    <span class="cart__count">0</span>
+                    <span class="cart__count">
+                      <?= count($_SESSION['cart']) ?>
+                    </span>
                   </a>
                 </div>
               </div>

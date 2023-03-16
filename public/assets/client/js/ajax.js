@@ -1,0 +1,92 @@
+$(document).ready(function () {
+    /* ==================== Cart ==================== */
+    // Add to cart
+    const addToCartBtn = $('.addToCart');
+    addToCartBtn.click(_.debounce(function () {
+        let id = $('#productId').val();
+        let name = $('.product-name').text();
+        let image = $('.product-image').attr('src');
+        let salePrice = $('#salePrice').val();
+        let regularPrice = $('#regularPrice').val();
+        let quantity = $('#qtym').val();
+
+        $.ajax({
+            url: '/cartcontroller/addtocart',
+            method: 'POST',
+            data: {
+                id: id,
+                name: name,
+                image: image,
+                salePrice: salePrice,
+                regularPrice: regularPrice,
+                quantity: quantity
+            },
+            beforeSend: function () {
+                addToCartBtn.text('Đang thêm vào giỏ hàng...');
+            },
+            success: function (response) {
+                addToCartBtn.text('Thêm vào giỏ hàng');
+                showMessage('Thêm vào giỏ hàng', 'Đã thêm sản phẩm vào giỏ hàng');
+            },
+            error: function (error) {
+                showMessage('Thêm vào giỏ hàng', 'Đã có lỗi xảy ra', 'error');
+            },
+        });
+    }, 500));
+
+    // Update quantity
+    $('.inc').each(function () {
+        $(this).click(function () {
+            let id = $(this).data('id');
+            $.ajax({
+                url: '/cartcontroller/updateQuantity',
+                method: 'POST',
+                data: {
+                    id: id,
+                    quantity: 1
+                },
+                success: function (response) {
+                    location.reload();
+                }
+            })
+        })
+    })
+
+    $('.dec').each(function () {
+        $(this).click(function () {
+            let id = $(this).data('id');
+            $.ajax({
+                url: '/cartcontroller/updateQuantity',
+                method: 'POST',
+                data: {
+                    id: id,
+                    quantity: -1
+                },
+                success: function (response) {
+                    location.reload();
+                }
+            })
+        })
+    })
+
+    // Delete cart
+    $('.deleteCartBtn').click(function () {
+        let id = $(this).data('id');
+        $.ajax({
+            url: '/cartcontroller/deletecart',
+            method: 'POST',
+            data: {
+                id: id
+            },
+            success: function (response) {
+                $('.cart-' + id).remove();
+                showMessage('Xóa sản phẩm', 'Đã xóa sản phẩm khỏi giỏ hàng');
+            },
+            error: function (error) {
+                showMessage('Xóa sản phẩm', 'Đã có lỗi xảy ra', 'error');
+            }
+        });
+    });
+    /* ==================== User ==================== */
+    // Login
+}); 

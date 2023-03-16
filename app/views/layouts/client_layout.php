@@ -29,9 +29,11 @@
   <script type="text/javascript" src="<?= _PUBLIC_LIBS ?>/js/jquery-3.6.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script type="text/javascript" src="<?= _PUBLIC_LIBS ?>/js/swiper-bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
   <script type="text/javascript" src="<?= _WEB_ROOT ?>/public/assets/client/js/app.js"></script>
   <script type="text/javascript" src="<?= _WEB_ROOT ?>/public/assets/client/js/slider.js"></script>
   <script type="text/javascript" src="<?= _WEB_ROOT ?>/public/assets/client/js/message.js"></script>
+  <script type="text/javascript" src="<?= _WEB_ROOT ?>/public/assets/client/js/ajax.js"></script>
   <script defer type="text/javascript" src="<?= _WEB_ROOT ?>/public/assets/client/js/lazyLoad.js"></script>
   <?php require 'core/Message.php' ?>
 </body>

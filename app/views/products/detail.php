@@ -15,13 +15,14 @@
   <div class="container">
     <div class="row">
       <div class="col-xl-9 col-12">
-        <div class="row">
+        <form class="row">
           <div class="col-12">
             <h1 class="product-name"><?= $product_detail[0]['name'] ?></h1>
+            <input type="hidden" id="productId" value="<?= $product_detail[0]['id'] ?>">
           </div>
           <div class="product-layout_col-left col-12 col-sm-12 col-md-5
             col-lg-6 col-xl-6 mb-3">
-            <img src="<?= _IMAGES_PRODUCT ?>/<?= $product_detail[0]['thumbnail'] ?>" alt="<?= $product_detail[0]['name'] ?>">
+            <img class="product-image" src="<?= _IMAGES_PRODUCT ?>/<?= $product_detail[0]['thumbnail'] ?>" alt="<?= $product_detail[0]['name'] ?>">
           </div>
           <div class="product-layout_col-right col-12 col-sm-12 col-md-7
             col-lg-6 col-xl-6 product-warp">
@@ -44,37 +45,37 @@
             }
             ?>
             <div class="product-price">
-              <span class="special-price"><?= numberFormatPrice($product_detail[0]['sale_price']) ?></span>
+              <span class="special-price"><?= numberFormatPrice($product_detail[0]['sale_price']) ?? 0 ?></span>
+              <input type="hidden" id="salePrice" value="<?= $product_detail[0]['sale_price'] ?>">
               <del class="old-price"><?= ($hideOldPrice) ? numberFormatPrice($product_detail[0]['regular_price']) : '' ?></del>
+              <input type="hidden" id="regularPrice" value="<?= $product_detail[0]['regular_price'] ?? 0 ?>">
             </div>
-            <form action="#" enctype="multipart/form-data" spellcheck="false" autocomplete="off">
-              <div class="product-quantity align-items-center clearfix
+            <div class="product-quantity align-items-center clearfix
                 d-sm-flex">
-                <header class="fw-bold mb-2" style="min-width:
+              <header class="fw-bold mb-2" style="min-width:
                   100px;">Số lượng </header>
-                <div class="custom-btn-number form-inline border-0">
-                  <button id="decrement" type="button">
-                    <i class="fa-solid fa-minus icon"></i>
-                  </button>
-                  <input type="number" name="quantity" min="1" value="1" class="form-control product_qtn" id="qtym">
-                  <button id="increment" type="button">
-                    <i class="fa-solid fa-plus icon"></i>
-                  </button>
-                </div>
+              <div class="custom-btn-number form-inline border-0">
+                <button id="decrement" type="button">
+                  <i class="fa-solid fa-minus icon"></i>
+                </button>
+                <input type="number" name="quantity" min="1" value="1" class="form-control product_qtn" id="qtym">
+                <button id="increment" type="button">
+                  <i class="fa-solid fa-plus icon"></i>
+                </button>
               </div>
-              <div class="product-add row mb-3 py-2">
-                <div class="col-12">
-                  <button type="button" class="mb-lg-0 btn">
-                    <i class="fa-solid fa-cart-plus icon"></i>
-                    <span class="button__text">Thêm vào giỏ hàng</span>
-                  </button>
-                  <!-- <button type="button" class="mb-lg-0 btn">
+            </div>
+            <div class="product-add row mb-3 py-2">
+              <div class="col-12">
+                <button type="button" class="mb-lg-0 btn addToCart">
+                  <i class="fa-solid fa-cart-plus icon"></i>
+                  <span class="button__text">Thêm vào giỏ hàng</span>
+                </button>
+                <!-- <button type="button" class="mb-lg-0 btn">
                     <i class="fa-solid fa-cart-plus icon"></i>
                     <span class="button__text">Đăng nhập để mua hàng</span>
                   </button> -->
-                </div>
               </div>
-            </form>
+            </div>
             <div class="linehot_pro alert alert-warning">
               <img class="lazy loaded" alt="1900 123 321" src="<?= _PUBLIC_CLIENT ?>/images/customer-service.webp">
               <div class="b_cont fw-bold">
@@ -87,7 +88,7 @@
               </a>
             </div>
           </div>
-        </div>
+        </form>
         <div class="giftbox mb-3">
           <fieldset class="free-gifts pb-md-3">
             <legend>
