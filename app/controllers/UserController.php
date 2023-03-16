@@ -31,7 +31,6 @@ class UserController extends Controller
             } else {
                 $response = [
                     'statusCode' => 401,
-                    'message' => 'Đăng nhập thất bại',
                 ];
                 header('HTTP/1.1 401 Unauthorized');
                 echo json_encode($response);
@@ -76,6 +75,7 @@ class UserController extends Controller
                     $userRegister->insertUser($data);
                     $response = [
                         'statusCode' => 200,
+                        'message' => 'Đăng ký thành công'
                     ];
                     header('HTTP/1.1 200 OK');
                     echo json_encode($response);
@@ -114,15 +114,29 @@ class UserController extends Controller
         $userForgot = $this->model('UserModel');
         $title = 'Quên mật khẩu';
 
-        $email = isset($_POST['email']) ? $_POST['email'] : '';
+        $email = $_POST['email'] ?? '';
         $code = md5(rand());
+        $checkEmail = $userForgot->checkEmailExist($email);
 
-        if (isset($_POST['submit'])) {
-            $checkEmail = $userForgot->checkEmailExist($email);
+        if (isset($_POST['forgotpass'])) {
+            header('Content-Type: application/json');
             if ($checkEmail) {
                 $userForgot->updateCode($code, $email);
                 sendMail($email, $code);
-                redirect('/');
+                $response = [
+                    'statusCode' => 200,
+                    'message' => 'Email đã được gửi'
+                ];
+                header('HTTP/1.1 200 OK');
+                echo json_encode($response);
+                die();
+            } else {
+                $response = [
+                    'statusCode' => 401,
+                ];
+                header('HTTP/1.1 401 Unauthorized');
+                echo json_encode($response);
+                die();
             }
         }
 

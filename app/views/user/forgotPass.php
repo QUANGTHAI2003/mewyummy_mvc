@@ -1,7 +1,7 @@
 <section class="wrapper">
     <div class="container">
         <div class="col-sm-8 offset-sm-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4 text-center">
-            <form class="rounded bg-white shadow p-5" action="/quen-mat-khau" method="POST">
+            <form class="rounded bg-white shadow p-5" id="form">
                 <div class="logo">
                     <a href="/">
                         <img src="<?= _PUBLIC_CLIENT ?>/images/logo.webp" class="img-fluid" alt="Logo">
@@ -12,11 +12,19 @@
                     Nhập email của bạn để lấy lại mật khẩu
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="email" class="form-control" name="email" id="floatingInput" placeholder="name@example.com">
-                    <label for="floatingInput">Email address</label>
+                    <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                    <label for="email">Email address</label>
+                    <small></small>
                 </div>
-                <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                <button type="submit" class="btn btn-primary btnSendMail" id="btnSubmit">Gửi</button>
             </form>
         </div>
     </div>
 </section>
+<script>
+    form.addEventListener('keyup', function(e) {
+        e.preventDefault();
+        checkEmptyError([email]);
+        checkEmailError(email)
+    })
+</script>

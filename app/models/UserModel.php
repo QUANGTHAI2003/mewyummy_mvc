@@ -27,7 +27,7 @@ class UserModel
     public function updatePass($pass, $code) {
         $data = [
             'password' => password_hash($pass, PASSWORD_DEFAULT),
-            'code' => ''
+            'code' => null
         ];
         DB::table('users')->where('code', '=', "'$code'")->update($data);
     }

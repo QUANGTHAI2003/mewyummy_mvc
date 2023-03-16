@@ -107,7 +107,6 @@ $(document).ready(function () {
                 $('.btnLogin').text('Đang đăng nhập...');
             },
             success: function (data) {
-                $('.btnLogin').text('Đăng nhập');
                 if (data.statusCode == 200) {
                     showMessage('Đăng nhập', data.message);
                     setTimeout(function () {
@@ -116,12 +115,14 @@ $(document).ready(function () {
                 }
             },
             error: function (error) {
-                $('.btnLogin').text('Đăng nhập');
                 if (error.status === 401) {
                     showMessage('Đăng nhập', 'Sai tên email hoặc mật khẩu', 'error');
                 } else {
                     showMessage('Đăng nhập', 'Đã có lỗi xảy ra', 'error');
                 }
+            },
+            complete: function () {
+                $('.btnLogin').text('Đăng nhập');
             }
         });
     })
@@ -149,7 +150,6 @@ $(document).ready(function () {
                 $('.btnRegister').text('Đang đăng ký...');
             },
             success: function (data) {
-                $('.btnRegister').text('Đăng ký');
                 if (data.statusCode === 200) {
                     showMessage('Đăng ký', data.message);
                     setTimeout(function () {
@@ -158,7 +158,6 @@ $(document).ready(function () {
                 }
             },
             error: function (error) {
-                $('.btnRegister').text('Đăng ký');
                 if (error.status === 401) {
                     showMessage('Đăng ký', 'Mật khẩu không khớp', 'error');
                 } else if (error.status === 409) {
@@ -166,7 +165,44 @@ $(document).ready(function () {
                 } else {
                     showMessage('Đăng ký', 'Đã có lỗi xảy ra', 'error');
                 }
+            },
+            complete: function () {
+                $('.btnRegister').text('Đăng ký');
             }
         });
+    })
+
+    // Forgot password
+    $('.btnSendMail').on('click', function (e) {
+        e.preventDefault();
+        const email = $('#email').val();
+        $.ajax({
+            url: '/usercontroller/forgotpass',
+            method: 'POST',
+            data: {
+                email: email,
+                forgotpass: true
+            },
+            dataType: 'json',
+            cache: false,
+            beforeSend: function () {
+                $('.btnSendMail').text('Đang gửi...');
+            },
+            success: function (data) {
+                if(data.statusCode === 200) {
+                    showMessage('Quên mật khẩu', 'Đã gửi email khôi phục mật khẩu');
+                }
+            },
+            error: function (error) {
+                if (error.status === 401) {
+                    showMessage('Quên mật khẩu', 'Email không tồn tại', 'error');
+                } else {
+                    showMessage('Quên mật khẩu', 'Đã có lỗi xảy ra', 'error');
+                }
+            },
+            complete: function () {
+                $('.btnSendMail').text('Gửi');
+            }
+        })
     })
 }); 

@@ -1,7 +1,6 @@
 <?php
 
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 function sendMail($email, $code)
@@ -10,7 +9,6 @@ function sendMail($email, $code)
 
     try {
         //Server settings
-        $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
         $mail->isSMTP();                                            //Send using SMTP
         $mail->Host       = 'smtp.gmail.com';                       //Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
@@ -29,7 +27,6 @@ function sendMail($email, $code)
         $mail->Body    = 'Đây là link xác nhận email <b><a href="'. _WEB_ROOT .'/mat-khau-moi?reset=' . $code . '">Xác nhận</a></b>';
 
         $mail->send();
-        echo 'Message has been sent';
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
