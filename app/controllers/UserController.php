@@ -56,20 +56,16 @@ class UserController extends Controller
 
         $title = 'Trang đăng ký';
 
-        $username = isset($_POST['name']) ? $_POST['name'] : '';
-        $email = isset($_POST['email']) ? $_POST['email'] : '';
-        $password = isset($_POST['pass']) ? $_POST['pass'] : '';
-        $password_confirm = isset($_POST['cfpass']) ? $_POST['cfpass'] : '';
+        $username = $_POST['name'] ?? '';
+        $email = $_POST['email'] ?? '';
+        $password = $_POST['password'] ?? '';
+        $password_confirm = $_POST['passwordConfirm'] ?? '';
         $checkEmail = $userRegister->checkEmailExist($email);
-        if ($password != $password_confirm) {
-            echo 'Mật khẩu không khớp';
-            die;
-        }
-
-        // if($checkEmail) {
-        //     echo 'Email đã tồn tại';
+        // if ($password != $password_confirm) {
+        //     echo 'Mật khẩu không khớp';
         //     die;
         // }
+
 
         $data = [
             'fullname' => 'Nguyễn Văn A',
@@ -79,13 +75,29 @@ class UserController extends Controller
         ];
 
 
-        if (isset($_REQUEST['submit'])) {
+        if (isset($_POST['register'])) {
+            header('Content-Type: application/json');
             if (!$checkEmail) {
-                $userRegister->insertUser($data);
-                $_SESSION['message'] = 'registered';
-                redirect('/dang-nhap');
+                if ($password == $password_confirm) {
+                    $userRegister->insertUser($data);
+                    $response = [
+                        'statusCode' => 200,
+                    ];
+                    header('HTTP/1.1 200 OK');
+                    echo json_encode($response);
+                } else {
+                    $response = [
+                        'statusCode' => 401,
+                    ];
+                    header('HTTP/1.1 401 Unauthorized');
+                    echo json_encode($response);
+                }
             } else {
-                echo 'Email đã tồn tại';
+                $response = [
+                    'statusCode' => 409,
+                ];
+                header('HTTP/1.1 409 Conflict');
+                echo json_encode($response);
             }
         }
 

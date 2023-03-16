@@ -1,7 +1,7 @@
 <section class="wrapper">
     <div class="container">
         <div class="col-sm-8 offset-sm-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4 text-center size">
-            <form class="rounded bg-white shadow p-5" action="/dang-ky" method="POST" id="form" spellcheck="false" autocomplete="off">
+            <form class="rounded bg-white shadow p-5" id="form" spellcheck="false" autocomplete="off">
                 <div class="logo">
                     <a href="/">
                         <img src="<?= _PUBLIC_CLIENT ?>/images/logo.webp" class="img-fluid" alt="Logo">
@@ -13,24 +13,24 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                            <input type="text" class="form-control" id="name" placeholder="Name">
                             <label for="floatingLastName">Tên đăng nhập</label>
                             <small></small>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Email address">
+                            <input type="email" class="form-control" id="email" placeholder="Email address">
                             <label for="floatingInput">Địa chỉ email</label>
                             <small></small>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control" id="password" name="pass" placeholder="Password">
+                            <input type="password" class="form-control" id="password" placeholder="Password">
                             <label for="floatingPassword">Mật khẩu</label>
                             <small></small>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control" id="cfpassword" name="cfpass" placeholder="Confirm Password">
+                            <input type="password" class="form-control" id="cfpassword" placeholder="Confirm Password">
                             <label for="floatingPassword">Xác nhận mật khẩu</label>
                             <small></small>
                         </div>
@@ -47,7 +47,7 @@
                     <input class="form-check-input" type="checkbox" id="gridCheck" checked>
                     <label class="form-check-label ms-2" for="gridCheck"> Tôi đồng ý với các <a href="#">điều khoản và dịch vụ</a>. </label>
                 </div>
-                <button type="submit" class="btn btn-primary submit_btn w-100 my-4" id="btnSubmit" name="submit">Đăng ký</button>
+                <button type="submit" class="btn btn-primary submit_btn w-100 my-4 btnRegister" id="btnSubmit">Đăng ký</button>
             </form>
         </div>
     </div>

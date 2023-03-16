@@ -122,4 +122,47 @@ $(document).ready(function () {
             }
         });
     })
+
+    // Register
+    $('.btnRegister').on('click', function (e) {
+        e.preventDefault();
+        const name = $('#name').val();
+        const email = $('#email').val();
+        const password = $('#password').val();
+        const passwordConfirm = $('#cfpassword').val();
+        $.ajax({
+            url: '/usercontroller/register',
+            method: 'POST',
+            data: {
+                name: name,
+                email: email,
+                password: password,
+                passwordConfirm: passwordConfirm,
+                register: true
+            },
+            dataType: 'json',
+            cache: false,
+            beforeSend: function () {
+                $('.btnRegister').text('Đang đăng ký...');
+            },
+            success: function (data) {
+                $('.btnRegister').text('Đăng ký');
+                if (data.statusCode === 200) {
+                    showMessage('Đăng ký', data.message);
+                    setTimeout(function () {
+                        window.location.href = '/dang-nhap';
+                    }, 1000);
+                }
+            },
+            error: function (error) {
+                if (error.status === 401) {
+                    showMessage('Đăng ký', 'Mật khẩu không khớp', 'error');
+                } else if (error.status === 409) {
+                    showMessage('Đăng ký', 'Email đã tồn tại', 'error');
+                } else {
+                    showMessage('Đăng ký', 'Đã có lỗi xảy ra', 'error');
+                }
+            }
+        });
+    })
 }); 
