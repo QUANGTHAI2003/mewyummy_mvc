@@ -18,10 +18,9 @@ class Connection
     {
         try {
             $this->conn = new PDO(
-                "mysql:host={$this->host};
-                dbname={$this->name}",
-                $this->user,
-                $this->pass,
+                "mysql:host=$_ENV[DB_HOST];dbname=$_ENV[DB_NAME]",
+                $_ENV['DB_USER'],
+                $_ENV['DB_PASS'],
                 [
                     PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'",
                     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,

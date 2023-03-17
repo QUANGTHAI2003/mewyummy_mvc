@@ -178,7 +178,7 @@ $(document).ready(function () {
         e.preventDefault();
         const email = $('#email').val();
         $.ajax({
-            url: '/usercontroller/sendMail',
+            url: '/usercontroller/sendmail',
             method: 'POST',
             data: {
                 email: email,
@@ -195,6 +195,7 @@ $(document).ready(function () {
                 }
             },
             error: function (error) {
+                console.log(error);
                 if (error.status === 401) {
                     showMessage('Quên mật khẩu', error.responseJSON.message, 'error');
                 } else {

@@ -1,6 +1,9 @@
 <?php
 require 'vendor/autoload.php';
 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 define('_DIR_ROOT', __DIR__);
 
 $protocol = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'];
