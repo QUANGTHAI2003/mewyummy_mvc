@@ -124,19 +124,22 @@
         </div>
         <section class="comments">
           <h3 class="title">Số bình luận 2</h3>
-          <div class="comment-input">
-            <form id="formComment" method="POST">
-              <div class="comment__avatar">
-                <img src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8&w=1000&q=80" alt="">
+          <?php if (isset($_SESSION['isLogged']) && $_SESSION['isLogged']) : ?>
+            <div class="comment-input">
+              <form id="formComment" method="POST">
+                <div class="comment__avatar">
+                  <img src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8&w=1000&q=80" alt="">
+                </div>
+                <input type="text" name="noi_dung" placeholder="Viết bình luận" autocomplete="off" aria-autocomplete="off" spellcheck="false">
+              </form>
+              <div class="btns_cmt hide">
+                <button type="submit" name="comment" class="cancel">Hủy</button>
+                <button type="submit" name="comment" class="btn-comment">Bình luận</button>
               </div>
-              <input type="text" name="noi_dung" placeholder="Viết bình luận" autocomplete="off" aria-autocomplete="off" spellcheck="false">
-            </form>
-            <div class="btns_cmt hide">
-              <button type="submit" name="comment" class="cancel">Hủy</button>
-              <button type="submit" name="comment" class="btn-comment">Bình luận</button>
             </div>
-          </div>
-          <p class="warning-login">Bạn phải <a class="login-comment" href="/dang-nhap">Đăng nhập</a> hoặc <a class="login-comment" href="/dang-ky">Tạo tài khoản</a> để bình luận</p>
+          <?php else : ?>
+            <p class="warning-login">Bạn phải <a class="login-comment" href="/dang-nhap">Đăng nhập</a> hoặc <a class="login-comment" href="/dang-ky">Tạo tài khoản</a> để bình luận</p>
+          <?php endif; ?>
           <div id="commentList">
             <section class="comment">
               <div class="comment__avatar">

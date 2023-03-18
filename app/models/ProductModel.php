@@ -53,4 +53,13 @@ class ProductModel
         $data = DB::table('categories')->get();
         return $data;
     }
+
+    public function getSearchData($keyword) {
+        $data = DB::table('products')
+            ->where('name', 'like', "'%$keyword%'")
+            ->limit(5)
+            ->select()
+            ->get();
+        return $data;
+    }
 }

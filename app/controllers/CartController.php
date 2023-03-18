@@ -59,7 +59,6 @@ class CartController extends Controller
   function updateQuantity()
   {
     $id = isset($_POST['id']) ? $_POST['id'] : '';
-    echo $id;
     $quantity = isset($_POST['quantity']) ? $_POST['quantity'] : '';
     if (!empty($_SESSION['cart'])) {
       foreach ($_SESSION['cart'] as $key => $value) {

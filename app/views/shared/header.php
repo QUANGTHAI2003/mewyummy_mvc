@@ -22,17 +22,18 @@
                     <?php endif; ?>
                   <?php endforeach; ?>
                   <input type="text" class="search__block-input form-control" name="keyword" role="search" value="<?= isset($_GET['keyword']) ? $_GET['keyword'] : '' ?>" spellcheck="false" autocomplete="off" placeholder="Tìm kiếm sản phẩm ..." />
-                  <button type="submit" class="search__block-btn d-sm-none d-lg-block" value="">
-                    <i class="fa-solid fa-magnifying-glass icon"></i>
+                  <button type="submit" class="search__block-btn">
+                    <!-- <i class="fa-solid fa-spinner icon"></i> -->
+                    <!-- <div class="spinner"></div> -->
                   </button>
                   <!-- Search Result -->
                   <div id="searchResult" class="w-100 searchResult px-2
                     mx-lg-0">
                     <div class="overflow-auto search-result-warpper">
-                      <div class="d-block text-left h6 searchResult__product
-                        text-white">Sản phẩm ( <span>0</span>) </div>
-                      <div class="searchResult-products">
-                        <!-- <div class="w-100">
+                      <!-- <div class="d-block text-left h6 searchResult__product
+                        text-white">Sản phẩm ( <span>0</span>) </div> -->
+                      <!-- <div class="searchResult-products">
+                        <div class="w-100">
                           <a href="#" title="Ba Chỉ Bò Mỹ , Short Plate (500gr)" class="d-flex align-items-start w-100 py-2
                             result-item border-bottom align-item js-link">
                             <div class="result-item_image d-flex h-100
@@ -47,15 +48,15 @@
                               </div>
                             </div>
                           </a>
-                        </div> -->
-                      </div>
-                      <div class="d-block text-left h6 searchResult__article
+                        </div>
+                      </div> -->
+                      <!-- <div class="d-block text-left h6 searchResult__article
                         text-white">Tin tức ( <span>0</span>) </div>
                       <div class="searchResult_articles"></div>
                       <div class="d-block text-left h6 searchResult__text
                         text-white"> Trang nội dung ( <span>0</span>) </div>
-                      <div class="searchResult_pages"></div>
-                      <a href="#" class="btn my-0 all-result fw-bold">Xem tất cả kết quả</a>
+                      <div class="searchResult_pages"></div> -->
+                      <!-- <a href="#" class="btn my-0 all-result fw-bold">Xem tất cả kết quả</a> -->
                     </div>
                   </div>
                 </form>

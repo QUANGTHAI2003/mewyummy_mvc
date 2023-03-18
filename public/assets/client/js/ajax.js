@@ -248,4 +248,31 @@ $(document).ready(function () {
             }
         })
     })
+
+    $('.search__block-input').on('input', _.debounce(function () {
+        let keyword = $(this).val();
+        if (keyword != '') {
+            $.ajax({
+                url: '/productcontroller/livesearch',
+                method: 'POST',
+                data: {
+                    keyword: keyword
+                },
+                dataType: 'html',
+                cache: false,
+                beforeSend: function () {
+                    $('.search__block-btn').html('<div class="spinner"></div>')
+                },
+                success: function (data) {
+                    $('.search-result-warpper').html(data);
+                },
+                error: function (error) {
+                    console.log(error);
+                },
+                complete: function () {
+                    $('.search__block-btn').html('')
+                }
+            })
+        }
+    }, 500));
 }); 
