@@ -40,8 +40,16 @@
           <div class="tab-pane fade show active" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab" tabindex="0">
             <div class="account__info row mt-4 rounded">
               <div class="account__info-image col-lg-4">
-                <div class="account-image">
-                  <img ng-src={{avatar}} alt="User">
+                <div class="personal-image">
+                  <label class="label">
+                    <figure class="personal-figure">
+                      <img src="https://thumbs.dreamstime.com/b/environment-earth-day-hands-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree-nature-field-gra-130247647.jpg" class="personal-avatar" alt="avatar">
+                      <figcaption class="personal-figcaption">
+                        <input type="file" name="image" id="image" accept=".png, .jpg" />
+                        <i class="fa-solid fa-camera-retro icon"></i>
+                      </figcaption>
+                    </figure>
+                  </label>
                 </div>
               </div>
               <div class="account__info-content col-lg-8 mt-4 mt-lg-0">

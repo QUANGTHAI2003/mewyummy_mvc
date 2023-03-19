@@ -1838,7 +1838,7 @@ footer .footer-mid .store:hover .tit {
     padding-bottom: 20px;
   }
 }
-.nav-info .account__info-image img {
+.nav-info .account__info-image > img {
   width: 160px;
   height: 160px;
   object-fit: cover;
@@ -1957,6 +1957,52 @@ footer .footer-mid .store:hover .tit {
 }
 .account label {
   padding: 0.7rem 0.75rem !important;
+}
+
+.personal-image {
+  text-align: center;
+}
+
+.personal-image input[type=file] {
+  display: none;
+}
+
+.personal-figure {
+  position: relative;
+}
+
+.personal-avatar {
+  cursor: pointer;
+  width: 160px;
+  height: 160px;
+  box-sizing: border-box;
+  border-radius: 100%;
+  border: 2px solid transparent;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+  transition: all ease-in-out 0.3s;
+}
+
+.personal-avatar:hover {
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
+}
+
+.personal-figcaption {
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  background-color: #e4e6eb;
+  transition: all ease-in-out 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.personal-figcaption > .icon {
+  font-size: 22px;
 }
 
 .sale-label {
