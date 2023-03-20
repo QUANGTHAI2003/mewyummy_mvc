@@ -1,46 +1,45 @@
 <?php
+
 use App\Core\Controller;
 
-class ProductController extends Controller
-{
+class ProductController extends Controller {
+
     private $data = [];
 
-    public function list_product()
-    {
-        $product = Controller::model('ProductModel');
+    public function list_product() {
+        $product     = Controller::model('ProductModel');
         $productList = $product->getProduct();
         $productCate = $product->getCategory();
-        $title = 'Danh sách sản phẩm';
+        $title       = 'Danh sách sản phẩm';
 
         // Create slug for product
         $productList = addSlug($productList);
 
         // Pagination
-        $total = count($productList);
-        $page = isset($_GET['page']) ? $_GET['page'] : 1;
-        $limit = 8;
-        $offset = ($page - 1) * $limit;
-        $totalPage = ceil($total / $limit);
+        $total       = count($productList);
+        $page        = $_GET['page'] ?? 1;
+        $limit       = 8;
+        $offset      = ($page - 1) * $limit;
+        $totalPage   = ceil($total / $limit);
         $productList = array_slice($productList, $offset, $limit);
 
         $this->data = [
             'page_title' => $title,
-            'data' => [
-                'page_title' => $title,
+            'data'       => [
+                'page_title'   => $title,
                 'product_list' => $productList,
                 'product_cate' => $productCate,
-                'total_page' => $totalPage,
+                'total_page'   => $totalPage,
             ],
-            'content' => 'products/list',
-        ];      
+            'content'    => 'products/list',
+        ];
         Controller::render('layouts/client_layout', $this->data);
     }
 
-    public function detail($id = 0)
-    {
-        $product = Controller::model('ProductModel');
+    public function detail($id = 0) {
+        $product       = Controller::model('ProductModel');
         $productDetail = $product->getDetail($id);
-        $category_id = $productDetail[0]['category_id'];
+        $category_id   = $productDetail[0]['category_id'];
         $productRelate = $product->getRelateCategoryProduct($category_id, $id);
         $productRelate = addSlug($productRelate);
 
@@ -49,19 +48,18 @@ class ProductController extends Controller
 
         $this->data = [
             'page_title' => $title,
-            'data' => [
-                'page_title' => $title,
+            'data'       => [
+                'page_title'     => $title,
                 'product_detail' => $productDetail,
                 'product_relate' => $productRelate,
             ],
-            'content' => 'products/detail',
+            'content'    => 'products/detail',
         ];
 
         Controller::render('layouts/client_layout', $this->data);
     }
 
-    public function livesearch()
-    {
+    public function livesearch() {
         $product   = Controller::model('ProductModel');
         $keyword   = $_POST['keyword'] ?? '';
         $data      = $product->getSearchData($keyword);
@@ -69,7 +67,7 @@ class ProductController extends Controller
         $countData = count($data);
         $output    = '';
 
-        if (!empty($data)) {
+        if(!empty($data)) {
             $output .= '
                 <div class="d-block text-left h6 searchResult__product text-white">
                     Sản phẩm (<span>' . $countData . '</span>) 

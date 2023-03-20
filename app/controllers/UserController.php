@@ -2,28 +2,27 @@
 
 use App\Core\Controller;
 
-class UserController extends Controller
-{
+class UserController extends Controller {
+
     public $data = [];
 
-    public function login()
-    {
+    public function login() {
         $userLogin = $this->model('UserModel');
-        $title = 'Trang đăng nhập';
+        $title     = 'Trang đăng nhập';
 
-        $email = $_POST['email'] ?? '';
+        $email    = $_POST['email'] ?? '';
         $password = $_POST['password'] ?? '';
 
 
-        if (isset($_POST['login'])) {
+        if(isset($_POST['login'])) {
             $checkUser = $userLogin->getUsers($email, $password);
             header('Content-Type: application/json');
-            if ($checkUser) {
-                $_SESSION['user'] = $checkUser['fullname'];
+            if($checkUser) {
+                $_SESSION['user']     = $checkUser['fullname'];
                 $_SESSION['isLogged'] = true;
-                $response = [
+                $response             = [
                     'statusCode' => 200,
-                    'message' => 'Đăng nhập thành công',
+                    'message'    => 'Đăng nhập thành công',
                 ];
                 header('HTTP/1.1 200 OK');
                 echo json_encode($response);
@@ -31,7 +30,7 @@ class UserController extends Controller
             } else {
                 $response = [
                     'statusCode' => 401,
-                    'message' => 'Sai tên email hoặc mật khẩu',
+                    'message'    => 'Sai tên email hoặc mật khẩu',
                 ];
                 header('HTTP/1.1 401 Unauthorized');
                 echo json_encode($response);
@@ -41,42 +40,41 @@ class UserController extends Controller
 
         $this->data = [
             'page_title' => $title,
-            'data' => [
+            'data'       => [
                 'page_title' => $title,
             ],
-            'content' => 'user/login',
+            'content'    => 'user/login',
         ];
 
         Controller::render('layouts/client_layout', $this->data);
     }
 
-    public function register()
-    {
+    public function register() {
         $userRegister = $this->model('UserModel');
 
         $title = 'Trang đăng ký';
 
-        $username = $_POST['name'] ?? '';
-        $email = $_POST['email'] ?? '';
-        $password = $_POST['password'] ?? '';
+        $username         = $_POST['name'] ?? '';
+        $email            = $_POST['email'] ?? '';
+        $password         = $_POST['password'] ?? '';
         $password_confirm = $_POST['passwordConfirm'] ?? '';
-        $checkEmail = $userRegister->checkEmailExist($email);
+        $checkEmail       = $userRegister->checkEmailExist($email);
 
         $data = [
             'fullname' => 'Nguyễn Văn A',
             'username' => $username,
-            'email' => $email,
+            'email'    => $email,
             'password' => password_hash($password, PASSWORD_DEFAULT),
         ];
 
-        if (isset($_POST['register'])) {
+        if(isset($_POST['register'])) {
             header('Content-Type: application/json');
-            if (!$checkEmail) {
-                if ($password == $password_confirm) {
+            if(!$checkEmail) {
+                if($password == $password_confirm) {
                     $userRegister->insertUser($data);
                     $response = [
                         'statusCode' => 200,
-                        'message' => 'Đăng ký thành công'
+                        'message'    => 'Đăng ký thành công'
                     ];
                     header('HTTP/1.1 200 OK');
                     echo json_encode($response);
@@ -84,7 +82,7 @@ class UserController extends Controller
                 } else {
                     $response = [
                         'statusCode' => 401,
-                        'message' => 'Mật khẩu không khớp'
+                        'message'    => 'Mật khẩu không khớp'
                     ];
                     header('HTTP/1.1 401 Unauthorized');
                     echo json_encode($response);
@@ -93,7 +91,7 @@ class UserController extends Controller
             } else {
                 $response = [
                     'statusCode' => 409,
-                    'message' => 'Email đã tồn tại'
+                    'message'    => 'Email đã tồn tại'
                 ];
                 header('HTTP/1.1 409 Conflict');
                 echo json_encode($response);
@@ -103,32 +101,31 @@ class UserController extends Controller
 
         $this->data = [
             'page_title' => $title,
-            'data' => [
+            'data'       => [
                 'page_title' => $title,
             ],
-            'content' => 'user/register',
+            'content'    => 'user/register',
         ];
 
         Controller::render('layouts/client_layout', $this->data);
     }
 
-    public function sendMail()
-    {
+    public function sendMail() {
         $userForgot = $this->model('UserModel');
-        $title = 'Quên mật khẩu';
+        $title      = 'Quên mật khẩu';
 
-        $email = $_POST['email'] ?? '';
-        $code = md5(rand());
+        $email      = $_POST['email'] ?? '';
+        $code       = md5(rand());
         $checkEmail = $userForgot->checkEmailExist($email);
 
-        if (isset($_POST['forgotpass'])) {
+        if(isset($_POST['forgotpass'])) {
             header('Content-Type: application/json');
-            if ($checkEmail) {
+            if($checkEmail) {
                 $userForgot->updateCode($code, $email);
                 sendMail($email, $code);
                 $response = [
                     'statusCode' => 200,
-                    'message' => 'Đã gửi email khôi phục mật khẩu'
+                    'message'    => 'Đã gửi email khôi phục mật khẩu'
                 ];
                 header('HTTP/1.1 200 OK');
                 echo json_encode($response);
@@ -136,7 +133,7 @@ class UserController extends Controller
             } else {
                 $response = [
                     'statusCode' => 401,
-                    'message' => 'Email không tồn tại'
+                    'message'    => 'Email không tồn tại'
                 ];
                 header('HTTP/1.1 401 Unauthorized');
                 echo json_encode($response);
@@ -146,30 +143,29 @@ class UserController extends Controller
 
         $this->data = [
             'page_title' => $title,
-            'data' => [
+            'data'       => [
                 'page_title' => $title,
             ],
-            'content' => 'user/sendMail',
+            'content'    => 'user/sendMail',
         ];
 
         Controller::render('layouts/client_layout', $this->data);
     }
 
-    public function resetPass()
-    {
+    public function resetPass() {
         $userChange = $this->model('UserModel');
-        $title = 'Đổi mật khẩu';
+        $title      = 'Đổi mật khẩu';
 
-        if (isset($_POST['reset'])) {
+        if(isset($_POST['reset'])) {
             header('Content-Type: application/json');
-            $password = isset($_POST['pass']) ? $_POST['pass'] : '';
-            $password_confirm = isset($_POST['cfpass']) ? $_POST['cfpass'] : '';
-            $code = isset($_GET['reset']) ? $_GET['reset'] : '';
-            if ($password == $password_confirm) {
+            $password         = $_POST['pass'] ?? '';
+            $password_confirm = $_POST['cfpass'] ?? '';
+            $code             = $_GET['reset'] ?? '';
+            if($password == $password_confirm) {
                 $userChange->updatePass($password, $code);
                 $response = [
                     'statusCode' => 200,
-                    'message' => 'Đổi mật khẩu thành công'
+                    'message'    => 'Đổi mật khẩu thành công'
                 ];
                 header('HTTP/1.1 200 OK');
                 echo json_encode($response);
@@ -177,7 +173,7 @@ class UserController extends Controller
             } else {
                 $response = [
                     'statusCode' => 401,
-                    'message' => 'Mật khẩu không khớp'
+                    'message'    => 'Mật khẩu không khớp'
                 ];
                 header('HTTP/1.1 401 Unauthorized');
                 echo json_encode($response);
@@ -187,17 +183,16 @@ class UserController extends Controller
 
         $this->data = [
             'page_title' => $title,
-            'data' => [
+            'data'       => [
                 'page_title' => $title,
             ],
-            'content' => 'user/resetPass',
+            'content'    => 'user/resetPass',
         ];
 
         Controller::render('layouts/client_layout', $this->data);
     }
 
-    public function logout()
-    {
+    public function logout() {
         unset($_SESSION['user']);
         unset($_SESSION['isLogged']);
         redirect('/');

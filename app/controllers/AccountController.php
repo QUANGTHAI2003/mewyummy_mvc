@@ -2,67 +2,63 @@
 
 use App\Core\Controller;
 
-class AccountController extends Controller
-{
-  private $data = [];
+class AccountController extends Controller {
 
-  public function index()
-  {
-    $title = 'Giỏ hàng';
+    private $data = [];
 
-    $this->data = [
-      'page_title' => $title,
-      'data' => [
-        'page_title' => $title,
-      ],
-      'content' => 'user/account',
-    ];
+    public function index() {
+        $title = 'Giỏ hàng';
 
-    Controller::render('layouts/client_layout', $this->data);
-  }
+        $this->data = [
+            'page_title' => $title,
+            'data'       => [
+                'page_title' => $title,
+            ],
+            'content'    => 'user/account',
+        ];
 
-  public function updateInfo()
-  {
-    $title = 'Trang cập nhật thông tin';
+        Controller::render('layouts/client_layout', $this->data);
+    }
 
-    $this->data = [
-      'page_title' => $title,
-      'data' => [
-        'page_title' => $title,
-      ],
-      'content' => 'user/updateInfo',
-    ];
+    public function updateInfo() {
+        $title = 'Trang cập nhật thông tin';
 
-    Controller::render('layouts/client_layout', $this->data);
-  }
+        $this->data = [
+            'page_title' => $title,
+            'data'       => [
+                'page_title' => $title,
+            ],
+            'content'    => 'user/updateInfo',
+        ];
 
-  public function changePass()
-  {
-    $title = 'Trang đổi mật khẩu';
+        Controller::render('layouts/client_layout', $this->data);
+    }
 
-    $this->data = [
-      'page_title' => $title,
-      'data' => [
-        'page_title' => $title,
-      ],
-      'content' => 'user/changePass',
-    ];
+    public function changePass() {
+        $title = 'Trang đổi mật khẩu';
 
-    Controller::render('layouts/client_layout', $this->data);
-  }
+        $this->data = [
+            'page_title' => $title,
+            'data'       => [
+                'page_title' => $title,
+            ],
+            'content'    => 'user/changePass',
+        ];
 
-  public function order()
-  {
-    $title = 'Trang đơn hàng';
+        Controller::render('layouts/client_layout', $this->data);
+    }
 
-    $this->data = [
-      'page_title' => $title,
-      'data' => [
-        'page_title' => $title,
-      ],
-      'content' => 'user/order',
-    ];
+    public function order() {
+        $title = 'Trang đơn hàng';
 
-    Controller::render('layouts/client_layout', $this->data);
-  }
+        $this->data = [
+            'page_title' => $title,
+            'data'       => [
+                'page_title' => $title,
+            ],
+            'content'    => 'user/order',
+        ];
+
+        Controller::render('layouts/client_layout', $this->data);
+    }
 }

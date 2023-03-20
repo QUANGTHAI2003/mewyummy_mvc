@@ -14,7 +14,6 @@
 
 <body>
   <?php
-
   use App\Core\{Controller};
   // hide if url is dang-nhap or dang-ky
   if (!hideHeaderFooter(['dang-nhap', 'dang-ky', 'quen-mat-khau', 'mat-khau-moi'])) {
@@ -35,6 +34,5 @@
   <script type="text/javascript" src="<?= _WEB_ROOT ?>/public/assets/client/js/message.js"></script>
   <script type="text/javascript" src="<?= _WEB_ROOT ?>/public/assets/client/js/ajax.js"></script>
   <script defer type="text/javascript" src="<?= _WEB_ROOT ?>/public/assets/client/js/lazyLoad.js"></script>
-  <?php require 'core/Message.php' ?>
 </body>
 </html>

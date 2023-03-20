@@ -1,22 +1,22 @@
 <?php
+
 use App\Core\Controller;
 
-class ContactController extends Controller
-{
-  private $data = [];
+class ContactController extends Controller {
 
-  public function index()
-  {
-    $title = 'Trang giới thiệu';
+    private $data = [];
 
-    $this->data = [
-      'page_title' => $title,
-      'data' => [
-        'page_title' => $title,
-      ],
-      'content' => 'contact',
-    ];
+    public function index() {
+        $title = 'Trang giới thiệu';
 
-    Controller::render('layouts/client_layout', $this->data);
-  }
+        $this->data = [
+            'page_title' => $title,
+            'data'       => [
+                'page_title' => $title,
+            ],
+            'content'    => 'contact',
+        ];
+
+        Controller::render('layouts/client_layout', $this->data);
+    }
 }
