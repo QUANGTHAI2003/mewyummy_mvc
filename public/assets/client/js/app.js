@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
     toOffcanvasInput && toOffcanvasInput.addEventListener('input', formatInput);
 
     // Count down timer for sale
-    const countDownDate = new Date("Mar 21, 2023 10:30:00").getTime();
+    const countDownDate = new Date("Apr 30, 2023 10:30:00").getTime();
     const day = document.querySelector('.day');
     const hour = document.querySelector('.hour');
     const minute = document.querySelector('.minute');
@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
         second && (second.innerHTML = formatTime(seconds) + "s");
 
 
-        if (distance <= 0) {
+        if (distance <= 0 && hideSales) {
             clearInterval(countdown);
             hideSales.style.display = 'none';
         }

@@ -66,14 +66,17 @@
             </div>
             <div class="product-add row mb-3 py-2">
               <div class="col-12">
-                <button type="button" class="mb-lg-0 btn addToCart">
-                  <i class="fa-solid fa-cart-plus icon"></i>
-                  <span class="button__text">Thêm vào giỏ hàng</span>
-                </button>
-                <!-- <button type="button" class="mb-lg-0 btn">
+                <?php if (isset($_SESSION['isLogged'])) : ?>
+                  <button type="button" class="mb-lg-0 btn addToCart">
+                    <i class="fa-solid fa-cart-plus icon"></i>
+                    <span class="button__text">Thêm vào giỏ hàng</span>
+                  </button>
+                <?php else : ?>
+                  <button type="button" class="mb-lg-0 btn">
                     <i class="fa-solid fa-cart-plus icon"></i>
                     <span class="button__text">Đăng nhập để mua hàng</span>
-                  </button> -->
+                  </button>
+                <?php endif; ?>
               </div>
             </div>
             <div class="linehot_pro alert alert-warning">

@@ -40,48 +40,50 @@
           <div class="tab-pane fade show active" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab" tabindex="0">
             <div class="account__info row mt-4 rounded">
               <div class="account__info-image col-lg-4">
-                <div class="personal-image">
+                <form class="personal-image" enctype="multipart/form-data">
                   <label class="label">
                     <figure class="personal-figure">
-                      <img src="https://thumbs.dreamstime.com/b/environment-earth-day-hands-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree-nature-field-gra-130247647.jpg" class="personal-avatar" alt="avatar">
+                      <div class="mask">
+                        <img src="<?= _PUBLIC_UPLOADS ?>/<?= $userInfo['avatar'] ?>" class="personal-avatar" alt="<?= $userInfo['fullname'] ?>">
+                      </div>
                       <figcaption class="personal-figcaption">
-                        <input type="file" name="image" id="image" accept=".png, .jpg" />
+                        <input type="file" name="avatar" id="avatar" accept=".png, .jpg, .webp" value="" />
                         <i class="fa-solid fa-camera-retro icon"></i>
-                      </figcaption>
+                      </figcaption> 
                     </figure>
                   </label>
-                </div>
+                </form>
               </div>
               <div class="account__info-content col-lg-8 mt-4 mt-lg-0">
                 <h2 class="account__info-title fw-bold">Thông tin tài khoản</h2>
                 <div class="account__detail">
                   <div class="account__detail-item">
                     <span class="account__detail-label">Tên đăng nhập:</span>
-                    <span class="account__detail-value">quangthai</span>
+                    <span class="account__detail-value"><?= $userInfo['username'] ?></span>
                   </div>
                 </div>
                 <div class="account__detail">
                   <div class="account__detail-item">
                     <span class="account__detail-label">Họ và tên:</span>
-                    <span class="account__detail-value">Trần Quang Thái</span>
+                    <span class="account__detail-value"><?= $userInfo['fullname'] ?></span>
                   </div>
                 </div>
                 <div class="account__detail">
                   <div class="account__detail-item">
                     <span class="account__detail-label">Email:</span>
-                    <span class="account__detail-value">tranquangthai.10102003@gmail.com</span>
+                    <span class="account__detail-value"><?= $userInfo['email'] ?></span>
                   </div>
                 </div>
                 <div class="account__detail">
                   <div class="account__detail-item">
                     <span class="account__detail-label">Số điện thoại:</span>
-                    <span class="account__detail-value">0774060610</span>
+                    <span class="account__detail-value"><?= $userInfo['phone'] ?? 'Cập nhật thông tin' ?></span>
                   </div>
                 </div>
                 <div class="account__detail">
                   <div class="account__detail-item">
                     <span class="account__detail-label">Địa chỉ:</span>
-                    <span class="account__detail-value">Cần Thơ, Việt Nam</span>
+                    <span class="account__detail-value"><?= $userInfo['address'] ?? 'Cập nhật thông tin' ?></span>
                   </div>
                 </div>
               </div>

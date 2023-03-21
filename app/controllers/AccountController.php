@@ -7,12 +7,16 @@ class AccountController extends Controller {
     private $data = [];
 
     public function index() {
-        $title = 'Giỏ hàng';
+        $accountAvatar = $this->model('AccountModel');
+        $title = 'Trang tài khoản';
+
+        $userInfo = $accountAvatar->getUserInfo();
 
         $this->data = [
             'page_title' => $title,
             'data'       => [
                 'page_title' => $title,
+                'userInfo'     => $userInfo,
             ],
             'content'    => 'user/account',
         ];

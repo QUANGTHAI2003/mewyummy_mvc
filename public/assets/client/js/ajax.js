@@ -275,4 +275,37 @@ $(document).ready(function () {
             })
         }
     }, 500));
+
+    $('#avatar').on('change', function () {
+        let file = $(this).prop('files')[0];
+        let formData = new FormData();
+        formData.append('avatar', file);
+        $.ajax({
+            url: '/usercontroller/uploadavatar',
+            method: 'POST',
+            data: formData,
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                if (data.statusCode === 200) {
+                    showMessage('Cập nhật ảnh đại diện', data.message);
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 1000);
+                }
+            },
+            error: function (error) {
+                if (error.status === 401) {
+                    showMessage('Cập nhật ảnh đại diện', error.responseText.message, 'error');
+                } else if (error.status === 415) {
+                    showMessage('Cập nhật ảnh đại diện', error.responseText.message, 'error');
+                } else if (error.status === 500) {
+                    showMessage('Cập nhật ảnh đại diện', error.responseText.message, 'error');
+                } else {
+                    showMessage('Cập nhật ảnh đại diện', 'Đã có lỗi xảy ra', 'error');
+                }
+            }
+        })
+    })
 }); 

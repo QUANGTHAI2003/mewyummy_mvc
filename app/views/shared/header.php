@@ -75,14 +75,17 @@
                     <ul class="pop__login sub__menu">
                       <?php if (isset($_SESSION['isLogged'])) :  ?>
                         <li class="pop__login-list">
+                          <a class="pop__login-link d-block fw-bold">
+                            <?= $_SESSION['user'] ?? '' ?>
+                          </a>
+                        </li>
+                        <li class="pop__login-list">
                           <a href="/tai-khoan" class="pop__login-link d-block fw-bold">Tài khoản</a>
                         </li>
                         <li class="pop__login-list">
                           <a href="/dang-xuat" class="pop__login-link d-block fw-bold">Đăng xuất</a>
                         </li>
-                      <?php else : ?>
-                        <p><?= isset($_SESSION['user']) ? $_SESSION['user'] : '' ?></p>
-                        <li class="pop__login-list">
+                      <?php else : ?>                        <li class="pop__login-list">
                           <a href="/dang-nhap" class="pop__login-link d-block fw-bold">Đăng nhập</a>
                         </li>
                         <li class="pop__login-list">

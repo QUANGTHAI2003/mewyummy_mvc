@@ -60,6 +60,15 @@ class UserModel {
             return false;
         }
     }
+
+    // upload avatar
+    public function uploadAvatar($id, $avatar)
+    : void {
+        $data = [
+            'avatar' => $avatar
+        ];
+        DB::table('users')->where('id', '=', $id)->update($data);
+    }
 }
 
 ?>

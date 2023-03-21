@@ -240,29 +240,29 @@
 
 .personal-image {
     text-align: center;
-}
 
-.personal-image input[type="file"] {
-    display: none;
+    input[type="file"] {
+        display: none;
+    }
 }
 
 .personal-figure {
     position: relative;
-}
 
-.personal-avatar {
-    cursor: pointer;
-    width: 160px;
-    height: 160px;
-    box-sizing: border-box;
-    border-radius: 100%;
-    border: 2px solid transparent;
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
-    transition: all ease-in-out .3s;
-}
+    .personal-avatar {
+        cursor: pointer;
+        width: 160px;
+        height: 160px;
+        box-sizing: border-box;
+        border-radius: 100%;
+        border: 2px solid transparent;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+        transition: all ease-in-out .3s;
 
-.personal-avatar:hover {
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
+        :hover {
+            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
+        }
+    }
 }
 
 .personal-figcaption {
@@ -278,8 +278,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
 
-.personal-figcaption>.icon {
-    font-size: 22px;
+    >.icon {
+        font-size: 22px;
+    }
 }

@@ -17,6 +17,7 @@ define('_WEB_ROOT', $web_root);
 define('_PUBLIC_CLIENT', $web_root . '/public/assets/client');
 define('_IMAGES_PRODUCT', $web_root . '/public/assets/client/images/products');
 define('_PUBLIC_LIBS', $web_root . '/public/assets/client/libs');
+define('_PUBLIC_UPLOADS', $web_root . '/public/assets/client/uploads');
 
 // Đường dẫn tới thư mục app
 require_once 'configs/routes.php';
