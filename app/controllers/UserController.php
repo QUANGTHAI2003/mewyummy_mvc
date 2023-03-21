@@ -137,13 +137,18 @@ class UserController extends Controller
                     $filename = uniqid() . '.' . $fileExtension;
                     if (move_uploaded_file($file['tmp_name'], $uploadDir . $filename)) {
                         $userUpload->uploadAvatar($_SESSION['id'], $filename);
-                        $response = [
-                            'statusCode' => 200,
-                            'message'    => 'Đăng ký thành công'
-                        ];
-                        header('HTTP/1.1 200 OK');
-                        echo json_encode($response);
-                        die();
+                        if(!empty($filename)) {
+                            $output = '
+                            <img src="'._PUBLIC_UPLOADS . "/" . $filename. '" class="personal-avatar" alt="">
+                            <figcaption class="personal-figcaption">
+                              <input type="file" name="avatar" id="avatar" accept=".png, .jpg, .webp" value="" />
+                              <i class="fa-solid fa-camera-retro icon"></i>
+                            </figcaption>
+                            ';
+                            echo $output;
+                            header('HTTP/1.1 200 OK');
+                            die();
+                        }
                     } else {
                         $response = [
                             'statusCode' => 500,

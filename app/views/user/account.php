@@ -43,9 +43,7 @@
                 <form class="personal-image" enctype="multipart/form-data">
                   <label class="label">
                     <figure class="personal-figure">
-                      <div class="mask">
-                        <img src="<?= _PUBLIC_UPLOADS ?>/<?= $userInfo['avatar'] ?>" class="personal-avatar" alt="<?= $userInfo['fullname'] ?>">
-                      </div>
+                      <img src="<?= _PUBLIC_UPLOADS ?>/<?= $userInfo['avatar'] ?>" class="personal-avatar" alt="avatar">
                       <figcaption class="personal-figcaption">
                         <input type="file" name="avatar" id="avatar" accept=".png, .jpg, .webp" value="" />
                         <i class="fa-solid fa-camera-retro icon"></i>

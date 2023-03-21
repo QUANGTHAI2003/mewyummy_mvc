@@ -284,24 +284,20 @@ $(document).ready(function () {
             url: '/usercontroller/uploadavatar',
             method: 'POST',
             data: formData,
-            dataType: 'json',
+            // dataType: 'json',
             contentType: false,
             processData: false,
             success: function (data) {
-                if (data.statusCode === 200) {
-                    showMessage('Cập nhật ảnh đại diện', data.message);
-                    setTimeout(function () {
-                        window.location.reload();
-                    }, 1000);
-                }
+                $('.personal-figure').html(data);
+                showMessage('Cập nhật ảnh đại diện', 'Cập nhật ảnh đại diện thành công');
             },
             error: function (error) {
                 if (error.status === 401) {
-                    showMessage('Cập nhật ảnh đại diện', error.responseText.message, 'error');
+                    showMessage('Cập nhật ảnh đại diện', error.responseText, 'error');
                 } else if (error.status === 415) {
-                    showMessage('Cập nhật ảnh đại diện', error.responseText.message, 'error');
+                    showMessage('Cập nhật ảnh đại diện', error.responseText, 'error');
                 } else if (error.status === 500) {
-                    showMessage('Cập nhật ảnh đại diện', error.responseText.message, 'error');
+                    showMessage('Cập nhật ảnh đại diện', error.responseText, 'error');
                 } else {
                     showMessage('Cập nhật ảnh đại diện', 'Đã có lỗi xảy ra', 'error');
                 }
