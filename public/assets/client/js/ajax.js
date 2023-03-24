@@ -220,7 +220,7 @@ $(document).ready(function () {
 		const urlParams = new URLSearchParams(window.location.search);
 		const reset = urlParams.get('reset');
 		$.ajax({
-			url: '/usercontroller/resetpass?reset=' + reset + '',
+			url: '/usercontroller/resetpass/?reset=' + reset + '',
 			method: 'POST',
 			data: {
 				password: password,
@@ -242,7 +242,7 @@ $(document).ready(function () {
 			},
 			error: function (error) {
 				if (error.status === 401) {
-					showMessage('Cập nhật mật khẩu', error.responseJSON.message, 'error');
+					showMessage('Cập nhật mật khẩu', 'Mật khẩu không khớp', 'error');
 				}
 				else {
 					showMessage('Cập nhật mật khẩu', 'Đã có lỗi xảy ra', 'error');

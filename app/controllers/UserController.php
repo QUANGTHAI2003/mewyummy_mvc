@@ -58,7 +58,7 @@ class UserController extends Controller {
         $checkEmail       = $userRegister->checkEmailExist($email);
 
         $data = [
-            'fullname' => 'Trần Quang Thái',
+            'fullname' => '',
             'username' => $username,
             'email'    => $email,
             'password' => password_hash($password, PASSWORD_DEFAULT),
@@ -215,8 +215,8 @@ class UserController extends Controller {
 
         if(isset($_POST['reset'])) {
             header('Content-Type: application/json');
-            $password         = $_POST['pass'] ?? '';
-            $password_confirm = $_POST['cfpass'] ?? '';
+            $password         = $_POST['password'] ?? '';
+            $password_confirm = $_POST['passwordConfirm'] ?? '';
             $code             = $_GET['reset'] ?? '';
             if($password == $password_confirm) {
                 $userChange->updatePass($password, $code);
