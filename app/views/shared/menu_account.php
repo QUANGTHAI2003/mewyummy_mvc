@@ -18,7 +18,7 @@
         </a>
     </div>
     <div class="item_acc" ng-if="isLogin">
-        <a class="d-flex w-100 align-items-center pe-auto" href="javascript:void(0)" title="Đăng xuất">
+        <a class="d-flex w-100 align-items-center pe-auto" href="/dang-xuat" title="Đăng xuất">
             <i class="fa-solid fa-arrow-right-from-bracket icon"></i>
             <span class="ms-3">Đăng xuất</span>
         </a>

@@ -352,4 +352,39 @@ $(document).ready(function () {
             }
         })
     })
+
+    $('.btnChangePass').on('click', function (e) {
+        e.preventDefault();
+        const password = $('#password').val();
+        const cfPassword = $('#cfpassword').val();
+        $.ajax({
+            url: '/accountcontroller/changepass',
+            method: 'POST',
+            data: {
+                password: password,
+                cfpassword: cfPassword,
+                changePass: true
+            },
+            dataType: 'json',
+            cache: false,
+            beforeSend: function () {
+                $('.btnChangePass').text('Đang cập nhật...');
+            },
+            success: function (data) {
+                if (data.statusCode === 200) {
+                    showMessage('Cập nhật mật khẩu', data.message);
+                }
+            },
+            error: function (error) {
+                if (error.status === 400) {
+                    showMessage('Cập nhật mật khẩu', error.responseJSON.message, 'error');
+                } else {
+                    showMessage('Cập nhật mật khẩu', 'Đã có lỗi xảy ra', 'error');
+                }
+            },
+            complete: function () {
+                $('.btnChangePass').text('Cập nhật');
+            }
+        })
+    })
 }); 
