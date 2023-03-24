@@ -288,8 +288,8 @@ $(document).ready(function () {
             contentType: false,
             processData: false,
             success: function (data) {
-                $('.personal-figure').html(data);
                 showMessage('Cập nhật ảnh đại diện', 'Cập nhật ảnh đại diện thành công');
+                $('.personal-figure').html(data);
             },
             error: function (error) {
                 if (error.status === 401) {
@@ -301,6 +301,54 @@ $(document).ready(function () {
                 } else {
                     showMessage('Cập nhật ảnh đại diện', 'Đã có lỗi xảy ra', 'error');
                 }
+            }
+        })
+    })
+
+    $('.btnUpdateInfo').on('click', function (e) {
+        e.preventDefault();
+        const username = $('#username').val();
+        const fullname = $('#fullname').val();
+        const email = $('#email').val();
+        const phone = $('#phone').val();
+        const address = $('#address').val();
+        // check phone number regex
+        const regexPhone = /([\+84|84|0]+(3|5|7|8|9|1[2|6|8|9]))+([0-9]{8})\b/;
+        if (!regexPhone.test(phone)) {
+            showMessage('Cập nhật thông tin', 'Số điện thoại không hợp lệ', 'error');
+            return;
+        }
+        const regexEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (!regexEmail.test(email)) {
+            showMessage('Cập nhật thông tin', 'Email không hợp lệ', 'error');
+            return;
+        }
+        $.ajax({
+            url: '/accountcontroller/updateinfo',
+            method: 'POST',
+            data: {
+                username: username,
+                fullname: fullname,
+                email: email,
+                phone: phone,
+                address: address,
+                updateInfo: true
+            },
+            dataType: 'json',
+            cache: false,
+            beforeSend: function () {
+                $('.btnUpdateInfo').text('Đang cập nhật...');
+            },
+            success: function (data) {
+                if (data.statusCode === 200) {
+                    showMessage('Cập nhật thông tin', data.message);
+                }
+            },
+            error: function (error) {
+                showMessage('Cập nhật thông tin', 'Đã có lỗi xảy ra', 'error');
+            },
+            complete: function () {
+                $('.btnUpdateInfo').text('Cập nhật');
             }
         })
     })
