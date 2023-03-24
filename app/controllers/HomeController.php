@@ -4,8 +4,6 @@ use App\Core\Controller;
 
 class HomeController extends Controller {
 
-    private $data = [];
-
     public function index() {
         $product          = Controller::model('HomeModel');
         $productSale      = $product->getProductSale();
@@ -21,10 +19,9 @@ class HomeController extends Controller {
 
         $title = 'Trang chủ';
 
-        $this->data = [
+        $data = [
             'page_title' => $title,
             'data'       => [
-                'page_title'        => $title,
                 'product_sale'      => $productSale,
                 'product_meat'      => $productMeat,
                 'product_seafood'   => $productSeafood,
@@ -35,7 +32,7 @@ class HomeController extends Controller {
             'content'    => 'home/index',
         ];
 
-        Controller::render('layouts/client_layout', $this->data);
+        Controller::render('layouts/client_layout', $data);
     }
 
     public function logout() {

@@ -187,8 +187,7 @@ class Query extends Database {
      *
      * @param string|array $data
      */
-    public function update(string|array $data)
-     {
+    public function update(string|array $data) {
         $whereUpdate  = str_replace('WHERE', '', $this->where);
         $whereUpdate  = trim($whereUpdate);
         $tableName    = $this->tableName;

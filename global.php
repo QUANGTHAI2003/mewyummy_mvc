@@ -6,11 +6,7 @@ $dotenv->load();
 
 const _DIR_ROOT = __DIR__;
 
-$protocol     = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'];
-$dirRoot      = str_replace('\\', '/', _DIR_ROOT);
-$documentRoot = str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']);
-$folder       = str_replace(strtolower($documentRoot), '', strtolower($dirRoot));
-$web_root     = $protocol . $folder;
+$web_root = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'];
 
 // Đường dẫn gốc
 define('_WEB_ROOT', $web_root);
@@ -27,6 +23,5 @@ require_once 'app/App.php';     // Load app
 require_once 'core/Connection.php';
 require_once 'core/Database.php';
 require_once 'core/Query.php';
-require_once 'core/GlobalQuery.php';
 require_once 'core/Controller.php'; // Load base controller
 require_once 'core/SendMail.php'; // Load base model

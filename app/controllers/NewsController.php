@@ -4,19 +4,15 @@ use App\Core\Controller;
 
 class NewsController extends Controller {
 
-    private $data = [];
-
     public function index() {
-        $title = 'Trang giới thiệu';
+        $title = 'Trang tin tức';
 
-        $this->data = [
+        $data = [
             'page_title' => $title,
-            'data'       => [
-                'page_title' => $title,
-            ],
+            'data'       => [],
             'content'    => 'news/index',
         ];
 
-        Controller::render('layouts/client_layout', $this->data);
+        Controller::render('layouts/client_layout', $data);
     }
 }

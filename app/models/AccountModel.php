@@ -6,14 +6,17 @@ class AccountModel {
 
     public function getUserInfo($id) {
         $result = DB::table('users')->where('id', '=', $id)->getOne();
+
         return $result;
     }
 
-    public function updateUserInfo($id, $data) : void {
+    public function updateUserInfo($id, $data)
+    : void {
         DB::table('users')->where('id', '=', $id)->update($data);
     }
 
-    public function changePassword($id, $pass) : void {
+    public function changePassword($id, $pass)
+    : void {
         DB::table('users')->where('id', '=', $id)->update(['password' => $pass]);
     }
 }

@@ -2,8 +2,8 @@
 
 namespace App\Core;
 
-use App\App;
 use PDO;
+use App\App;
 use Exception;
 
 class Database {

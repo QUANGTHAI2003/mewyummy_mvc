@@ -1,50 +1,50 @@
 function showMessage(title, message, type = 'success', duration = 2000) {
-    toast({
-        title: title,
-        message: message,
-        type: type,
-        duration: duration
-    });
+	toast({
+		title: title,
+		message: message,
+		type: type,
+		duration: duration
+	});
 };
 
 // Toast function
-function toast({ title = "", message = "", type = "info", duration = 3000 }) {
+function toast({title = "", message = "", type = "info", duration = 3000}) {
 
-    // create id toast in body
-    const idToast = document.createElement("div")
-    idToast.setAttribute("id", "toast")
-    document.body.appendChild(idToast)
-    const main = document.getElementById("toast");
-    console.log(main);
-    if (main) {
-        const toast = document.createElement("div");
+	// create id toast in body
+	const idToast = document.createElement("div")
+	idToast.setAttribute("id", "toast")
+	document.body.appendChild(idToast)
+	const main = document.getElementById("toast");
+	console.log(main);
+	if (main) {
+		const toast = document.createElement("div");
 
-        // Auto remove toast
-        const autoRemoveId = setTimeout(function () {
-            main.removeChild(toast);
-        }, duration + 1000);
+		// Auto remove toast
+		const autoRemoveId = setTimeout(function () {
+			main.removeChild(toast);
+		}, duration + 1000);
 
-        // Remove toast when clicked
-        toast.onclick = function (e) {
-            if (e.target.closest(".toast__close")) {
-                main.removeChild(toast);
-                clearTimeout(autoRemoveId);
-            }
-        };
+		// Remove toast when clicked
+		toast.onclick = function (e) {
+			if (e.target.closest(".toast__close")) {
+				main.removeChild(toast);
+				clearTimeout(autoRemoveId);
+			}
+		};
 
-        const icons = {
-            success: "fas fa-check-circle",
-            info: "fas fa-info-circle",
-            warning: "fas fa-exclamation-circle",
-            error: "fas fa-exclamation-circle"
-        };
-        const icon = icons[type];
-        const delay = (duration / 1000).toFixed(2);
+		const icons = {
+			success: "fas fa-check-circle",
+			info: "fas fa-info-circle",
+			warning: "fas fa-exclamation-circle",
+			error: "fas fa-exclamation-circle"
+		};
+		const icon = icons[type];
+		const delay = (duration / 1000).toFixed(2);
 
-        toast.classList.add("toasts", `toast--${type}`);
-        toast.style.animation = `slideInLeft ease .3s, fadeOut linear 1s ${delay}s forwards`;
+		toast.classList.add("toasts", `toast--${type}`);
+		toast.style.animation = `slideInLeft ease .3s, fadeOut linear 1s ${delay}s forwards`;
 
-        toast.innerHTML = `
+		toast.innerHTML = `
                     <div class="toast__icon">
                         <i class="${icon}"></i>
                     </div>
@@ -56,6 +56,6 @@ function toast({ title = "", message = "", type = "info", duration = 3000 }) {
                         <i class="fas fa-times"></i>
                     </div>
                 `;
-        main.appendChild(toast);
-    }
+		main.appendChild(toast);
+	}
 }

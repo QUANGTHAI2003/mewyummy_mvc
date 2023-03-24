@@ -4,8 +4,6 @@ use App\Core\Controller;
 
 class ProductController extends Controller {
 
-    private $data = [];
-
     public function list_product() {
         $product     = Controller::model('ProductModel');
         $productList = $product->getProduct();
@@ -23,17 +21,16 @@ class ProductController extends Controller {
         $totalPage   = ceil($total / $limit);
         $productList = array_slice($productList, $offset, $limit);
 
-        $this->data = [
+        $data = [
             'page_title' => $title,
             'data'       => [
-                'page_title'   => $title,
                 'product_list' => $productList,
                 'product_cate' => $productCate,
                 'total_page'   => $totalPage,
             ],
             'content'    => 'products/list',
         ];
-        Controller::render('layouts/client_layout', $this->data);
+        Controller::render('layouts/client_layout', $data);
     }
 
     public function detail($id = 0) {
@@ -46,17 +43,16 @@ class ProductController extends Controller {
 
         $title = 'Chi tiết sản phẩm';
 
-        $this->data = [
+        $data = [
             'page_title' => $title,
             'data'       => [
-                'page_title'     => $title,
                 'product_detail' => $productDetail,
                 'product_relate' => $productRelate,
             ],
             'content'    => 'products/detail',
         ];
 
-        Controller::render('layouts/client_layout', $this->data);
+        Controller::render('layouts/client_layout', $data);
     }
 
     public function livesearch() {

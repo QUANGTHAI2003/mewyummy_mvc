@@ -2,34 +2,27 @@
 
 use App\Core\Controller;
 
-class AccountController extends Controller
-{
+class AccountController extends Controller {
 
-    private $data = [];
-
-    public function index()
-    {
+    public function index() {
         $accountAvatar = $this->model('AccountModel');
-        $title = 'Trang tài khoản';
+        $title         = 'Trang tài khoản';
 
         $userInfo = $accountAvatar->getUserInfo($_SESSION['id']);
 
-        $this->data = [
+        $data = [
             'page_title' => $title,
-            'data'       => [
-                'page_title' => $title,
-                'userInfo'     => $userInfo,
+            'data'       => ['userInfo' => $userInfo,
             ],
             'content'    => 'user/account',
         ];
 
-        Controller::render('layouts/client_layout', $this->data);
+        Controller::render('layouts/client_layout', $data);
     }
 
-    public function updateInfo()
-    {
+    public function updateInfo() {
         $accountUpdateInfo = $this->model('AccountModel');
-        $title = 'Trang cập nhật thông tin';
+        $title             = 'Trang cập nhật thông tin';
 
         $userInfo = $accountUpdateInfo->getUserInfo($_SESSION['id']);
         $username = $_POST['username'] ?? '';
@@ -39,14 +32,14 @@ class AccountController extends Controller
         $address  = $_POST['address'] ?? '';
 
         $dataUserInfo = [
-            'username' => $username,
-            'fullname' => $fullname,
-            'email'    => $email,
-            'phone_number'    => $phone,
-            'address'  => $address,
+            'username'     => $username,
+            'fullname'     => $fullname,
+            'email'        => $email,
+            'phone_number' => $phone,
+            'address'      => $address,
         ];
 
-        if (isset($_POST['updateInfo'])) {
+        if(isset($_POST['updateInfo'])) {
             header('Content-Type: application/json');
             $accountUpdateInfo->updateUserInfo($_SESSION['id'], $dataUserInfo);
             $response = [
@@ -58,7 +51,7 @@ class AccountController extends Controller
             die();
         }
 
-        $this->data = [
+        $data = [
             'page_title' => $title,
             'data'       => [
                 'userInfo' => $userInfo,
@@ -66,21 +59,21 @@ class AccountController extends Controller
             'content'    => 'user/updateInfo',
         ];
 
-        Controller::render('layouts/client_layout', $this->data);
+        Controller::render('layouts/client_layout', $data);
     }
 
-    public function changePass()
-    {
+    public function changePass() {
         $accountPass = $this->model('AccountModel');
-        $title = 'Trang đổi mật khẩu';
+        $title       = 'Trang đổi mật khẩu';
 
-        $password = $_POST['password'] ?? '';
-        $cfpassword  = $_POST['cfpassword'] ?? '';
-        
+        $password   = $_POST['password'] ?? '';
+        $cfpassword = $_POST['cfpassword'] ?? '';
+
         if(isset($_POST['changePass'])) {
             header('Content-Type: application/json');
             if($password == $cfpassword) {
-                $accountPass->changePassword($_SESSION['id'], password_hash($password, PASSWORD_DEFAULT));
+                $accountPass->changePassword($_SESSION['id'],
+                                             password_hash($password, PASSWORD_DEFAULT));
                 $response = [
                     'statusCode' => 200,
                     'message'    => 'Đổi mật khẩu thành công',
@@ -99,31 +92,24 @@ class AccountController extends Controller
             }
         }
 
-        
-
-        $this->data = [
+        $data = [
             'page_title' => $title,
-            'data'       => [
-                'page_title' => $title,
-            ],
+            'data'       => [],
             'content'    => 'user/changePass',
         ];
 
-        Controller::render('layouts/client_layout', $this->data);
+        Controller::render('layouts/client_layout', $data);
     }
 
-    public function order()
-    {
+    public function order() {
         $title = 'Trang đơn hàng';
 
-        $this->data = [
+        $data = [
             'page_title' => $title,
-            'data'       => [
-                'page_title' => $title,
-            ],
+            'data'       => [],
             'content'    => 'user/order',
         ];
 
-        Controller::render('layouts/client_layout', $this->data);
+        Controller::render('layouts/client_layout', $data);
     }
 }

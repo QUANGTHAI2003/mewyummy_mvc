@@ -70,5 +70,3 @@ class UserModel {
         DB::table('users')->where('id', '=', $id)->update($data);
     }
 }
-
-?>

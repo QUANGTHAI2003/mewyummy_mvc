@@ -27,11 +27,6 @@ class App {
         $this->__action = 'index';
         $this->__params = [];
 
-        if(class_exists('GlobalQuery')) {
-            $dbObject   = new GlobalQuery();
-            $this->__db = $dbObject->db;
-        }
-
         $this->handleUrl();
     }
 
