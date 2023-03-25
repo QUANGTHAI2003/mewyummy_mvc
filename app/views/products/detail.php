@@ -125,37 +125,131 @@
             </div>
           </fieldset>
         </div>
-        <section class="comments">
-          <h3 class="title">Số bình luận 2</h3>
-          <?php if (isset($_SESSION['isLogged']) && $_SESSION['isLogged']) : ?>
-            <div class="comment-input">
-              <form id="formComment" method="POST">
-                <div class="comment__avatar">
-                  <img src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8&w=1000&q=80" alt="">
-                </div>
-                <input type="text" name="noi_dung" placeholder="Viết bình luận" autocomplete="off" aria-autocomplete="off" spellcheck="false">
-              </form>
-              <div class="btns_cmt hide">
-                <button type="submit" name="comment" class="cancel">Hủy</button>
-                <button type="submit" name="comment" class="btn-comment">Bình luận</button>
+        <section class="comment-section comment">
+          <div class="comment__input">
+            <h2 class="comment-counnt">200 bình luận</h2>
+            <div class="comment__box">
+              <div class="comment__box-avatar">
+                <img src="https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg" alt="avatar">
+              </div>
+              <div class="comment__box-input">
+                <input type="text" class="input-main" placeholder="Viết bình luận...">
+                <span class="focus-border"></span>
+                <button type="submit" class="btn btn-primary btnSend">Gửi</button>
+                <!-- <div class="buttons"></div>
+                  <button class="cancel-button">Hủy</button>
+                  <button class="send-button">Gửi</button>
+                </div> -->
               </div>
             </div>
-          <?php else : ?>
-            <p class="warning-login">Bạn phải <a class="login-comment" href="/dang-nhap">Đăng nhập</a> hoặc <a class="login-comment" href="/dang-ky">Tạo tài khoản</a> để bình luận</p>
-          <?php endif; ?>
-          <div id="commentList">
-            <section class="comment">
-              <div class="comment__avatar">
-                <img src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8&w=1000&q=80" alt="">
-              </div>
-              <div class="comment__content">
-                <div class="comment__header">
-                  <h4 class="comment__name">Trần Quang Thái</h4>
-                  <span style="cursor: pointer;" class="comment__date">1 ngày trước</span>
+          </div>
+          <div class="comment__content">
+            <div class="comment__content-item mb-3">
+              <div class="comment__main">
+                <div class="comment__main-content">
+                  <div class="author-thumbnail">
+                    <img src="https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg" alt="avatar">
+                  </div>
+                  <div class="content__main">
+                    <div class="author-name">
+                      <span>Trần Quang Thái</span>
+                      <span class="time">1 giờ trước</span>
+                    </div>
+                    <div class="content">
+                      <p>Đồ ăn ngon, nhân viên phục vụ nhiệt tình, giao hàng nhanh chóng</p>
+                    </div>
+                    <div class="content__main-reaction">
+                      <div class="reaction">
+                        <i class="fa-solid fa-thumbs-up icon"></i>
+                        <span>Thích</span>
+                      </div>
+                      <div class="reaction">
+                        <i class="fa-solid fa-comment icon"></i>
+                        <span>Trả lời</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <p class="comment__text">Sản phẩm rất chất lượng</p>
               </div>
-            </section>
+              <div class="comment__replies">
+                <div class="author-thumbnail">
+                  <img src="https://gratisography.com/wp-content/uploads/2023/02/gratisography-colorful-kittenfree-stock-photo-800x525.jpg" alt="avatar">
+                </div>
+                <div class="content__main">
+                  <div class="author-name">
+                    <span>Trần Quang Thái</span>
+                    <span class="time">1 giờ trước</span>
+                  </div>
+                  <div class="content">
+                    <p>Đồ ăn ngon, nhân viên phục vụ nhiệt tình, giao hàng nhanh chóng</p>
+                  </div>
+                  <div class="content__main-reaction">
+                    <div class="reaction">
+                      <i class="fa-solid fa-thumbs-up icon"></i>
+                      <span>Thích</span>
+                    </div>
+                    <div class="reaction">
+                      <i class="fa-solid fa-comment icon"></i>
+                      <span>Trả lời</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="comment__content">
+            <div class="comment__content-item mb-3">
+              <div class="comment__main">
+                <div class="comment__main-content">
+                  <div class="author-thumbnail">
+                    <img src="https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg" alt="avatar">
+                  </div>
+                  <div class="content__main">
+                    <div class="author-name">
+                      <span>Trần Quang Thái</span>
+                      <span class="time">1 giờ trước</span>
+                    </div>
+                    <div class="content">
+                      <p>Đồ ăn ngon, nhân viên phục vụ nhiệt tình, giao hàng nhanh chóng</p>
+                    </div>
+                    <div class="content__main-reaction">
+                      <div class="reaction">
+                        <i class="fa-solid fa-thumbs-up icon"></i>
+                        <span>Thích</span>
+                      </div>
+                      <div class="reaction">
+                        <i class="fa-solid fa-comment icon"></i>
+                        <span>Trả lời</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="comment__replies">
+                <div class="author-thumbnail">
+                  <img src="https://gratisography.com/wp-content/uploads/2023/02/gratisography-colorful-kittenfree-stock-photo-800x525.jpg" alt="avatar">
+                </div>
+                <div class="content__main">
+                  <div class="author-name">
+                    <span>Trần Quang Thái</span>
+                    <span class="time">1 giờ trước</span>
+                  </div>
+                  <div class="content">
+                    <p>Đồ ăn ngon, nhân viên phục vụ nhiệt tình, giao hàng nhanh chóng</p>
+                  </div>
+                  <div class="content__main-reaction">
+                    <div class="reaction">
+                      <i class="fa-solid fa-thumbs-up icon"></i>
+                      <span>Thích</span>
+                    </div>
+                    <div class="reaction">
+                      <i class="fa-solid fa-comment icon"></i>
+                      <span>Trả lời</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </div>
