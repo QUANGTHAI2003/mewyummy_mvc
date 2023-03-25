@@ -133,7 +133,7 @@
                 <img src="https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg" alt="avatar">
               </div>
               <div class="comment__box-input">
-                <input type="text" class="input-main" placeholder="Viết bình luận...">
+                <input type="text" class="input-main" id="commentMain" placeholder="Viết bình luận...">
                 <span class="focus-border"></span>
                 <button type="submit" class="btn btn-primary btnSend">Gửi</button>
                 <!-- <div class="buttons"></div>

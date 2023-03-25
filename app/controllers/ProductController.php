@@ -2,9 +2,11 @@
 
 use App\Core\Controller;
 
-class ProductController extends Controller {
+class ProductController extends Controller
+{
 
-    public function list_product() {
+    public function list_product()
+    {
         $product     = Controller::model('ProductModel');
         $productList = $product->getProduct();
         $productCate = $product->getCategory();
@@ -33,12 +35,29 @@ class ProductController extends Controller {
         Controller::render('layouts/client_layout', $data);
     }
 
-    public function detail($id = 0) {
+    public function detail($id = 0)
+    {
         $product       = Controller::model('ProductModel');
         $productDetail = $product->getDetail($id);
         $category_id   = $productDetail[0]['category_id'];
         $productRelate = $product->getRelateCategoryProduct($category_id, $id);
         $productRelate = addSlug($productRelate);
+
+        $productComment = $product->getAllCommentMain($id);
+
+
+        if (isset($_POST['addComment'])) {
+            $commentData    = [
+                'user_id'    => $_SESSION['id'],
+                'children_id' => 0,
+                'product_id' => $id,
+                'comment'    => $_POST['comment'] ?? '',
+            ];
+
+            $product->insertComment($commentData);
+        }
+
+
 
 
         $title = 'Chi tiết sản phẩm';
@@ -48,6 +67,7 @@ class ProductController extends Controller {
             'data'       => [
                 'product_detail' => $productDetail,
                 'product_relate' => $productRelate,
+                'product_comment' => $productComment,
             ],
             'content'    => 'products/detail',
         ];
@@ -55,7 +75,8 @@ class ProductController extends Controller {
         Controller::render('layouts/client_layout', $data);
     }
 
-    public function livesearch() {
+    public function livesearch()
+    {
         $product   = Controller::model('ProductModel');
         $keyword   = $_POST['keyword'] ?? '';
         $data      = $product->getSearchData($keyword);
@@ -63,7 +84,7 @@ class ProductController extends Controller {
         $countData = count($data);
         $output    = '';
 
-        if(!empty($data)) {
+        if (!empty($data)) {
             $output .= '
                 <div class="d-block text-left h6 searchResult__product text-white">
                     Sản phẩm (<span>' . $countData . '</span>) 
@@ -93,5 +114,18 @@ class ProductController extends Controller {
         } else {
             echo '<a class="btn my-0 all-result fw-bold">Không tìm thấy sản phẩm</a>';
         }
+    }
+
+    public function addcomment()
+    {
+        $product = Controller::model('ProductModel');
+        $data    = [
+            'user_id'    => $_SESSION['id'],
+            'children_id' => 0,
+            'product_id' => $_SESSION['product_id'],
+            'comment'    => $_POST['comment'],
+        ];
+
+        $product->insertComment($data);
     }
 }

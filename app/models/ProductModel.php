@@ -2,9 +2,11 @@
 
 use App\Core\Query as DB;
 
-class ProductModel {
+class ProductModel
+{
 
-    public function getProduct() {
+    public function getProduct()
+    {
         $keyword      = $_GET['keyword'] ?? '';
         $category     = $_GET['category'] ?? null;
         $category     = (int)$category;
@@ -17,54 +19,73 @@ class ProductModel {
         $nameSort     = $sortName[0] ?? '';
         $nameSortType = $sortName[1] ?? '';
         $data         = DB::table('products')
-                          ->where('category_id', '=', $category)
-                          ->where('name', 'like', "'%$keyword%'")
-                          ->where('regular_price', '>=', $minPrice)
-                          ->where('regular_price', '<=', $maxPrice)
-                          ->orderBy($nameSort, $nameSortType)
-                          ->select()
-                          ->get();
+            ->where('category_id', '=', $category)
+            ->where('name', 'like', "'%$keyword%'")
+            ->where('regular_price', '>=', $minPrice)
+            ->where('regular_price', '<=', $maxPrice)
+            ->orderBy($nameSort, $nameSortType)
+            ->select()
+            ->get();
 
         return $data;
     }
 
-    public function getDetail($id)
-    : bool|array {
+    public function getDetail($id): bool|array
+    {
         $data = DB::table('products')
-                  ->where('id', '=', $id)
-                  ->select()
-                  ->get();
+            ->where('id', '=', $id)
+            ->select()
+            ->get();
 
         return $data;
     }
 
     // get product relate product category in detail page
-    public function getRelateCategoryProduct($cateId, $proId)
-    : bool|array {
+    public function getRelateCategoryProduct($cateId, $proId): bool|array
+    {
         $data = DB::table('products')
-                  ->where('category_id', '=', $cateId)
-                  ->where('id', '!=', $proId)
-                  ->limit(5)
-                  ->select()
-                  ->get();
+            ->where('category_id', '=', $cateId)
+            ->where('id', '!=', $proId)
+            ->limit(5)
+            ->select()
+            ->get();
 
         return $data;
     }
 
-    public function getCategory()
-    : bool|array {
+    public function getCategory(): bool|array
+    {
         $data = DB::table('categories')->get();
 
         return $data;
     }
 
-    public function getSearchData($keyword)
-    : bool|array {
+    public function getSearchData($keyword): bool|array
+    {
         $data = DB::table('products')
-                  ->where('name', 'like', "'%$keyword%'")
-                  ->limit(5)
-                  ->select()
-                  ->get();
+            ->where('name', 'like', "'%$keyword%'")
+            ->limit(5)
+            ->select()
+            ->get();
+
+        return $data;
+    }
+
+    public function getAllCommentMain($id) {
+        $data = DB::table('comments')
+            ->join('users', 'comments.user_id = users.id')
+            ->where('product_id', '=', $id)
+            ->where('children_id', '=', 0)
+            ->select('user_id, product_id, children_id, comment, fullname, avatar, updated_at')
+            ->get();
+
+        return $data;
+    }
+
+    public function insertComment($data)
+    {
+        $data = DB::table('comments')
+            ->insert($data);
 
         return $data;
     }

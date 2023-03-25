@@ -395,4 +395,32 @@ $(document).ready(function () {
 			}
 		})
 	})
+
+	$('.btnSend').on('click', function (e) {
+		e.preventDefault();
+		const commentMain = $('#commentMain').val();
+		
+		$.ajax({
+			url: '/productcontroller/addcomment/',
+			method: 'POST',
+			data: {
+				comment: commentMain,
+				addComment: true
+			},
+			dataType: 'json',
+			cache: false,
+			beforeSend: function () {
+				$('.btnSend').text('Đang gửi...');
+			},
+			success: function (data) {
+				console.log(data);
+			},
+			error: function (error) {
+				console.log(error);
+			},
+			complete: function () {
+				$('.btnSend').text('Gửi');
+			}
+		})
+	})
 }); 
