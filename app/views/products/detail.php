@@ -126,6 +126,11 @@
           </fieldset>
         </div>
         <section class="comment-section comment">
+          <?php
+          echo '<pre>';
+          print_r($product_reply);
+          echo '</pre>';
+          ?>
           <div class="comment__input">
             <h2 class="comment-counnt">200 bình luận</h2>
             <div class="comment__box">
@@ -144,112 +149,64 @@
             </div>
           </div>
           <div class="comment__content">
-            <div class="comment__content-item mb-3">
-              <div class="comment__main">
-                <div class="comment__main-content">
-                  <div class="author-thumbnail">
-                    <img src="https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg" alt="avatar">
-                  </div>
-                  <div class="content__main">
-                    <div class="author-name">
-                      <span>Trần Quang Thái</span>
-                      <span class="time">1 giờ trước</span>
+            <?php foreach ($product_comment as $cmt_main) : ?>
+              <div class="comment__content-item mb-3">
+                <div class="comment__main">
+                  <div class="comment__main-content">
+                    <div class="author-thumbnail">
+                      <img src="<?= _PUBLIC_UPLOADS ?>/<?= $cmt_main['avatar'] ?>" alt="avatar">
                     </div>
-                    <div class="content">
-                      <p>Đồ ăn ngon, nhân viên phục vụ nhiệt tình, giao hàng nhanh chóng</p>
-                    </div>
-                    <div class="content__main-reaction">
-                      <div class="reaction">
-                        <i class="fa-solid fa-thumbs-up icon"></i>
-                        <span>Thích</span>
+                    <div class="content__main">
+                      <div class="author-name">
+                        <span><?= $cmt_main['fullname'] ?></span>
+                        <span class="time"><?= timeAgo($cmt_main['created_at']) ?></span>
                       </div>
-                      <div class="reaction">
-                        <i class="fa-solid fa-comment icon"></i>
-                        <span>Trả lời</span>
+                      <div class="content">
+                        <p><?= $cmt_main['comment'] ?></p>
                       </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="comment__replies">
-                <div class="author-thumbnail">
-                  <img src="https://gratisography.com/wp-content/uploads/2023/02/gratisography-colorful-kittenfree-stock-photo-800x525.jpg" alt="avatar">
-                </div>
-                <div class="content__main">
-                  <div class="author-name">
-                    <span>Trần Quang Thái</span>
-                    <span class="time">1 giờ trước</span>
-                  </div>
-                  <div class="content">
-                    <p>Đồ ăn ngon, nhân viên phục vụ nhiệt tình, giao hàng nhanh chóng</p>
-                  </div>
-                  <div class="content__main-reaction">
-                    <div class="reaction">
-                      <i class="fa-solid fa-thumbs-up icon"></i>
-                      <span>Thích</span>
-                    </div>
-                    <div class="reaction">
-                      <i class="fa-solid fa-comment icon"></i>
-                      <span>Trả lời</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="comment__content">
-            <div class="comment__content-item mb-3">
-              <div class="comment__main">
-                <div class="comment__main-content">
-                  <div class="author-thumbnail">
-                    <img src="https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg" alt="avatar">
-                  </div>
-                  <div class="content__main">
-                    <div class="author-name">
-                      <span>Trần Quang Thái</span>
-                      <span class="time">1 giờ trước</span>
-                    </div>
-                    <div class="content">
-                      <p>Đồ ăn ngon, nhân viên phục vụ nhiệt tình, giao hàng nhanh chóng</p>
-                    </div>
-                    <div class="content__main-reaction">
-                      <div class="reaction">
-                        <i class="fa-solid fa-thumbs-up icon"></i>
-                        <span>Thích</span>
-                      </div>
-                      <div class="reaction">
-                        <i class="fa-solid fa-comment icon"></i>
-                        <span>Trả lời</span>
+                      <div class="content__main-reaction">
+                        <div class="reaction">
+                          <i class="fa-solid fa-thumbs-up icon"></i>
+                          <span>Thích</span>
+                        </div>
+                        <div class="reaction">
+                          <i class="fa-solid fa-comment icon"></i>
+                          <span>Trả lời</span>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="comment__replies">
-                <div class="author-thumbnail">
-                  <img src="https://gratisography.com/wp-content/uploads/2023/02/gratisography-colorful-kittenfree-stock-photo-800x525.jpg" alt="avatar">
-                </div>
-                <div class="content__main">
-                  <div class="author-name">
-                    <span>Trần Quang Thái</span>
-                    <span class="time">1 giờ trước</span>
-                  </div>
-                  <div class="content">
-                    <p>Đồ ăn ngon, nhân viên phục vụ nhiệt tình, giao hàng nhanh chóng</p>
-                  </div>
-                  <div class="content__main-reaction">
-                    <div class="reaction">
-                      <i class="fa-solid fa-thumbs-up icon"></i>
-                      <span>Thích</span>
+                <?php foreach ($product_reply as $reply) : ?>
+                  <?php if ($cmt_main['id'] == $reply['comment_id']) : ?>
+                    <div class="comment__replies">
+                      <div class="author-thumbnail">
+                        <img src="<?= _PUBLIC_UPLOADS ?>/<?= $reply['avatar'] ?>" alt="avatar">
+                      </div>
+                      <div class="content__main">
+                        <div class="author-name">
+                          <span><?= $reply['fullname'] ?></span>
+                          <span class="time"><?= timeAgo($reply['created_at']) ?></span>
+                        </div>
+                        <div class="content">
+                          <p><?= $reply['comment'] ?></p>
+                        </div>
+                        <div class="content__main-reaction">
+                          <div class="reaction">
+                            <i class="fa-solid fa-thumbs-up icon"></i>
+                            <span>Thích</span>
+                          </div>
+                          <div class="reaction">
+                            <i class="fa-solid fa-comment icon"></i>
+                            <span>Trả lời</span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div class="reaction">
-                      <i class="fa-solid fa-comment icon"></i>
-                      <span>Trả lời</span>
-                    </div>
-                  </div>
-                </div>
+                  <?php endif; ?>
+                <?php endforeach; ?>
               </div>
-            </div>
+            <?php endforeach; ?>
           </div>
         </section>
       </div>

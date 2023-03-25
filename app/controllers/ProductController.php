@@ -38,27 +38,29 @@ class ProductController extends Controller
     public function detail($id = 0)
     {
         $product       = Controller::model('ProductModel');
+        
+        // Get product
         $productDetail = $product->getDetail($id);
         $category_id   = $productDetail[0]['category_id'];
         $productRelate = $product->getRelateCategoryProduct($category_id, $id);
         $productRelate = addSlug($productRelate);
 
+        // Comment
         $productComment = $product->getAllCommentMain($id);
+        $productReply = $product->getRepliesComment($id);
 
+        $commentData = [
+            'user_id'    => $_SESSION['id'],
+            'children_id' => 1,
+            'product_id' => 1,
+            'comment'    => $_POST['comment'] ?? '',
+            'comment_id' => 51
+        ];
 
         if (isset($_POST['addComment'])) {
-            $commentData    = [
-                'user_id'    => $_SESSION['id'],
-                'children_id' => 0,
-                'product_id' => $id,
-                'comment'    => $_POST['comment'] ?? '',
-            ];
 
             $product->insertComment($commentData);
         }
-
-
-
 
         $title = 'Chi tiết sản phẩm';
 
@@ -68,6 +70,7 @@ class ProductController extends Controller
                 'product_detail' => $productDetail,
                 'product_relate' => $productRelate,
                 'product_comment' => $productComment,
+                'product_reply' => $productReply,
             ],
             'content'    => 'products/detail',
         ];
@@ -114,18 +117,5 @@ class ProductController extends Controller
         } else {
             echo '<a class="btn my-0 all-result fw-bold">Không tìm thấy sản phẩm</a>';
         }
-    }
-
-    public function addcomment()
-    {
-        $product = Controller::model('ProductModel');
-        $data    = [
-            'user_id'    => $_SESSION['id'],
-            'children_id' => 0,
-            'product_id' => $_SESSION['product_id'],
-            'comment'    => $_POST['comment'],
-        ];
-
-        $product->insertComment($data);
     }
 }

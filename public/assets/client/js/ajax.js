@@ -401,7 +401,7 @@ $(document).ready(function () {
 		const commentMain = $('#commentMain').val();
 		
 		$.ajax({
-			url: '/productcontroller/addcomment/',
+			url: '/productcontroller/detail',
 			method: 'POST',
 			data: {
 				comment: commentMain,
@@ -423,4 +423,4 @@ $(document).ready(function () {
 			}
 		})
 	})
-}); 
+});

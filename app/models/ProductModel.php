@@ -71,12 +71,27 @@ class ProductModel
         return $data;
     }
 
-    public function getAllCommentMain($id) {
-        $data = DB::table('comments')
-            ->join('users', 'comments.user_id = users.id')
-            ->where('product_id', '=', $id)
-            ->where('children_id', '=', 0)
-            ->select('user_id, product_id, children_id, comment, fullname, avatar, updated_at')
+    public function getAllCommentMain($id)
+    {
+        $data = DB::table('comments as c')
+            ->join('users as u', 'c.user_id = u.id')
+            ->where('c.product_id', '=', $id)
+            ->where('c.children_id', '=', -1)
+            ->select('c.id, c.user_id, c.product_id, c.children_id, c.comment, c.comment_id, u.fullname, u.avatar, u.created_at')
+            ->orderBy('u.created_at', 'DESC')
+            ->get();
+
+        return $data;
+    }
+
+    public function getRepliesComment($id)
+    {
+        $data = DB::table('comments as c')
+            ->join('users as u', 'c.user_id = u.id')
+            ->where('c.product_id', '=', $id)
+            ->where('c.children_id', '!=', -1)
+            ->select('c.user_id, c.product_id, c.children_id, c.comment, c.comment_id, u.fullname, u.avatar, u.created_at')
+            ->orderBy('u.created_at', 'DESC')
             ->get();
 
         return $data;
@@ -84,8 +99,7 @@ class ProductModel
 
     public function insertComment($data)
     {
-        $data = DB::table('comments')
-            ->insert($data);
+        $data = DB::table('comments')->insert($data);
 
         return $data;
     }
