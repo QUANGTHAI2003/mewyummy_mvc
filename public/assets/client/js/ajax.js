@@ -399,12 +399,16 @@ $(document).ready(function () {
 	$('.btnSend').on('click', function (e) {
 		e.preventDefault();
 		const commentMain = $('#commentMain').val();
-		
+		const url = window.location.href;
+		const urlSplit = url.split('/');
+		const productId = urlSplit[urlSplit.length - 2];
+
 		$.ajax({
-			url: '/productcontroller/detail',
+			url: '/productcontroller/addcomment',
 			method: 'POST',
 			data: {
 				comment: commentMain,
+				productId: productId,
 				addComment: true
 			},
 			dataType: 'json',
@@ -421,6 +425,61 @@ $(document).ready(function () {
 			complete: function () {
 				$('.btnSend').text('Gửi');
 			}
+		})
+	})
+
+	$('.btnRes').each(function () {
+		$(this).on('click', function (e) {
+			e.preventDefault();
+			const dataId = $(this).attr('data-id');
+			$('.comment-' + dataId).toggleClass('hide');
+		})
+	})
+
+	$('.btnResParent').each(function () {
+		$(this).on('click', function (e) {
+			e.preventDefault();
+			const dataId = $(this).attr('data-parent-id');
+			$('.comment-parent-' + dataId).toggleClass('hide');
+		})
+	})
+
+	$('.btnSendReply').each(function () {
+		$(this).on('click', function (e) {
+			e.preventDefault();
+			const dataId = $(this).attr('data-comment');
+			const commentId = $(this).attr('data-comment-id');
+			const commentReply = $('.comment-input-' + dataId).val();
+			const url = window.location.href;
+			const urlSplit = url.split('/');
+			const productId = urlSplit[urlSplit.length - 2];
+			console.log(commentId);
+
+			$.ajax({
+				url: '/productcontroller/addcomment',
+				method: 'POST',
+				data: {
+					comment: commentReply,
+					commentId: commentId,
+					productId: productId,
+					childrenId: 1, // reply
+					addComment: true
+				},
+				dataType: 'json',
+				cache: false,
+				beforeSend: function () {
+					$('.btnSendReply').text('Đang gửi...');
+				},
+				success: function (data) {
+					console.log(data);
+				},
+				error: function (error) {
+					console.log(error);
+				},
+				complete: function () {
+					$('.btnSendReply').text('Gửi');
+				}
+			})
 		})
 	})
 });

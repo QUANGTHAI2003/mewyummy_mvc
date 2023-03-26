@@ -18,6 +18,7 @@ class UserController extends Controller {
             if($checkUser) {
                 $_SESSION['id']       = $checkUser['id'];
                 $_SESSION['user']     = $checkUser['fullname'];
+                $_SESSION['avatar'] = $checkUser['avatar'];
                 $_SESSION['isLogged'] = true;
                 $response             = [
                     'statusCode' => 200,
@@ -127,6 +128,7 @@ class UserController extends Controller {
                     $filename  = uniqid() . '.' . $fileExtension;
                     if(move_uploaded_file($file['tmp_name'], $uploadDir . $filename)) {
                         $userUpload->uploadAvatar($_SESSION['id'], $filename);
+                        $_SESSION['avatar'] = $filename;
                         if(!empty($filename)) {
                             $output = '
                             <img src="' . _PUBLIC_UPLOADS . "/" . $filename . '" class="personal-avatar" alt="">

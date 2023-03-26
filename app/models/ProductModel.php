@@ -90,7 +90,7 @@ class ProductModel
             ->join('users as u', 'c.user_id = u.id')
             ->where('c.product_id', '=', $id)
             ->where('c.children_id', '!=', -1)
-            ->select('c.user_id, c.product_id, c.children_id, c.comment, c.comment_id, u.fullname, u.avatar, u.created_at')
+            ->select('c.id, c.user_id, c.product_id, c.children_id, c.comment, c.comment_id, u.fullname, u.avatar, u.created_at')
             ->orderBy('u.created_at', 'DESC')
             ->get();
 

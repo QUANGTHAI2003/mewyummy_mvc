@@ -126,28 +126,25 @@
           </fieldset>
         </div>
         <section class="comment-section comment">
-          <?php
-          echo '<pre>';
-          print_r($product_reply);
-          echo '</pre>';
-          ?>
-          <div class="comment__input">
-            <h2 class="comment-counnt">200 bình luận</h2>
-            <div class="comment__box">
-              <div class="comment__box-avatar">
-                <img src="https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg" alt="avatar">
-              </div>
-              <div class="comment__box-input">
-                <input type="text" class="input-main" id="commentMain" placeholder="Viết bình luận...">
-                <span class="focus-border"></span>
-                <button type="submit" class="btn btn-primary btnSend">Gửi</button>
-                <!-- <div class="buttons"></div>
-                  <button class="cancel-button">Hủy</button>
-                  <button class="send-button">Gửi</button>
-                </div> -->
+          <?php if (isset($_SESSION['isLogged'])) : ?>
+            <div class="comment__input">
+              <h3 class="comment-count">Sô bình luận: <?= count($product_comment) + count($product_reply) ?></h3>
+              <div class="comment__box">
+                <div class="comment__box-avatar">
+                  <img src="<?= _PUBLIC_UPLOADS ?>/<?= $_SESSION['avatar'] ?? '' ?>" alt="avatar">
+                </div>
+                <div class="comment__box-input mt-3">
+                  <input type="text" class="input-main" id="commentMain" placeholder="Viết bình luận...">
+                  <button type="submit" class="btn btn-primary btnSend">Gửi</button>
+                </div>
               </div>
             </div>
-          </div>
+          <?php else : ?>
+            <div class="alert alert-warning mb-4">
+              Bạn phải <a class="login-comment" href="/dang-nhap">Đăng nhập</a> 
+              hoặc <a class="login-comment" href="/dang-ky">Tạo tài khoản</a> để bình luận
+            </div>
+          <?php endif; ?>
           <div class="comment__content">
             <?php foreach ($product_comment as $cmt_main) : ?>
               <div class="comment__content-item mb-3">
@@ -169,7 +166,7 @@
                           <i class="fa-solid fa-thumbs-up icon"></i>
                           <span>Thích</span>
                         </div>
-                        <div class="reaction">
+                        <div class="reaction btnResParent" data-parent-id="<?= $cmt_main['id'] ?>">
                           <i class="fa-solid fa-comment icon"></i>
                           <span>Trả lời</span>
                         </div>
@@ -177,6 +174,17 @@
                     </div>
                   </div>
                 </div>
+                <?php if (isset($_SESSION['isLogged'])) : ?>
+                  <div class="comment__box reply hide comment-parent-<?= $cmt_main['id'] ?>">
+                    <div class="comment__box-avatar">
+                      <img src="<?= _PUBLIC_UPLOADS ?>/<?= $_SESSION['avatar'] ?? '' ?>" alt="avatar">
+                    </div>
+                    <div class="comment__box-input">
+                      <input type="text" class="input-main comment-input-<?= $cmt_main['id'] ?>" id="commentMain" placeholder="Viết bình luận...">
+                      <button type="submit" class="btn btn-primary btnSendReply" data-comment="<?= $cmt_main['id'] ?>" data-comment-id="<?= $cmt_main['id'] ?>">Gửi</button>
+                    </div>
+                  </div>
+                <?php endif; ?>
                 <?php foreach ($product_reply as $reply) : ?>
                   <?php if ($cmt_main['id'] == $reply['comment_id']) : ?>
                     <div class="comment__replies">
@@ -196,13 +204,24 @@
                             <i class="fa-solid fa-thumbs-up icon"></i>
                             <span>Thích</span>
                           </div>
-                          <div class="reaction">
+                          <div class="reaction btnRes" data-id="<?= $reply['id'] ?>">
                             <i class="fa-solid fa-comment icon"></i>
                             <span>Trả lời</span>
                           </div>
                         </div>
                       </div>
                     </div>
+                    <?php if (isset($_SESSION['isLogged'])) : ?>
+                      <div class="comment__box reply comment-child comment-<?= $reply['id'] ?>">
+                        <div class="comment__box-avatar">
+                          <img src="<?= _PUBLIC_UPLOADS ?>/<?= $_SESSION['avatar'] ?? '' ?>" alt="avatar">
+                        </div>
+                        <div class="comment__box-input">
+                          <input type="text" class="input-main comment-input-<?= $reply['id'] ?>" id="commentMain" placeholder="Viết bình luận...">
+                          <button type="submit" class="btn btn-primary btnSendReply" data-comment="<?= $reply['id'] ?>" data-comment-id="<?= $cmt_main['id'] ?>">Gửi</button>
+                        </div>
+                      </div>
+                    <?php endif; ?>
                   <?php endif; ?>
                 <?php endforeach; ?>
               </div>

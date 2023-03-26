@@ -49,19 +49,6 @@ class ProductController extends Controller
         $productComment = $product->getAllCommentMain($id);
         $productReply = $product->getRepliesComment($id);
 
-        $commentData = [
-            'user_id'    => $_SESSION['id'],
-            'children_id' => 1,
-            'product_id' => 1,
-            'comment'    => $_POST['comment'] ?? '',
-            'comment_id' => 51
-        ];
-
-        if (isset($_POST['addComment'])) {
-
-            $product->insertComment($commentData);
-        }
-
         $title = 'Chi tiết sản phẩm';
 
         $data = [
@@ -76,6 +63,21 @@ class ProductController extends Controller
         ];
 
         Controller::render('layouts/client_layout', $data);
+    }
+
+    public function addComment() {
+        $comment = Controller::model('ProductModel');
+        $commentData = [
+            'user_id'    => $_SESSION['id'] ?? 0,
+            'children_id' => $_POST['childrenId'] ?? -1,
+            'product_id' => $_POST['productId'] ?? 0,
+            'comment'    => $_POST['comment'] ?? '',
+            'comment_id' => $_POST['commentId'] ?? 0,
+        ];
+
+        if (isset($_POST['addComment'])) {
+            $comment->insertComment($commentData);
+        }
     }
 
     public function livesearch()
