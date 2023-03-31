@@ -411,13 +411,12 @@ $(document).ready(function () {
 				productId: productId,
 				addComment: true
 			},
-			dataType: 'json',
 			cache: false,
 			beforeSend: function () {
 				$('.btnSend').text('Đang gửi...');
 			},
 			success: function (data) {
-				console.log(data);
+				$('.comment__content').html(data);
 			},
 			error: function (error) {
 				console.log(error);
@@ -465,7 +464,6 @@ $(document).ready(function () {
 					childrenId: 1, // reply
 					addComment: true
 				},
-				dataType: 'json',
 				cache: false,
 				beforeSend: function () {
 					$('.btnSendReply').text('Đang gửi...');

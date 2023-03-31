@@ -10,7 +10,8 @@ $routes = [
     'chi-tiet/(\d+)'     => 'productcontroller/detail/$1',
     "tin-tuc"            => "newscontroller",
     "lien-he"            => "contactcontroller",
-    'gio-hang'           => 'cartcontroller',
+    'gio-hang'           => 'cartcontroller/',
+    'gio-hang/(.+)'      => 'cartcontroller/$2',
     'tai-khoan'          => 'accountcontroller',
     'cap-nhat'           => 'accountcontroller/updateInfo',
     'doi-mat-khau'       => 'accountcontroller/changePass',
@@ -20,5 +21,6 @@ $routes = [
     'quen-mat-khau'      => 'usercontroller/sendmail',
     'mat-khau-moi'       => 'usercontroller/resetpass',
     'dang-xuat'          => 'usercontroller/logout',
+    'vnpay_payment'      => 'checkoutcontroller/payment',
 ];
 ?>

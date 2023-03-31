@@ -1,6 +1,8 @@
 <?php
 
+
 use App\Core\Controller;
+use App\Core\Pagination;
 
 class ProductController extends Controller
 {
@@ -23,12 +25,16 @@ class ProductController extends Controller
         $totalPage   = ceil($total / $limit);
         $productList = array_slice($productList, $offset, $limit);
 
+        $pagination = new Pagination($totalPage, $page);
+        $pagination = $pagination->generateMarkup();
+
         $data = [
             'page_title' => $title,
             'data'       => [
                 'product_list' => $productList,
                 'product_cate' => $productCate,
                 'total_page'   => $totalPage,
+                'pagination'   => $pagination,
             ],
             'content'    => 'products/list',
         ];
@@ -38,7 +44,7 @@ class ProductController extends Controller
     public function detail($id = 0)
     {
         $product       = Controller::model('ProductModel');
-        
+
         // Get product
         $productDetail = $product->getDetail($id);
         $category_id   = $productDetail[0]['category_id'];
@@ -65,19 +71,115 @@ class ProductController extends Controller
         Controller::render('layouts/client_layout', $data);
     }
 
-    public function addComment() {
+    public function addComment()
+    {
         $comment = Controller::model('ProductModel');
+        $id = $_POST['productId'] ?? 0;
         $commentData = [
             'user_id'    => $_SESSION['id'] ?? 0,
             'children_id' => $_POST['childrenId'] ?? -1,
-            'product_id' => $_POST['productId'] ?? 0,
+            'product_id' => $id,
             'comment'    => $_POST['comment'] ?? '',
             'comment_id' => $_POST['commentId'] ?? 0,
         ];
 
+        
+
         if (isset($_POST['addComment'])) {
             $comment->insertComment($commentData);
         }
+        $productComment = $comment->getAllCommentMain($id);
+        $productReply = $comment->getRepliesComment($id);
+        $output = '';
+
+        foreach ($productComment as $cmt_main) {
+            $output .= '
+                <div class="comment__content-item mb-3">
+                    <div class="comment__main">
+                        <div class="comment__main-content">
+                            <div class="author-thumbnail">
+                                <img src="' . _PUBLIC_UPLOADS . '/' . $cmt_main['avatar'] . '" alt="avatar">
+                            </div>
+                            <div class="content__main">
+                                <div class="author-name">
+                                    <span>' . $cmt_main['fullname'] . '</span>
+                                    <span class="time">' . timeAgo($cmt_main['created_at']) . '</span>
+                                </div>
+                                <div class="content">
+                                    <p>' . $cmt_main['comment'] . '</p>
+                                </div>
+                                <div class="content__main-reaction">
+                                    <div class="reaction">
+                                        <i class="fa-solid fa-thumbs-up icon"></i>
+                                        <span>Thích</span>
+                                    </div>
+                                    <div class="reaction btnResParent" data-parent-id="' . $cmt_main['id'] . '">
+                                        <i class="fa-solid fa-comment icon"></i>
+                                        <span>Trả lời</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>';
+
+            if (isset($_SESSION['isLogged'])) {
+                $output .= '
+                    <div class="comment__box reply hide comment-parent-' . $cmt_main['id'] . '">
+                        <div class="comment__box-avatar">
+                            <img src="' . _PUBLIC_UPLOADS . '/' . ($_SESSION['avatar'] ?? '') . '" alt="avatar">
+                        </div>
+                        <div class="comment__box-input">
+                            <input type="text" class="input-main comment-input-' . $cmt_main['id'] . '" id="commentMain" placeholder="Viết bình luận...">
+                            <button type="submit" class="btn btn-primary btnSendReply" data-comment="' . $cmt_main['id'] . '" data-comment-id="' . $cmt_main['id'] . '">Gửi</button>
+                        </div>
+                    </div>';
+            }
+
+            foreach ($productReply as $reply) {
+                if ($cmt_main['id'] == $reply['comment_id']) {
+                    $output .= '
+                        <div class="comment__replies">
+                            <div class="author-thumbnail">
+                                <img src="' . _PUBLIC_UPLOADS . '/' . $reply['avatar'] . '" alt="avatar">
+                            </div>
+                            <div class="content__main">
+                                <div class="author-name">
+                                    <span>' . $reply['fullname'] . '</span>
+                                    <span class="time">' . timeAgo($reply['created_at']) . '</span>
+                                </div>
+                                <div class="content">
+                                    <p>' . $reply['comment'] . '</p>
+                                </div>
+                                <div class="content__main-reaction">
+                                    <div class="reaction">
+                                        <i class="fa-solid fa-thumbs-up icon"></i>
+                                        <span>Thích</span>
+                                    </div>
+                                    <div class="reaction btnRes" data-id="' . $reply['id'] . '">
+                                        <i class="fa-solid fa-comment icon"></i>
+                                        <span>Trả lời</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>';
+
+                    if (isset($_SESSION['isLogged'])) {
+                        $output .= '
+                            <div class="comment__box reply hide comment-' . $reply['id'] . '">
+                                <div class="comment__box-avatar">
+                                    <img src="' . _PUBLIC_UPLOADS . '/' . ($_SESSION['avatar'] ?? '') . '" alt="avatar">
+                                </div>
+                                <div class="comment__box-input">
+                                    <input type="text" class="input-main comment-input-' . $reply['id'] . '" id="commentMain" placeholder="Viết bình luận...">
+                                    <button type="submit" class="btn btn-primary btnSendReply" data-comment="' . $reply['id'] . '" data-comment-id="' . $cmt_main['id'] . '">Gửi</button>
+                                </div>
+                            </div>';
+                    }
+                }
+            }
+            $output .= '</div>';
+        }
+        echo $output;
     }
 
     public function livesearch()

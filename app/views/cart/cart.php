@@ -90,6 +90,9 @@
     <div class="cart__btn" ng-show="allQtn">
       <a href="/san-pham" class="btn btn-primary cart__btn-continue">Tiếp tục mua hàng</a>
       <a href="#" class="btn btn-primary cart__btn-checkout">Thanh toán</a>
+      <form action="/vnpay_payment" id="vnpay" method="POST">
+        <button type="submit" form="vnpay" name="redirect" class="btn btn-primary cart__btn-checkout">VN Pay</button>
+      </form>
     </div>
     <div class="giftbox mb-3 mt-4">
       <fieldset class="free-gifts pb-md-3">

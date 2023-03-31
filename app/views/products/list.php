@@ -253,25 +253,9 @@
                 </div>
               <?php endforeach; ?>
             </div>
-            <ul class="pagination">
-              <li class="page-item" ng-click="firstPage()">
-                <a class="page-link rounded text-center">«</a>
-              </li>
-              <li class="page-item" ng-click="prevPage()">
-                <a class="page-link rounded text-center">‹</a>
-              </li>
-              <?php for ($i = 1; $i <= $total_page; $i++) : ?>
-                <li class="page-item">
-                  <a href="<?= linkPage($i) ?>" class="page-link rounded text-center"><?= $i ?></a>
-                </li>
-              <?php endfor; ?>
-              <li class="page-item" ng-click="nextPage()">
-                <a class="page-link rounded text-center">›</a>
-              </li>
-              <li class="page-item" ng-click="lastPage()">
-                <a class="page-link rounded text-center">»</a>
-              </li>
-            </ul>
+            <?php
+            echo $pagination;
+            ?>
           </div>
         </div>
       </div>

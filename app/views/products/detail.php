@@ -212,7 +212,7 @@
                       </div>
                     </div>
                     <?php if (isset($_SESSION['isLogged'])) : ?>
-                      <div class="comment__box reply comment-child comment-<?= $reply['id'] ?>">
+                      <div class="comment__box reply hide comment-child comment-<?= $reply['id'] ?>">
                         <div class="comment__box-avatar">
                           <img src="<?= _PUBLIC_UPLOADS ?>/<?= $_SESSION['avatar'] ?? '' ?>" alt="avatar">
                         </div>
