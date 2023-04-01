@@ -1,6 +1,7 @@
 <?php
 
 use App\Core\Controller;
+use App\Core\Upload;
 
 class UserController extends Controller {
 
@@ -113,53 +114,9 @@ class UserController extends Controller {
         if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['avatar'])) {
             $file = $_FILES['avatar'];
 
-            if($file['error'] === UPLOAD_ERR_OK) {
-                $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
-                $fileExtension     = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
-                if(!in_array($fileExtension, $allowedExtensions)) {
-                    $response = [
-                        'statusCode' => 415,
-                        'message'    => 'Định dạng file không hợp lệ'
-                    ];
-                    header('HTTP/1.1 415 Unsupported Media Type');
-                    echo json_encode($response);
-                } else {
-                    $uploadDir = './public/assets/client/uploads/';
-                    $filename  = uniqid() . '.' . $fileExtension;
-                    if(move_uploaded_file($file['tmp_name'], $uploadDir . $filename)) {
-                        $userUpload->uploadAvatar($_SESSION['id'], $filename);
-                        $_SESSION['avatar'] = $filename;
-                        if(!empty($filename)) {
-                            $output = '
-                            <img src="' . _PUBLIC_UPLOADS . "/" . $filename . '" class="personal-avatar" alt="">
-                            <figcaption class="personal-figcaption">
-                              <input type="file" name="avatar" id="avatar" accept=".png, .jpg, .webp" value="" />
-                              <i class="fa-solid fa-camera-retro icon"></i>
-                            </figcaption>
-                            ';
-                            echo $output;
-                            header('HTTP/1.1 200 OK');
-                            die();
-                        }
-                    } else {
-                        $response = [
-                            'statusCode' => 500,
-                            'message'    => 'Đã có lỗi xảy ra'
-                        ];
-                        header('HTTP/1.1 500 Internal Server Error');
-                        echo json_encode($response);
-                        die();
-                    }
-                }
-            } else {
-                $response = [
-                    'statusCode' => 401,
-                    'message'    => 'Đã có lỗi xảy ra'
-                ];
-                header('HTTP/1.1 401 Unauthorized');
-                echo json_encode($response);
-                die();
-            }
+            $upload = new Upload($file);
+            $upload->uploadFile();
+            $avatar = $upload->getTargetFile();
         }
 
         $data = [

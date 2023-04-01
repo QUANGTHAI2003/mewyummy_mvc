@@ -294,7 +294,6 @@ $(document).ready(function () {
 			processData: false,
 			success: function (data) {
 				showMessage('Cập nhật ảnh đại diện', 'Cập nhật ảnh đại diện thành công');
-				$('.personal-figure').html(data);
 			},
 			error: function (error) {
 				if (error.status === 401) {
